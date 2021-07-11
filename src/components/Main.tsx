@@ -1,18 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Div = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: aqua;
+const Header = styled.header`
+	font-size: 1.5em;
+	cursor: pointer;
 `;
 
 function Main() {
-  return (
-    <Div>
-      <span>sdfa</span>
-    </Div>
-  );
+	return (
+		<Header>
+			<span>Friends</span>
+		</Header>
+	);
 }
 
 export default Main;

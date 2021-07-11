@@ -8,7 +8,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <MainContainer />
-          </Route>
+      </Route>
         </Switch>
       </BrowserRouter>
     </div>
