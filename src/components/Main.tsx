@@ -1,16 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import FinderContainer from '../containers/FinderContainer';
+import ListContainer from '../containers/ListContainer';
 
-const Header = styled.header`
-	font-size: 1.5em;
-	cursor: pointer;
+const Section = styled.section`
+	width: 100%;
+	height: 100vh;
+	display: flex;
 `;
 
 function Main() {
 	return (
-		<Header>
-			<span>Friends</span>
-		</Header>
+		<Section>
+			<FinderContainer />
+			<ListContainer />
+		</Section>
 	);
 }
 
