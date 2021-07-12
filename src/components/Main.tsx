@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import FinderContainer from '../containers/FinderContainer';
 import ListContainer from '../containers/ListContainer';
@@ -10,10 +11,16 @@ const Section = styled.section`
 `;
 
 function Main() {
+	const [isClickBtn, setClickBtn] = useState(false);
+
+	const handleClickBtn = () => {
+		setClickBtn(true);
+	};
+
 	return (
 		<Section>
-			<FinderContainer />
-			<ListContainer />
+			<FinderContainer handleClickBtn={handleClickBtn} />
+			{isClickBtn && <ListContainer />}
 		</Section>
 	);
 }

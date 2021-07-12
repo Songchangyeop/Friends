@@ -40,9 +40,14 @@ const Button = styled.button`
 	margin-top: 2em;
 	border: 0;
 	border-radius: 1em;
+	cursor: pointer;
 `;
 
-function Finder() {
+interface FinderProps {
+	dispatch: () => void;
+}
+
+function Finder({ dispatch }: FinderProps) {
 	return (
 		<Section>
 			<Logo>🐶🐱</Logo>
@@ -57,7 +62,7 @@ function Finder() {
 				<option value="Daegu">Daegu</option>
 				<option value="Gwangju">Gwangju</option>
 			</Select>
-			<Button>찾기</Button>
+			<Button onClick={dispatch}>찾기</Button>
 		</Section>
 	);
 }
