@@ -1,8 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import FinderContainer from '../containers/FinderContainer';
 import ListContainer from '../containers/ListContainer';
+import { ReducerType } from '../modules/rootReducer';
 
 const Section = styled.section`
 	width: 100%;
@@ -10,17 +11,19 @@ const Section = styled.section`
 	display: flex;
 `;
 
-function Main() {
-	const [isClickBtn, setClickBtn] = useState(false);
+interface State {
+	isLoading: boolean;
+}
 
-	const handleClickBtn = () => {
-		setClickBtn(true);
-	};
+function Main() {
+	const { isLoading } = useSelector<ReducerType, State>(
+		(state) => state.animalReducer
+	);
 
 	return (
 		<Section>
-			<FinderContainer handleClickBtn={handleClickBtn} />
-			{isClickBtn && <ListContainer />}
+			<FinderContainer />
+			<ListContainer isLoading={isLoading} />
 		</Section>
 	);
 }

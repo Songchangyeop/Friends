@@ -3,9 +3,26 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Li = styled.li`
-	width: 60%;
+	display: flex;
+	flex-direction: column;
+	width: 150px;
+	height: 200px;
+	list-style: none;
+	cursor: pointer;
+	margin: 1em;
+	font-size: 0.7em;
+	transition: all 200ms ease;
+
+	&:hover {
+		transform: scale(1.04);
+	}
 `;
 
+const Img = styled.img`
+	width: 100%;
+	height: 150px;
+	padding-bottom: 1em;
+`;
 interface ListProps {
 	item: {
 		age: number;
@@ -36,8 +53,10 @@ interface ListProps {
 function List({ item }: ListProps) {
 	return (
 		<Li>
-			ssasdfasdf
-			<img src={item.filename} alt="img" />
+			<Img src={item.popfile} alt="img" />
+			<span>상태: {item.processState}</span>
+			<span>성별: {item.sexCd}</span>
+			<span>보호소: {item.careNm}</span>
 		</Li>
 	);
 }

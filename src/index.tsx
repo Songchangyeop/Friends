@@ -5,8 +5,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import GlobalStyle from './assets/styles/global-styles';
 import rootReducer, { rootSaga } from './modules/rootReducer';
-
-const createSagaMiddleware = require('redux-saga').default;
+import createSagaMiddleware from 'redux-saga';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({

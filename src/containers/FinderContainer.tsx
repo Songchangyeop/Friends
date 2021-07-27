@@ -2,19 +2,15 @@ import React from 'react';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import Finder from '../components/Finder';
-import { getDataAsync } from '../modules/animal';
+import { animalAction } from '../modules/animal';
 
-interface FinderContainerProps {
-	handleClickBtn: () => void;
-}
-
-function FinderContainer({ handleClickBtn }: FinderContainerProps) {
+function FinderContainer() {
+	const { getData } = animalAction;
 	const dispatch = useDispatch();
 
 	const dispatchAnimal = useCallback(() => {
-		dispatch(getDataAsync());
-		handleClickBtn();
-	}, [dispatch, handleClickBtn]);
+		dispatch(getData());
+	}, [dispatch, getData]);
 
 	return <Finder dispatch={dispatchAnimal} />;
 }

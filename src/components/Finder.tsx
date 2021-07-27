@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Section = styled.section`
-	width: 40%;
+	width: 30%;
 	display: flex;
 	justify-content: center;
 	align-items: center;

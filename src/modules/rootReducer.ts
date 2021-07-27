@@ -1,6 +1,7 @@
+import { animalReducer } from './animal';
 import { combineReducers } from 'redux';
-import animalReducer, { animalSaga } from './animal';
 import { all } from 'redux-saga/effects';
+import { animalSaga } from './saga';
 
 // animalReducer 를 rootReducer 로 합쳐 내보냄
 const rootReducer = combineReducers({
@@ -12,4 +13,5 @@ export function* rootSaga() {
 	yield all([animalSaga()]);
 }
 
+export type ReducerType = ReturnType<typeof rootReducer>;
 export default rootReducer;

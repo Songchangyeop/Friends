@@ -1,8 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { ReducerType } from '../modules/rootReducer';
 import List from '../components/List';
+import styled from 'styled-components';
 
-interface AnimalItem {
+const Ul = styled.ul`
+	width: 70%;
+	display: flex;
+	flex-wrap: wrap;
+	overflow-y: auto;
+`;
+
+interface DescriptionParams {
 	age: number;
 	careAddr: string;
 	careNm: string;
@@ -27,18 +36,20 @@ interface AnimalItem {
 	weight: string;
 }
 
-interface AnimalState {
-	animal: AnimalItem[];
+interface Description {
+	animal: DescriptionParams[];
 }
 
-function ListContainer() {
-	console.log('List');
-
-	const animal = useSelector((state: AnimalState) => state.animal);
-
-	animal && console.log(animal);
-
-	return <ul>{animal && animal.map((item) => <List item={item} />)}</ul>;
+interface Test {
+	isLoading: boolean;
+}
+function ListContainer({ isLoading }: Test) {
+	const { animal } = useSelector<ReducerType, Description>(
+		(state) => state.animalReducer
+	);
+	console.log(animal);
+	return <Ul>{animal && animal.map((item) => <List item={item} />)}</Ul>;
+	// return <List />;
 }
 
 export default ListContainer;

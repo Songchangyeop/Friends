@@ -1,7 +1,6 @@
-import { call, put, takeEvery } from '@redux-saga/core/effects';
-import { ActionType, createAction, createReducer } from 'typesafe-actions';
-import * as API from '../service/get-data';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+// 받아오는 api Data의 type들
 interface DescriptionParams {
 	age: number;
 	careAddr: string;
@@ -27,45 +26,45 @@ interface DescriptionParams {
 	weight: string;
 }
 
+// state의 타입
 interface Description {
 	animal: DescriptionParams[];
-}
-
-interface Test {
-	response: DescriptionParams[];
-}
-
-// Action Type
-const GET_DATA_ASYNC = 'animal/GET_DATA_ASYNC';
-const GET_DATA = 'animal/GET_DATA';
-
-//Action Creator
-export const getDataAsync = createAction(GET_DATA_ASYNC)();
-export const getData = createAction(GET_DATA)<Test>();
-
-const actions = { getData };
-type TodoActions = ActionType<typeof actions>;
-
-// Main Saga
-export function* animalSaga() {
-	yield takeEvery(GET_DATA_ASYNC, getDataSaga);
-}
-
-// get Saga
-export function* getDataSaga() {
-	const response: Test = yield call(API.getAnimal);
-	console.log(response);
-	yield put(getData(response));
+	isLoading: boolean;
+	error: null;
 }
 
 //initialState
-const initialState: Description = {
+export const initialState: Description = {
 	animal: [],
+	isLoading: false,
+	error: null,
 };
 
-//Toolkit Reducer
-const animalReducer = createReducer<Description, TodoActions>(initialState, {
-	[GET_DATA]: (state, action) => state.animal.concat(action.payload),
+export const slice = createSlice({
+	name: 'animal',
+	initialState,
+	reducers: {
+		getDataSuccess: (state, action: PayloadAction<DescriptionParams>) => {
+			state.isLoading = true;
+			state.animal.length = 0;
+			const newState = state.animal.concat(action.payload);
+			state.animal = newState;
+		},
+		getDataFailure: (state, { payload: error }) => {
+			state.isLoading = false;
+			state.error = error;
+		},
+		getData: (state) => {
+			state.isLoading = false;
+		},
+	},
 });
 
-export default animalReducer;
+//Toolkit Reducer
+// const animalReducer = createReducer<Description, TodoActions>(initialState, {
+// 	[GET_DATA]: (state, action) => state.animal.concat(action.payload),
+// });
+
+export const animal = slice.name;
+export const animalReducer = slice.reducer;
+export const animalAction = slice.actions;
