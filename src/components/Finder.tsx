@@ -12,6 +12,13 @@ const Section = styled.section`
 	color: white;
 `;
 
+const Form = styled.form`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+`;
+
 const Logo = styled.span`
 	position: absolute;
 	top: 1em;
@@ -44,7 +51,7 @@ const Button = styled.button`
 `;
 
 interface FinderProps {
-	dispatch: () => void;
+	dispatch: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 function Finder({ dispatch }: FinderProps) {
@@ -54,15 +61,18 @@ function Finder({ dispatch }: FinderProps) {
 			<p>도시 별 동물 찾기</p>
 			<p>도시를 선택해서 유기동물들의 친구가 되어 주세요!</p>
 			<Bar></Bar>
-			<Select name="City" id="City-select">
-				<option value="Seoul">Seoul</option>
-				<option value="Ulsan">Ulsan</option>
-				<option value="Busan">Busan</option>
-				<option value="Daejeon">Daejeon</option>
-				<option value="Daegu">Daegu</option>
-				<option value="Gwangju">Gwangju</option>
-			</Select>
-			<Button onClick={dispatch}>찾기</Button>
+			<Form onSubmit={dispatch}>
+				<Select name="City" id="City-select">
+					<option value="Seoul">서울</option>
+					<option value="Ulsan">인천</option>
+					<option value="Busan">부산</option>
+					<option value="Daejeon">대구</option>
+					<option value="Daegu">울산</option>
+					<option value="Gwangju">광주</option>
+					<option value="Gwangju">대전</option>
+				</Select>
+				<Button type="submit">찾기</Button>
+			</Form>
 		</Section>
 	);
 }

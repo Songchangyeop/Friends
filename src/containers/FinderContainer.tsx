@@ -8,9 +8,14 @@ function FinderContainer() {
 	const { getData } = animalAction;
 	const dispatch = useDispatch();
 
-	const dispatchAnimal = useCallback(() => {
-		dispatch(getData());
-	}, [dispatch, getData]);
+	const dispatchAnimal = useCallback(
+		(e: React.FormEvent<HTMLFormElement>) => {
+			e.preventDefault();
+			console.log(e);
+			dispatch(getData());
+		},
+		[dispatch, getData]
+	);
 
 	return <Finder dispatch={dispatchAnimal} />;
 }

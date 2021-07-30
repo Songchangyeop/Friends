@@ -47,8 +47,13 @@ function ListContainer({ isLoading }: Test) {
 	const { animal } = useSelector<ReducerType, Description>(
 		(state) => state.animalReducer
 	);
-	console.log(animal);
-	return <Ul>{animal && animal.map((item) => <List item={item} />)}</Ul>;
+
+	return (
+		<Ul>
+			{animal &&
+				animal.map((item) => <List key={item.desertionNo} item={item} />)}
+		</Ul>
+	);
 	// return <List />;
 }
 
