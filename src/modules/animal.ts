@@ -33,6 +33,10 @@ interface Description {
 	error: null;
 }
 
+interface ParamType {
+	city: number;
+}
+
 //initialState
 export const initialState: Description = {
 	animal: [],
@@ -54,7 +58,7 @@ export const slice = createSlice({
 			state.isLoading = false;
 			state.error = error;
 		},
-		getData: (state) => {
+		getData: (state, action: PayloadAction<ParamType>) => {
 			state.isLoading = false;
 		},
 	},

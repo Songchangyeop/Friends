@@ -52,9 +52,10 @@ const Button = styled.button`
 
 interface FinderProps {
 	dispatch: (e: React.FormEvent<HTMLFormElement>) => void;
+	changeSelected: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-function Finder({ dispatch }: FinderProps) {
+function Finder({ dispatch, changeSelected }: FinderProps) {
 	return (
 		<Section>
 			<Logo>🐶🐱</Logo>
@@ -62,14 +63,14 @@ function Finder({ dispatch }: FinderProps) {
 			<p>도시를 선택해서 유기동물들의 친구가 되어 주세요!</p>
 			<Bar></Bar>
 			<Form onSubmit={dispatch}>
-				<Select name="City" id="City-select">
+				<Select name="City" id="City-select" onChange={changeSelected}>
 					<option value="Seoul">서울</option>
-					<option value="Ulsan">인천</option>
+					<option value="Incheon">인천</option>
 					<option value="Busan">부산</option>
-					<option value="Daejeon">대구</option>
-					<option value="Daegu">울산</option>
+					<option value="Daegu">대구</option>
+					<option value="Ulsan">울산</option>
 					<option value="Gwangju">광주</option>
-					<option value="Gwangju">대전</option>
+					<option value="Daejeon">대전</option>
 				</Select>
 				<Button type="submit">찾기</Button>
 			</Form>

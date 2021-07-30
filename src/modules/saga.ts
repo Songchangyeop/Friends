@@ -27,12 +27,16 @@ interface DescriptionParams {
 	weight: string;
 }
 
-// get Saga
-export function* getDataSaga() {
-	const { getDataSuccess, getDataFailure } = animalAction;
+interface ParamType {
+	city: number;
+}
 
+// get Saga
+export function* getDataSaga(action: { payload: ParamType }) {
+	const { getDataSuccess, getDataFailure } = animalAction;
+	const param = action.payload.city;
 	try {
-		const response: DescriptionParams = yield call(API.getAnimal); // call은 api를 call해서 data를 받아옴
+		const response: DescriptionParams = yield call(API.getAnimal, param); // call은 api를 call해서 data를 받아옴
 		yield put(getDataSuccess(response));
 		// put은 dispatch 를 뜻한다.
 	} catch (err) {
