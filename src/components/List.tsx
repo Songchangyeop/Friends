@@ -6,10 +6,12 @@ import styled, { keyframes } from 'styled-components';
 const Spin = keyframes`
   0% {
     transform: translateY(30%);
+		opacity: 0;
   }
 
   100% {
     transform: translateY(0%);
+		opacity: 1;
   }
 `;
 

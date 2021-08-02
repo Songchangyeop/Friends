@@ -60,7 +60,7 @@ export const slice = createSlice({
 			state.error = error;
 		},
 		getData: (state, action: PayloadAction<ParamType>) => {
-			state.isLoading = false;
+			// state.isLoading = false;
 		},
 	},
 });
