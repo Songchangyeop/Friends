@@ -1,22 +1,37 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
 
-import styled from 'styled-components';
+const Spin = keyframes`
+  0% {
+    transform: translateY(30%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+`;
 
 const Li = styled.li`
 	display: flex;
 	flex-direction: column;
 	width: 150px;
 	height: 200px;
-	list-style: none;
-	cursor: pointer;
 	margin: 1em;
+	border: 1px solid #e8e7e6;
+	border-radius: 0.5em;
 	font-size: 0.7em;
-	transition: all 200ms ease;
+	overflow-x: visible;
+	cursor: pointer;
+	list-style: none;
+	transition: all 150ms ease;
+	animation: ${Spin} 1s ease;
+	box-shadow: 6px 6px 8px 0px rgba(217, 217, 217, 1);
 
 	&:hover {
 		transform: scale(1.04);
+		box-shadow: 10px 10px 12px 0px rgba(217, 217, 217, 1);
 	}
 `;
 
@@ -24,6 +39,13 @@ const Img = styled.img`
 	width: 100%;
 	height: 150px;
 	padding-bottom: 1em;
+	border-radius: 0.5em;
+`;
+
+const Wrap = styled.div`
+	display: flex;
+	flex-direction: column;
+	padding: 0.3rem;
 `;
 interface ListProps {
 	item: {
@@ -71,9 +93,11 @@ function List({ item }: ListProps) {
 	return (
 		<Li>
 			<Img src={item.popfile} alt="img" />
-			<span>상태: {item.processState}</span>
-			<span>성별: {gender}</span>
-			<span>보호소: {item.careNm}</span>
+			<Wrap>
+				<span>상태: {item.processState}</span>
+				<span>성별: {gender}</span>
+				<span>보호소: {item.careNm}</span>
+			</Wrap>
 		</Li>
 	);
 }
