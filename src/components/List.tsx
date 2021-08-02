@@ -1,4 +1,6 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -51,11 +53,26 @@ interface ListProps {
 }
 
 function List({ item }: ListProps) {
+	const [gender, setGender] = useState('');
+	useEffect(() => {
+		switch (item.sexCd) {
+			case 'F':
+				setGender('암컷');
+				break;
+			case 'M':
+				setGender('수컷');
+				break;
+			case 'Q':
+				setGender('미상');
+				break;
+		}
+	}, []);
+
 	return (
 		<Li>
 			<Img src={item.popfile} alt="img" />
 			<span>상태: {item.processState}</span>
-			<span>성별: {item.sexCd}</span>
+			<span>성별: {gender}</span>
 			<span>보호소: {item.careNm}</span>
 		</Li>
 	);

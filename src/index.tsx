@@ -1,10 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
+import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import App from './App';
 import GlobalStyle from './assets/styles/global-styles';
+import { configureStore } from '@reduxjs/toolkit';
 import rootReducer, { rootSaga } from './modules/rootReducer';
+import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -13,6 +13,7 @@ const store = configureStore({
 	middleware: [sagaMiddleware],
 });
 
+// saga를 실행
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(

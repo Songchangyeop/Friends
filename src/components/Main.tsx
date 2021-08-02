@@ -23,7 +23,7 @@ function Main() {
 	return (
 		<Section>
 			<FinderContainer />
-			<ListContainer isLoading={isLoading} />
+			{isLoading && <ListContainer isLoading={isLoading} />}
 		</Section>
 	);
 }

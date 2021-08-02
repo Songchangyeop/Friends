@@ -1,6 +1,15 @@
 import axios from 'axios';
 
-export async function getAnimal(cityParam: number) {
+interface ParamType {
+	city: number;
+	kind: number | undefined;
+}
+
+const key =
+	'Rs6VFrkuCiM5A3qb%2Fh%2F%2BIe0ieawIWS7FA6yQygtC7%2FaMzfKCAg9mK73TVPHQ76hD9ZSr2rwzR%2FNJ367Y7Lz%2Big%3D%3D';
+
+export async function getAnimal(param: ParamType) {
+	const { city, kind } = param;
 	try {
 		const {
 			data: {
@@ -16,7 +25,7 @@ export async function getAnimal(cityParam: number) {
 			url: 'https://cors-proxy.org/api/',
 			method: 'get',
 			headers: {
-				'cors-proxy-url': `http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?upr_cd=${cityParam}&numOfRows=50&upkind=422400&ServiceKey=Rs6VFrkuCiM5A3qb%2Fh%2F%2BIe0ieawIWS7FA6yQygtC7%2FaMzfKCAg9mK73TVPHQ76hD9ZSr2rwzR%2FNJ367Y7Lz%2Big%3D%3D`,
+				'cors-proxy-url': `http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?upr_cd=${city}&numOfRows=50&upkind=${kind}&ServiceKey=${key}`,
 			},
 		});
 		return item;

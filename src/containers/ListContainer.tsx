@@ -5,7 +5,7 @@ import List from '../components/List';
 import styled from 'styled-components';
 
 const Ul = styled.ul`
-	width: 70%;
+	flex: 2;
 	display: flex;
 	flex-wrap: wrap;
 	overflow-y: auto;

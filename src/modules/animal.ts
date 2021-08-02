@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-// 받아오는 api Data의 type들
+// 받아오는 api Data의 type
 interface DescriptionParams {
 	age: number;
 	careAddr: string;
@@ -35,6 +35,7 @@ interface Description {
 
 interface ParamType {
 	city: number;
+	kind: number | undefined;
 }
 
 //initialState
@@ -63,11 +64,6 @@ export const slice = createSlice({
 		},
 	},
 });
-
-//Toolkit Reducer
-// const animalReducer = createReducer<Description, TodoActions>(initialState, {
-// 	[GET_DATA]: (state, action) => state.animal.concat(action.payload),
-// });
 
 export const animal = slice.name;
 export const animalReducer = slice.reducer;
