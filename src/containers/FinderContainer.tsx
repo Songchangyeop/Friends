@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import Finder from '../components/Finder';
-import { animalAction } from '../modules/animal';
+import { animalAction } from '../modules/getData/animal';
 
 function FinderContainer() {
 	const [city, setCity] = useState(6110000);

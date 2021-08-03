@@ -1,6 +1,6 @@
 import { animalAction } from './animal';
 import { call, put, takeEvery } from '@redux-saga/core/effects';
-import * as API from '../service/get-data';
+import * as API from '../../service/get-data';
 
 interface DescriptionParams {
 	age: number;

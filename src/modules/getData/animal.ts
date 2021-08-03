@@ -45,7 +45,7 @@ export const initialState: Description = {
 	error: null,
 };
 
-export const slice = createSlice({
+export const getAnimal = createSlice({
 	name: 'animal',
 	initialState,
 	reducers: {
@@ -65,6 +65,6 @@ export const slice = createSlice({
 	},
 });
 
-export const animal = slice.name;
-export const animalReducer = slice.reducer;
-export const animalAction = slice.actions;
+export const animal = getAnimal.name;
+export const animalReducer = getAnimal.reducer;
+export const animalAction = getAnimal.actions;
