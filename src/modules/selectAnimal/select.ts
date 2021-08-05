@@ -86,8 +86,7 @@ export const selectAnimal = createSlice({
 		modal: (state, action: PayloadAction<PayloadType>) => {
 			// state.selected = action.payload;
 			console.log(action.payload);
-			const newState = { ...action.payload };
-			state.selected = newState;
+			state.selected = action.payload;
 		},
 	},
 });
