@@ -30,6 +30,7 @@ interface DescriptionParams {
 interface ParamType {
 	city: number;
 	kind: number | undefined;
+	page: number;
 }
 
 // get Saga

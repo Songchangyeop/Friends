@@ -8,6 +8,7 @@ import { animalAction } from '../modules/getData/animal';
 function FinderContainer() {
 	const [city, setCity] = useState(6110000);
 	const [kind, setKind] = useState<number>();
+	const [page, setPage] = useState<number>(1);
 	const { getData } = animalAction;
 	const dispatch = useDispatch();
 
@@ -17,13 +18,14 @@ function FinderContainer() {
 			const param = {
 				city: city,
 				kind: kind,
+				page: page,
 			};
 			if (kind === undefined) {
 				return;
 			}
 			dispatch(getData(param));
 		},
-		[dispatch, getData, city, kind]
+		[dispatch, getData, city, kind, page]
 	);
 
 	const changeCity = useCallback((e) => {

@@ -1,8 +1,11 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReducerType } from '../modules/rootReducer';
 import List from '../components/List';
 import styled from 'styled-components';
+import { useRef } from 'react';
+import { animalAction } from '../modules/getData/animal';
+import { useCallback } from 'react';
 
 const Ul = styled.ul`
 	flex: 2;
@@ -38,20 +41,58 @@ interface DescriptionParams {
 
 interface Description {
 	animal: DescriptionParams[];
+	param: {
+		city: number;
+		kind: number | undefined;
+		page: number;
+	};
 }
 
 interface Test {
 	isLoading: boolean;
 }
 function ListContainer({ isLoading }: Test) {
-	const { animal } = useSelector<ReducerType, Description>(
+	const { animal, param } = useSelector<ReducerType, Description>(
 		(state) => state.animalReducer
 	);
 
+	let { page } = param;
+	const scrollParam = { ...param, page: ++page };
+
+	const ul = useRef<HTMLUListElement>(null);
+	const div = useRef<HTMLDivElement>(null);
+	const dispatch = useDispatch();
+	const { getData } = animalAction;
+
+	const onIntersect = useCallback(
+		([entry]: any) => {
+			if (entry.isIntersecting) {
+				console.log('출력');
+				dispatch(getData(scrollParam));
+			}
+		},
+		[dispatch, getData]
+	);
+
+	useEffect(() => {
+		let observer: IntersectionObserver;
+		if (isLoading && div) {
+			console.log(div);
+			observer = new IntersectionObserver(onIntersect, {
+				root: ul.current as Element,
+				threshold: 0.5,
+			});
+			observer.observe(div.current as Element);
+		}
+
+		return () => observer && observer.disconnect();
+	}, [isLoading, onIntersect]);
+
 	return (
-		<Ul>
+		<Ul ref={ul}>
 			{animal &&
 				animal.map((item) => <List key={item.desertionNo} item={item} />)}
+			<div ref={div}></div>
 		</Ul>
 	);
 	// return <List />;

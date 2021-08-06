@@ -67,7 +67,7 @@ function List({ item }: ListProps) {
 	);
 }
 
-export default List;
+export default React.memo(List);
 
 // 디자인
 const Spin = keyframes`

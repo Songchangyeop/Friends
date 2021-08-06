@@ -31,11 +31,17 @@ interface Description {
 	animal: DescriptionParams[];
 	isLoading: boolean;
 	error: null;
+	param: {
+		city: number;
+		kind: number | undefined;
+		page: number;
+	};
 }
 
 interface ParamType {
 	city: number;
 	kind: number | undefined;
+	page: number;
 }
 
 //initialState
@@ -43,6 +49,11 @@ export const initialState: Description = {
 	animal: [],
 	isLoading: false,
 	error: null,
+	param: {
+		city: 0,
+		kind: 0,
+		page: 0,
+	},
 };
 
 export const getAnimal = createSlice({
@@ -51,7 +62,7 @@ export const getAnimal = createSlice({
 	reducers: {
 		getDataSuccess: (state, action: PayloadAction<DescriptionParams>) => {
 			state.isLoading = true;
-			state.animal.length = 0;
+			// state.animal.length = 0;
 			const newState = state.animal.concat(action.payload);
 			state.animal = newState;
 		},
@@ -61,6 +72,7 @@ export const getAnimal = createSlice({
 		},
 		getData: (state, action: PayloadAction<ParamType>) => {
 			// state.isLoading = false;
+			state.param = action.payload;
 		},
 	},
 });
