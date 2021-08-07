@@ -35,6 +35,7 @@ interface Description {
 		city: number;
 		kind: number | undefined;
 		page: number;
+		isIntersecting?: boolean;
 	};
 }
 
@@ -42,6 +43,7 @@ interface ParamType {
 	city: number;
 	kind: number | undefined;
 	page: number;
+	isIntersecting?: boolean;
 }
 
 //initialState
@@ -62,7 +64,7 @@ export const getAnimal = createSlice({
 	reducers: {
 		getDataSuccess: (state, action: PayloadAction<DescriptionParams>) => {
 			state.isLoading = true;
-			// state.animal.length = 0;
+			state.animal.length = 0;
 			const newState = state.animal.concat(action.payload);
 			state.animal = newState;
 		},
@@ -71,7 +73,12 @@ export const getAnimal = createSlice({
 			state.error = error;
 		},
 		getData: (state, action: PayloadAction<ParamType>) => {
-			// state.isLoading = false;
+			const { city, kind } = state.param;
+			if (city !== action.payload.city || kind !== action.payload.kind) {
+				state.isLoading = false;
+				console.log(`isloading : ${state.isLoading}`);
+			}
+
 			state.param = action.payload;
 		},
 	},

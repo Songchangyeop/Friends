@@ -1,21 +1,59 @@
 import React from 'react';
 import { useState } from 'react';
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Finder from '../components/Finder';
 import { animalAction } from '../modules/getData/animal';
+import { ReducerType } from '../modules/rootReducer';
+
+interface DescriptionParams {
+	age: number;
+	careAddr: string;
+	careNm: string;
+	careTel: string;
+	chargeNm: string;
+	colorCd: string;
+	desertionNo: number;
+	filename: string;
+	happenDt: number;
+	happenPlace: string;
+	kindCd: string;
+	neuterYn: string;
+	noticeEdt: number;
+	noticeNo: string;
+	noticeSdt: number;
+	officetel: string;
+	orgNm: string;
+	popfile: string;
+	processState: string;
+	sexCd: string;
+	specialMark: string;
+	weight: string;
+}
+
+interface Description {
+	animal: DescriptionParams[];
+	param: {
+		city: number;
+		kind: number | undefined;
+		page: number;
+	};
+}
 
 function FinderContainer() {
 	const [city, setCity] = useState(6110000);
 	const [kind, setKind] = useState<number>();
 	const [page, setPage] = useState<number>(1);
 	const { getData } = animalAction;
+	const { param } = useSelector<ReducerType, Description>(
+		(state) => state.animalReducer
+	);
 	const dispatch = useDispatch();
 
 	const dispatchAnimal = useCallback(
 		(e: React.FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
-			const param = {
+			const payloadParam = {
 				city: city,
 				kind: kind,
 				page: page,
@@ -23,7 +61,16 @@ function FinderContainer() {
 			if (kind === undefined) {
 				return;
 			}
-			dispatch(getData(param));
+
+			if (
+				param.city === payloadParam.city &&
+				param.kind === payloadParam.kind
+			) {
+				console.log('같아버리네');
+				return;
+			}
+
+			dispatch(getData(payloadParam));
 		},
 		[dispatch, getData, city, kind, page]
 	);

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { useRef } from 'react';
 import { animalAction } from '../modules/getData/animal';
 import { useCallback } from 'react';
+import { useState } from 'react';
 
 const Ul = styled.ul`
 	flex: 2;
@@ -52,6 +53,7 @@ interface Test {
 	isLoading: boolean;
 }
 function ListContainer({ isLoading }: Test) {
+	const [animalList, setAnimalList] = useState<DescriptionParams[]>([]);
 	const { animal, param } = useSelector<ReducerType, Description>(
 		(state) => state.animalReducer
 	);
@@ -67,7 +69,7 @@ function ListContainer({ isLoading }: Test) {
 	const onIntersect = useCallback(
 		([entry]: any) => {
 			if (entry.isIntersecting) {
-				console.log('출력');
+				console.log('스크롤출력');
 				dispatch(getData(scrollParam));
 			}
 		},
@@ -75,23 +77,33 @@ function ListContainer({ isLoading }: Test) {
 	);
 
 	useEffect(() => {
+		animal &&
+			setAnimalList((animalList) => {
+				const newAnimal = animalList.concat(animal);
+				console.log(newAnimal);
+				return newAnimal;
+			});
+
+		isLoading === false && setAnimalList([]);
+	}, [animal]);
+
+	useEffect(() => {
 		let observer: IntersectionObserver;
 		if (isLoading && div) {
-			console.log(div);
 			observer = new IntersectionObserver(onIntersect, {
 				root: ul.current as Element,
 				threshold: 0.5,
 			});
 			observer.observe(div.current as Element);
-		}
+		} else return;
 
 		return () => observer && observer.disconnect();
 	}, [isLoading, onIntersect]);
 
 	return (
 		<Ul ref={ul}>
-			{animal &&
-				animal.map((item) => <List key={item.desertionNo} item={item} />)}
+			{animalList &&
+				animalList.map((item) => <List key={item.desertionNo} item={item} />)}
 			<div ref={div}></div>
 		</Ul>
 	);
