@@ -85,8 +85,10 @@ function ListContainer({ isLoading }: Test) {
 
 	useEffect(() => {
 		if (inView && isLoading) {
-			setPage((prevState) => prevState + 1);
-			onIntersect();
+			if (animal.length >= 50) {
+				setPage((prevState) => prevState + 1);
+				onIntersect();
+			}
 		}
 	}, [inView, isLoading]);
 
