@@ -70,15 +70,14 @@ export const getAnimal = createSlice({
 		},
 		getDataFailure: (state, { payload: error }) => {
 			state.isLoading = false;
+			state.animal.length = 0;
 			state.error = error;
 		},
 		getData: (state, action: PayloadAction<ParamType>) => {
 			const { city, kind } = state.param;
 			if (city !== action.payload.city || kind !== action.payload.kind) {
 				state.isLoading = false;
-				console.log(`isloading : ${state.isLoading}`);
 			}
-
 			state.param = action.payload;
 		},
 	},

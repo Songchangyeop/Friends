@@ -43,7 +43,6 @@ interface Description {
 function FinderContainer() {
 	const [city, setCity] = useState(6110000);
 	const [kind, setKind] = useState<number>();
-	const [page, setPage] = useState<number>(1);
 	const { getData } = animalAction;
 	const { param } = useSelector<ReducerType, Description>(
 		(state) => state.animalReducer
@@ -56,7 +55,7 @@ function FinderContainer() {
 			const payloadParam = {
 				city: city,
 				kind: kind,
-				page: page,
+				page: 1,
 			};
 			if (kind === undefined) {
 				return;
@@ -72,7 +71,7 @@ function FinderContainer() {
 
 			dispatch(getData(payloadParam));
 		},
-		[dispatch, getData, city, kind, page]
+		[dispatch, getData, city, kind]
 	);
 
 	const changeCity = useCallback((e) => {

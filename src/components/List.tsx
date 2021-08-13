@@ -56,14 +56,14 @@ function List({ item }: ListProps) {
 	};
 
 	return (
-		<Li onClick={handleClickAnimal}>
+		<Div onClick={handleClickAnimal}>
 			<Img src={item.popfile} alt="img" />
 			<Wrap>
 				<span>상태: {item.processState}</span>
 				<span>성별: {gender}</span>
 				<span>보호소: {item.careNm}</span>
 			</Wrap>
-		</Li>
+		</Div>
 	);
 }
 
@@ -82,7 +82,7 @@ const Spin = keyframes`
   }
 `;
 
-const Li = styled.li`
+const Div = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 150px;
@@ -93,7 +93,6 @@ const Li = styled.li`
 	font-size: 0.7em;
 	overflow-x: visible;
 	cursor: pointer;
-	list-style: none;
 	transition: all 150ms ease;
 	animation: ${Spin} 1s ease;
 	box-shadow: 6px 6px 8px 0px rgba(217, 217, 217, 1);

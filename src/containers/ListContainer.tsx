@@ -3,16 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ReducerType } from '../modules/rootReducer';
 import List from '../components/List';
 import styled from 'styled-components';
-import { useRef } from 'react';
 import { animalAction } from '../modules/getData/animal';
 import { useCallback } from 'react';
 import { useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 const Ul = styled.ul`
 	flex: 2;
 	display: flex;
 	flex-wrap: wrap;
 	overflow-y: auto;
+`;
+
+const LI = styled.li`
+	list-style: none;
 `;
 
 interface DescriptionParams {
@@ -57,30 +61,22 @@ function ListContainer({ isLoading }: Test) {
 	const { animal, param } = useSelector<ReducerType, Description>(
 		(state) => state.animalReducer
 	);
+	const [page, setPage] = useState(1);
+	const [ref, inView] = useInView();
 
-	let { page } = param;
-	const scrollParam = { ...param, page: ++page };
-
-	const ul = useRef<HTMLUListElement>(null);
-	const div = useRef<HTMLDivElement>(null);
 	const dispatch = useDispatch();
 	const { getData } = animalAction;
 
-	const onIntersect = useCallback(
-		([entry]: any) => {
-			if (entry.isIntersecting) {
-				console.log('스크롤출력');
-				dispatch(getData(scrollParam));
-			}
-		},
-		[dispatch, getData]
-	);
+	const onIntersect = useCallback(() => {
+		const scrollParam = { ...param, page: page };
+		console.log(scrollParam);
+		dispatch(getData(scrollParam));
+	}, [dispatch, getData, page]);
 
 	useEffect(() => {
 		animal &&
 			setAnimalList((animalList) => {
 				const newAnimal = animalList.concat(animal);
-				console.log(newAnimal);
 				return newAnimal;
 			});
 
@@ -88,23 +84,26 @@ function ListContainer({ isLoading }: Test) {
 	}, [animal]);
 
 	useEffect(() => {
-		let observer: IntersectionObserver;
-		if (isLoading && div) {
-			observer = new IntersectionObserver(onIntersect, {
-				root: ul.current as Element,
-				threshold: 0.5,
-			});
-			observer.observe(div.current as Element);
-		} else return;
-
-		return () => observer && observer.disconnect();
-	}, [isLoading, onIntersect]);
+		if (inView && isLoading) {
+			setPage((prevState) => prevState + 1);
+			onIntersect();
+		}
+	}, [inView, isLoading]);
 
 	return (
-		<Ul ref={ul}>
+		<Ul>
 			{animalList &&
-				animalList.map((item) => <List key={item.desertionNo} item={item} />)}
-			<div ref={div}></div>
+				animalList.map((item, index) =>
+					animalList.length - 1 === index ? (
+						<LI ref={ref} key={index}>
+							<List key={item.desertionNo} item={item} />
+						</LI>
+					) : (
+						<LI>
+							<List key={item.desertionNo} item={item} />
+						</LI>
+					)
+				)}
 		</Ul>
 	);
 	// return <List />;
