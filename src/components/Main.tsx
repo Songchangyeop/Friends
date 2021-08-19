@@ -16,14 +16,10 @@ interface State {
 }
 
 function Main() {
-	const { isLoading } = useSelector<ReducerType, State>(
-		(state) => state.animalReducer
-	);
-
 	return (
 		<Section>
 			<FinderContainer />
-			{isLoading && <ListContainer isLoading={isLoading} />}
+			<ListContainer />
 		</Section>
 	);
 }

@@ -49,12 +49,12 @@ interface ParamType {
 //initialState
 export const initialState: Description = {
 	animal: [],
-	isLoading: false,
+	isLoading: true,
 	error: null,
 	param: {
 		city: 0,
 		kind: 0,
-		page: 0,
+		page: 1,
 	},
 };
 
@@ -63,12 +63,13 @@ export const getAnimal = createSlice({
 	initialState,
 	reducers: {
 		getDataSuccess: (state, action: PayloadAction<DescriptionParams>) => {
-			state.isLoading = true;
 			state.animal.length = 0;
 			const newState = state.animal.concat(action.payload);
 			state.animal = newState;
+			state.isLoading = true;
 		},
 		getDataFailure: (state, { payload: error }) => {
+			console.log('fail');
 			state.isLoading = false;
 			state.animal.length = 0;
 			state.error = error;

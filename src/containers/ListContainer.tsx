@@ -2,22 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReducerType } from '../modules/rootReducer';
 import List from '../components/List';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { animalAction } from '../modules/getData/animal';
 import { useCallback } from 'react';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-
-const Ul = styled.ul`
-	flex: 2;
-	display: flex;
-	flex-wrap: wrap;
-	overflow-y: auto;
-`;
-
-const LI = styled.li`
-	list-style: none;
-`;
+import Skeleton from '../components/Skeleton';
 
 interface DescriptionParams {
 	age: number;
@@ -51,17 +41,18 @@ interface Description {
 		kind: number | undefined;
 		page: number;
 	};
-}
-
-interface Test {
 	isLoading: boolean;
 }
-function ListContainer({ isLoading }: Test) {
+
+interface Loading {
+	isLoading: boolean;
+}
+function ListContainer() {
 	const [animalList, setAnimalList] = useState<DescriptionParams[]>([]);
-	const { animal, param } = useSelector<ReducerType, Description>(
+	const { animal, param, isLoading } = useSelector<ReducerType, Description>(
 		(state) => state.animalReducer
 	);
-	const [page, setPage] = useState(1);
+	const [page, setPage] = useState(2);
 	const [ref, inView] = useInView();
 
 	const dispatch = useDispatch();
@@ -69,9 +60,8 @@ function ListContainer({ isLoading }: Test) {
 
 	const onIntersect = useCallback(() => {
 		const scrollParam = { ...param, page: page };
-		console.log(scrollParam);
 		dispatch(getData(scrollParam));
-	}, [dispatch, getData, page]);
+	}, [dispatch, getData, page, param]);
 
 	useEffect(() => {
 		animal &&
@@ -79,9 +69,8 @@ function ListContainer({ isLoading }: Test) {
 				const newAnimal = animalList.concat(animal);
 				return newAnimal;
 			});
-
 		isLoading === false && setAnimalList([]);
-	}, [animal]);
+	}, [animal, isLoading]);
 
 	useEffect(() => {
 		if (inView && isLoading) {
@@ -90,11 +79,12 @@ function ListContainer({ isLoading }: Test) {
 				onIntersect();
 			}
 		}
-	}, [inView, isLoading]);
+	}, [inView]);
 
 	return (
 		<Ul>
 			{animalList &&
+				isLoading === true &&
 				animalList.map((item, index) =>
 					animalList.length - 1 === index ? (
 						<LI ref={ref} key={index}>
@@ -106,9 +96,20 @@ function ListContainer({ isLoading }: Test) {
 						</LI>
 					)
 				)}
+			{isLoading === false && <Skeleton />}
 		</Ul>
 	);
-	// return <List />;
 }
 
 export default ListContainer;
+
+const Ul = styled.ul`
+	flex: 2;
+	display: flex;
+	flex-wrap: wrap;
+	overflow-y: auto;
+`;
+
+const LI = styled.li`
+	list-style: none;
+`;

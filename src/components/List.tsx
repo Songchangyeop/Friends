@@ -70,7 +70,7 @@ function List({ item }: ListProps) {
 export default React.memo(List);
 
 // 디자인
-const Spin = keyframes`
+const Up = keyframes`
   0% {
     transform: translateY(30%);
 		opacity: 0;
@@ -94,7 +94,7 @@ const Div = styled.div`
 	overflow-x: visible;
 	cursor: pointer;
 	transition: all 150ms ease;
-	animation: ${Spin} 1s ease;
+	animation: ${Up} 1s ease;
 	box-shadow: 6px 6px 8px 0px rgba(217, 217, 217, 1);
 
 	&:hover {
