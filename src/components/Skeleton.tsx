@@ -28,9 +28,8 @@ const Img = styled.img`
 `;
 
 const Div = styled.div`
+	flex: 2;
 	display: flex;
-	width: 100%;
-	height: 100%;
 	justify-content: center;
 	align-items: center;
 `;

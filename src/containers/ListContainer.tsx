@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReducerType } from '../modules/rootReducer';
 import List from '../components/List';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { animalAction } from '../modules/getData/animal';
 import { useCallback } from 'react';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Skeleton from '../components/Skeleton';
+import Modal from '../components/Modal';
 
 interface DescriptionParams {
 	age: number;
@@ -47,11 +48,20 @@ interface Description {
 interface Loading {
 	isLoading: boolean;
 }
+
+interface Select {
+	isSelect: boolean;
+}
+
 function ListContainer() {
 	const [animalList, setAnimalList] = useState<DescriptionParams[]>([]);
 	const { animal, param, isLoading } = useSelector<ReducerType, Description>(
 		(state) => state.animalReducer
 	);
+	const { isSelect } = useSelector<ReducerType, Select>(
+		(state) => state.selectReducer
+	);
+
 	const [page, setPage] = useState(2);
 	const [ref, inView] = useInView();
 
@@ -82,32 +92,40 @@ function ListContainer() {
 	}, [inView]);
 
 	return (
-		<Ul>
-			{animalList &&
-				isLoading === true &&
-				animalList.map((item, index) =>
-					animalList.length - 1 === index ? (
-						<LI ref={ref} key={index}>
-							<List key={item.desertionNo} item={item} />
-						</LI>
-					) : (
-						<LI>
-							<List key={item.desertionNo} item={item} />
-						</LI>
-					)
-				)}
-			{isLoading === false && <Skeleton />}
-		</Ul>
+		<>
+			{isLoading === false && param.city !== 0 && <Skeleton />}
+			<Ul isLoading={isLoading}>
+				{isSelect && <Modal />}
+				{animalList &&
+					animalList.map((item, index) =>
+						animalList.length - 1 === index ? (
+							<LI ref={ref} key={index}>
+								<List key={item.desertionNo} item={item} />
+							</LI>
+						) : (
+							<LI key={index}>
+								<List key={item.desertionNo} item={item} />
+							</LI>
+						)
+					)}
+			</Ul>
+		</>
 	);
 }
 
 export default ListContainer;
 
-const Ul = styled.ul`
-	flex: 2;
-	display: flex;
-	flex-wrap: wrap;
-	overflow-y: auto;
+const Ul = styled.ul<Loading>`
+	${(props) =>
+		props.isLoading === true &&
+		css`
+			flex: 2;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			overflow-y: auto;
+		`}
 `;
 
 const LI = styled.li`

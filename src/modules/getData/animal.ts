@@ -49,7 +49,7 @@ interface ParamType {
 //initialState
 export const initialState: Description = {
 	animal: [],
-	isLoading: true,
+	isLoading: false,
 	error: null,
 	param: {
 		city: 0,

@@ -25,6 +25,7 @@ interface AnimalType {
 		specialMark: string;
 		weight: string;
 	};
+	isSelect: boolean;
 }
 
 interface PayloadType {
@@ -77,16 +78,21 @@ export const initialState: AnimalType = {
 		specialMark: '',
 		weight: '',
 	},
+	isSelect: false,
 };
 
 export const selectAnimal = createSlice({
 	name: 'select',
 	initialState,
 	reducers: {
-		modal: (state, action: PayloadAction<PayloadType>) => {
+		openModal: (state, action: PayloadAction<PayloadType>) => {
 			// state.selected = action.payload;
 			console.log(action.payload);
+			state.isSelect = true;
 			state.selected = action.payload;
+		},
+		cleseModal: (state) => {
+			state.isSelect = false;
 		},
 	},
 });

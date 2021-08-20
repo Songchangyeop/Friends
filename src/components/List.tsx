@@ -46,13 +46,13 @@ function List({ item }: ListProps) {
 				setGender('미상');
 				break;
 		}
-	}, []);
+	}, [item.sexCd]);
 
 	const dispatch = useDispatch();
 
 	const handleClickAnimal = () => {
-		const { modal } = selectAction;
-		dispatch(modal(item));
+		const { openModal } = selectAction;
+		dispatch(openModal(item));
 	};
 
 	return (
