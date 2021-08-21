@@ -94,21 +94,23 @@ function ListContainer() {
 	return (
 		<>
 			{isLoading === false && param.city !== 0 && <Skeleton />}
-			<Ul isLoading={isLoading}>
-				{isSelect && <Modal />}
-				{animalList &&
-					animalList.map((item, index) =>
-						animalList.length - 1 === index ? (
-							<LI ref={ref} key={index}>
-								<List key={item.desertionNo} item={item} />
-							</LI>
-						) : (
-							<LI key={index}>
-								<List key={item.desertionNo} item={item} />
-							</LI>
-						)
-					)}
-			</Ul>
+			{isLoading && (
+				<Ul isLoading={isLoading}>
+					{isSelect && <Modal />}
+					{animalList &&
+						animalList.map((item, index) =>
+							animalList.length - 1 === index ? (
+								<LI ref={ref} key={index}>
+									<List key={item.desertionNo} item={item} />
+								</LI>
+							) : (
+								<LI key={index}>
+									<List key={item.desertionNo} item={item} />
+								</LI>
+							)
+						)}
+				</Ul>
+			)}
 		</>
 	);
 }

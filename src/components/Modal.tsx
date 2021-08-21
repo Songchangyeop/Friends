@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { ReducerType } from '../modules/rootReducer';
+import Header from './Header';
 
 interface SelectedAnimal {
 	selected: {
@@ -52,6 +53,7 @@ function Modal() {
 
 	return (
 		<Div>
+			<Header />
 			<Img src={selected.popfile} alt="" />
 			<Wrap>
 				<Left>
@@ -70,9 +72,6 @@ function Modal() {
 					<Span>
 						<b>종</b>: {selected.kindCd}
 					</Span>
-					<Span>
-						<b>구조위치</b>: {selected.happenPlace}
-					</Span>
 				</Left>
 				<Right>
 					<Span>
@@ -87,6 +86,9 @@ function Modal() {
 					<Span>
 						<b>담당 보호사</b>: {selected.chargeNm}
 					</Span>
+					<Span>
+						<b>구조위치</b>: {selected.happenPlace}
+					</Span>
 				</Right>
 			</Wrap>
 		</Div>
@@ -95,18 +97,46 @@ function Modal() {
 
 export default Modal;
 
+const Scale = keyframes`
+  0% {
+    transform: scale(0);
+  }
+
+	80%{
+		transform: scale(1.1);
+
+	}
+
+  100% {
+		transform: scale(1.0);
+  }
+`;
+
 const Div = styled.div`
 	position: absolute;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	border: #fafafa 1px solid;
-	border-radius: 1em;
+	/* border-radius: 1em; */
 	padding: 1em;
-	background-color: #fafafa;
+	background-color: white;
+	overflow-y: auto;
 	width: 40%;
-	height: 70%;
+	height: 60%;
+	animation: ${Scale} 300ms ease;
 	z-index: 5;
+
+	&::-webkit-scrollbar {
+		width: 7px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #9e9e9e;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: #e0e0e0;
+	}
 `;
 
 const Img = styled.img`
@@ -116,7 +146,7 @@ const Img = styled.img`
 
 const Span = styled.span`
 	font-size: 0.9em;
-	margin-top: 0.3em;
+	margin-top: 0.5em;
 `;
 
 const Left = styled.div`
@@ -138,7 +168,7 @@ const Right = styled.div`
 `;
 
 const Wrap = styled.div`
-	width: 100%;
+	width: 80%;
 	height: 25%;
 	display: flex;
 	justify-content: space-between;
