@@ -14,8 +14,8 @@ function Header() {
 	return (
 		<HeaderTag>
 			<H1>친구가 되어주세요</H1>
-			<Close>
-				<span onClick={CloseModal}>Close</span>
+			<Close onClick={CloseModal}>
+				<Span>Close</Span>
 			</Close>
 		</HeaderTag>
 	);
@@ -39,6 +39,8 @@ const H1 = styled.h1`
 `;
 
 const Close = styled.button`
+	width: 4em;
+	height: 2em;
 	position: absolute;
 	right: 1em;
 	border: 0;
@@ -49,4 +51,9 @@ const Close = styled.button`
 	&:hover {
 		background-color: #bdbdbd;
 	}
+`;
+
+const Span = styled.span`
+	font-size: 1.2em;
+	font-family: 'Cafe24Oneprettynight';
 `;

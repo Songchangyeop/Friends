@@ -21,9 +21,14 @@ function Finder({ dispatch, changeCity, changeKind, kindCode }: FinderProps) {
 		setSelectedKind(innerText);
 		changeKind(innerText);
 	};
+
+	const handleClickReload = () => {
+		window.location.reload();
+	};
+
 	return (
 		<Section>
-			<Logo>Friends</Logo>
+			<Logo onClick={handleClickReload}>Friends</Logo>
 			<p>도시 별 동물 찾기</p>
 			<p>도시를 선택해서 유기동물들의 친구가 되어 주세요!</p>
 			<Bar></Bar>

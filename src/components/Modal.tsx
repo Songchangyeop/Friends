@@ -134,10 +134,10 @@ const Div = styled.div`
 	flex-direction: column;
 	padding: 0.5em 1em 1em 1em;
 	background-color: white;
-	border: #9e9e9e 1px solid;
+	border-radius: 1em;
 	overflow-y: auto;
-	width: 40%;
-	height: 60%;
+	width: 50%;
+	height: 70%;
 	animation: ${Scale} 300ms ease;
 	z-index: 5;
 	box-shadow: 15px 15px 17px 0px #424242;
@@ -155,20 +155,19 @@ const Div = styled.div`
 `;
 
 const Img = styled.img`
-	width: 80%;
-	height: 60%;
+	width: 60%;
+	height: 50%;
 	border-radius: 0.5em;
 `;
 
 const Span = styled.span`
 	font-size: 0.9em;
-	margin-top: 0.5em;
+	margin-top: 0.7em;
 `;
 
 const Left = styled.div`
 	width: 50%;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
+	padding-top: 2em;
 	height: auto;
 	display: flex;
 	justify-content: flex-start;
@@ -177,8 +176,7 @@ const Left = styled.div`
 
 const Right = styled.div`
 	width: 50%;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
+	padding-top: 2em;
 	height: auto;
 	display: flex;
 	justify-content: flex-start;
