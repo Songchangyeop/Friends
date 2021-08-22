@@ -91,7 +91,7 @@ export const selectAnimal = createSlice({
 			state.isSelect = true;
 			state.selected = action.payload;
 		},
-		cleseModal: (state) => {
+		closeModal: (state) => {
 			state.isSelect = false;
 		},
 	},

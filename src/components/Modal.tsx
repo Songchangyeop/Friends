@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 import { ReducerType } from '../modules/rootReducer';
+import { selectAction } from '../modules/selectAnimal/select';
 import Header from './Header';
 
 interface SelectedAnimal {
@@ -35,6 +36,20 @@ function Modal() {
 	const { selected } = useSelector<ReducerType, SelectedAnimal>(
 		(state) => state.selectReducer
 	);
+	const modalRef = useRef<HTMLDivElement>(null);
+	const { closeModal } = selectAction;
+	const dispatch = useDispatch();
+
+	const handleClickOutside = (e: any) => {
+		if (!modalRef.current?.contains(e.target)) dispatch(closeModal());
+	};
+
+	useEffect(() => {
+		window.addEventListener('click', handleClickOutside);
+		return () => {
+			window.removeEventListener('click', handleClickOutside);
+		};
+	}, []);
 
 	const [gender, setGender] = useState('');
 	useEffect(() => {
@@ -52,7 +67,7 @@ function Modal() {
 	}, [selected.sexCd]);
 
 	return (
-		<Div>
+		<Div ref={modalRef}>
 			<Header />
 			<Img src={selected.popfile} alt="" />
 			<Wrap>
@@ -103,7 +118,7 @@ const Scale = keyframes`
   }
 
 	80%{
-		transform: scale(1.1);
+		transform: scale(1.05);
 
 	}
 
@@ -117,15 +132,15 @@ const Div = styled.div`
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	/* border-radius: 1em; */
-	padding: 1em;
+	padding: 0.5em 1em 1em 1em;
 	background-color: white;
+	border: #9e9e9e 1px solid;
 	overflow-y: auto;
 	width: 40%;
 	height: 60%;
 	animation: ${Scale} 300ms ease;
 	z-index: 5;
-
+	box-shadow: 15px 15px 17px 0px #424242;
 	&::-webkit-scrollbar {
 		width: 7px;
 	}
@@ -142,6 +157,7 @@ const Div = styled.div`
 const Img = styled.img`
 	width: 80%;
 	height: 60%;
+	border-radius: 0.5em;
 `;
 
 const Span = styled.span`
@@ -151,7 +167,8 @@ const Span = styled.span`
 
 const Left = styled.div`
 	width: 50%;
-	padding-top: 0.8em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 	height: auto;
 	display: flex;
 	justify-content: flex-start;
@@ -160,7 +177,8 @@ const Left = styled.div`
 
 const Right = styled.div`
 	width: 50%;
-	padding-top: 0.8em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 	height: auto;
 	display: flex;
 	justify-content: flex-start;
