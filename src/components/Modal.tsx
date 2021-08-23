@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
-import { ReducerType } from '../modules/rootReducer';
 import { selectAction } from '../modules/selectAnimal/select';
 import Header from './Header';
 
-interface SelectedAnimal {
+interface PropType {
 	selected: {
 		age: number;
 		careAddr: string;
@@ -30,12 +29,10 @@ interface SelectedAnimal {
 		specialMark: string;
 		weight: string;
 	};
+	gender: string;
 }
 
-function Modal() {
-	const { selected } = useSelector<ReducerType, SelectedAnimal>(
-		(state) => state.selectReducer
-	);
+function Modal({ selected, gender }: PropType) {
 	const modalRef = useRef<HTMLDivElement>(null);
 	const { closeModal } = selectAction;
 	const dispatch = useDispatch();
@@ -50,21 +47,6 @@ function Modal() {
 			window.removeEventListener('click', handleClickOutside);
 		};
 	}, []);
-
-	const [gender, setGender] = useState('');
-	useEffect(() => {
-		switch (selected.sexCd) {
-			case 'F':
-				setGender('암컷');
-				break;
-			case 'M':
-				setGender('수컷');
-				break;
-			case 'Q':
-				setGender('미상');
-				break;
-		}
-	}, [selected.sexCd]);
 
 	return (
 		<Div ref={modalRef}>
@@ -118,7 +100,7 @@ const Scale = keyframes`
   }
 
 	80%{
-		transform: scale(1.05);
+		transform: scale(1.03);
 
 	}
 
@@ -128,15 +110,13 @@ const Scale = keyframes`
 `;
 
 const Div = styled.div`
-	position: absolute;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	padding: 0.5em 1em 1em 1em;
 	background-color: white;
 	border-radius: 1em;
-	overflow-y: auto;
-	width: 50%;
+	width: 40%;
 	height: 70%;
 	animation: ${Scale} 300ms ease;
 	z-index: 5;
@@ -166,7 +146,7 @@ const Span = styled.span`
 `;
 
 const Left = styled.div`
-	width: 50%;
+	width: 40%;
 	padding-top: 2em;
 	height: auto;
 	display: flex;
@@ -175,7 +155,7 @@ const Left = styled.div`
 `;
 
 const Right = styled.div`
-	width: 50%;
+	width: 40%;
 	padding-top: 2em;
 	height: auto;
 	display: flex;
@@ -184,8 +164,9 @@ const Right = styled.div`
 `;
 
 const Wrap = styled.div`
-	width: 80%;
-	height: 25%;
+	width: 100%;
+	height: auto;
+	justify-content: center;
 	display: flex;
-	justify-content: space-between;
+	overflow-y: auto;
 `;

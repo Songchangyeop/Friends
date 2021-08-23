@@ -8,7 +8,6 @@ import { useCallback } from 'react';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Skeleton from '../components/Skeleton';
-import Modal from '../components/Modal';
 
 interface DescriptionParams {
 	age: number;
@@ -49,17 +48,10 @@ interface Loading {
 	isLoading: boolean;
 }
 
-interface Select {
-	isSelect: boolean;
-}
-
 function ListContainer() {
 	const [animalList, setAnimalList] = useState<DescriptionParams[]>([]);
 	const { animal, param, isLoading } = useSelector<ReducerType, Description>(
 		(state) => state.animalReducer
-	);
-	const { isSelect } = useSelector<ReducerType, Select>(
-		(state) => state.selectReducer
 	);
 
 	const [page, setPage] = useState(2);
@@ -96,7 +88,6 @@ function ListContainer() {
 			{isLoading === false && param.city !== 0 && <Skeleton />}
 			{isLoading && (
 				<Ul isLoading={isLoading}>
-					{isSelect && <Modal />}
 					{animalList &&
 						animalList.map((item, index) =>
 							animalList.length - 1 === index ? (
@@ -127,6 +118,7 @@ const Ul = styled.ul<Loading>`
 			align-items: center;
 			flex-wrap: wrap;
 			overflow-y: auto;
+			margin: 0;
 		`}
 `;
 
