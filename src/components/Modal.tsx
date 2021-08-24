@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 import { selectAction } from '../modules/selectAnimal/select';
-import Header from './Header';
+import ModalFooter from './ModalFooter';
+import Header from './ModalHeader';
 
 interface PropType {
 	selected: {
@@ -88,6 +89,7 @@ function Modal({ selected, gender }: PropType) {
 					</Span>
 				</Right>
 			</Wrap>
+			<ModalFooter></ModalFooter>
 		</Div>
 	);
 }
@@ -120,7 +122,7 @@ const Div = styled.div`
 	height: 70%;
 	animation: ${Scale} 300ms ease;
 	z-index: 5;
-	box-shadow: 15px 15px 17px 0px #424242;
+	box-shadow: rgb(0 0 0 / 25%) 10px 10px 20px;
 	&::-webkit-scrollbar {
 		width: 7px;
 	}

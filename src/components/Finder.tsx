@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
+import NavContainer from '../containers/NavContainer';
 
 interface FinderProps {
 	dispatch: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -22,13 +23,9 @@ function Finder({ dispatch, changeCity, changeKind, kindCode }: FinderProps) {
 		changeKind(innerText);
 	};
 
-	const handleClickReload = () => {
-		window.location.reload();
-	};
-
 	return (
 		<Section>
-			<Logo onClick={handleClickReload}>Friends</Logo>
+			<NavContainer />
 			<p>도시 별 동물 찾기</p>
 			<p>도시를 선택해서 유기동물들의 친구가 되어 주세요!</p>
 			<Bar></Bar>
@@ -63,10 +60,9 @@ export default Finder;
 const Section = styled.section`
 	flex: 1;
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	padding: 1em;
+	/* padding: 1em; */
 	background-color: #12b886;
 	color: white;
 `;
@@ -76,14 +72,6 @@ const Form = styled.form`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-`;
-
-const Logo = styled.span`
-	position: absolute;
-	top: 1em;
-	left: 1em;
-	font-size: 2em;
-	cursor: pointer;
 `;
 
 const Bar = styled.div`

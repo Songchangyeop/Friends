@@ -119,6 +119,7 @@ const Ul = styled.ul<Loading>`
 			flex-wrap: wrap;
 			overflow-y: auto;
 			margin: 0;
+			padding: 0;
 		`}
 `;
 
