@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Main from './components/Main';
-import BookmarkContainer from './containers/BookmarkContainer';
+import Bookmark from './page/Bookmark';
+import Main from './page/Main';
 
 function App() {
 	return (
@@ -9,7 +9,7 @@ function App() {
 			<BrowserRouter>
 				<Switch>
 					<Route exact path="/" component={Main}></Route>
-					<Route path="/bookmark" component={BookmarkContainer}></Route>
+					<Route path="/bookmark" component={Bookmark}></Route>
 				</Switch>
 			</BrowserRouter>
 		</div>

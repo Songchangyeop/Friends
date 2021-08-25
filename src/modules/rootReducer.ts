@@ -1,3 +1,4 @@
+import { bookmarkReducer } from './bookmarkAnimal/bookmark';
 import { selectReducer } from './selectAnimal/select';
 import { animalReducer } from './getData/animal';
 import { combineReducers } from 'redux';
@@ -8,6 +9,7 @@ import { animalSaga } from './getData/saga';
 const rootReducer = combineReducers({
 	animalReducer,
 	selectReducer,
+	bookmarkReducer,
 });
 
 export function* rootSaga() {

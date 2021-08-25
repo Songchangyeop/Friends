@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-function Skeleton() {
+function Loading() {
 	return (
 		<Div>
 			<Img src="img/Loading.png" />
@@ -9,7 +9,7 @@ function Skeleton() {
 	);
 }
 
-export default Skeleton;
+export default Loading;
 
 const Spin = keyframes`
   0% {

@@ -7,7 +7,7 @@ import { animalAction } from '../modules/getData/animal';
 import { useCallback } from 'react';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import Skeleton from '../components/Skeleton';
+import Loading from '../components/Loading';
 
 interface DescriptionParams {
 	age: number;
@@ -85,7 +85,7 @@ function ListContainer() {
 
 	return (
 		<>
-			{isLoading === false && param.city !== 0 && <Skeleton />}
+			{isLoading === false && param.city !== 0 && <Loading />}
 			{isLoading && (
 				<Ul isLoading={isLoading}>
 					{animalList &&
