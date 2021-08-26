@@ -44,7 +44,7 @@ interface Description {
 	isLoading: boolean;
 }
 
-interface Loading {
+interface isLoading {
 	isLoading: boolean;
 }
 
@@ -108,7 +108,7 @@ function ListContainer() {
 
 export default ListContainer;
 
-const Ul = styled.ul<Loading>`
+const Ul = styled.ul<isLoading>`
 	${(props) =>
 		props.isLoading === true &&
 		css`

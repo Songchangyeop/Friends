@@ -95,6 +95,7 @@ const Div = styled.div`
 	cursor: pointer;
 	transition: all 150ms ease;
 	animation: ${Up} 1s ease;
+	background-color: white;
 	box-shadow: 6px 6px 8px 0px rgba(217, 217, 217, 1);
 
 	&:hover {

@@ -26,9 +26,11 @@ interface AnimalType {
 		weight: string;
 	};
 	isSelect: boolean;
+	bookmark: BookmarkAnimalType[];
+	isPageOpen: boolean;
 }
 
-interface PayloadType {
+interface BookmarkAnimalType {
 	age: number;
 	careAddr: string;
 	careNm: string;
@@ -78,20 +80,50 @@ export const initialState: AnimalType = {
 		specialMark: '',
 		weight: '',
 	},
+	bookmark: [],
 	isSelect: false,
+	isPageOpen: false,
 };
 
 export const selectAnimal = createSlice({
 	name: 'select',
 	initialState,
 	reducers: {
-		openModal: (state, action: PayloadAction<PayloadType>) => {
+		openModal: (state, action: PayloadAction<BookmarkAnimalType>) => {
 			// state.selected = action.payload;
 			state.isSelect = true;
 			state.selected = action.payload;
 		},
 		closeModal: (state) => {
 			state.isSelect = false;
+		},
+		AddBookmark: (state, action: PayloadAction<BookmarkAnimalType>) => {
+			const { bookmark } = state;
+
+			if (
+				bookmark.findIndex(
+					(item) => item.desertionNo === action.payload.desertionNo
+				) >= 0
+			) {
+				alert('이미 찜 한 동물입니다');
+				return;
+			}
+
+			const newState = bookmark.concat(action.payload);
+			state.bookmark = newState;
+			alert('찜 했습니다');
+		},
+		RemoveBookmark: (state, action) => {
+			const newState = state.bookmark.filter(
+				(item) => item.desertionNo !== action.payload
+			);
+			state.bookmark = newState;
+			alert('제거 되었습니다');
+			state.isSelect = false;
+		},
+		PageOpen: (state, action) => {
+			state.isPageOpen = action.payload;
+			console.log(state.isPageOpen);
 		},
 	},
 });

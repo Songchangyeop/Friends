@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Bookmark from './page/Bookmark';
-import Main from './page/Main';
+import BookmarkPage from './page/BookmarkPage';
+import MainPage from './page/MainPage';
 
 function App() {
 	return (
 		<div>
 			<BrowserRouter>
 				<Switch>
-					<Route exact path="/" component={Main}></Route>
-					<Route path="/bookmark" component={Bookmark}></Route>
+					<Route exact path="/" component={MainPage}></Route>
+					<Route path="/bookmark" component={BookmarkPage}></Route>
 				</Switch>
 			</BrowserRouter>
 		</div>

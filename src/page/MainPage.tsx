@@ -5,18 +5,18 @@ import styled from 'styled-components';
 import FinderContainer from '../containers/FinderContainer';
 import ListContainer from '../containers/ListContainer';
 import ModalContainer from '../containers/ModalContainer';
-import { bookmarkAction } from '../modules/bookmarkAnimal/bookmark';
 import { ReducerType } from '../modules/rootReducer';
+import { selectAction } from '../modules/selectAnimal/select';
 
 interface Select {
 	isSelect: boolean;
 }
 
-function Main() {
+function MainPage() {
 	const { isSelect } = useSelector<ReducerType, Select>(
 		(state) => state.selectReducer
 	);
-	const { PageOpen } = bookmarkAction;
+	const { PageOpen } = selectAction;
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -36,7 +36,7 @@ function Main() {
 	);
 }
 
-export default Main;
+export default MainPage;
 
 const Section = styled.section`
 	width: 100%;

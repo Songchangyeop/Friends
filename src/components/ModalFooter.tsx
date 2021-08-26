@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { bookmarkAction } from '../modules/bookmarkAnimal/bookmark';
 import { ReducerType } from '../modules/rootReducer';
+import { selectAction } from '../modules/selectAnimal/select';
 
 interface SelectedAnimal {
 	selected: {
@@ -29,34 +30,40 @@ interface SelectedAnimal {
 		specialMark: string;
 		weight: string;
 	};
+	isPageOpen: boolean;
 }
 
-interface PageOpen {
+interface isbookMarkOpen {
 	isPageOpen: boolean;
 }
 
 function ModalFooter() {
-	const { selected } = useSelector<ReducerType, SelectedAnimal>(
+	const { selected, isPageOpen } = useSelector<ReducerType, SelectedAnimal>(
 		(state) => state.selectReducer
 	);
-	const { isPageOpen } = useSelector<ReducerType, PageOpen>(
-		(state) => state.bookmarkReducer
-	);
 
-	const { AddBookmark } = bookmarkAction;
+	const { AddBookmark, RemoveBookmark } = selectAction;
 	const dispatch = useDispatch();
 
 	const handleAddBookmark = () => {
 		dispatch(AddBookmark(selected));
 	};
 
+	const handleRemoveBookmark = () => {
+		dispatch(RemoveBookmark(selected.desertionNo));
+	};
+
 	return (
 		<>
 			{isPageOpen && (
-				<BookMark onClick={handleAddBookmark}>친구 목록에서 제거</BookMark>
+				<BookMark isPageOpen={isPageOpen} onClick={handleRemoveBookmark}>
+					친구 목록에서 제거
+				</BookMark>
 			)}
 			{!isPageOpen && (
-				<BookMark onClick={handleAddBookmark}>친구 목록에 담기</BookMark>
+				<BookMark isPageOpen={isPageOpen} onClick={handleAddBookmark}>
+					친구 목록에 담기
+				</BookMark>
 			)}
 		</>
 	);
@@ -64,12 +71,36 @@ function ModalFooter() {
 
 export default ModalFooter;
 
-const BookMark = styled.button`
-	margin-top: 1em;
-	width: 8em;
-	height: 2em;
-	background-color: #e0e0e0;
-	border-radius: 1em;
-	border: 0;
-	cursor: pointer;
+const BookMark = styled.button<isbookMarkOpen>`
+	${(props) =>
+		props.isPageOpen &&
+		css`
+			margin-top: 1em;
+			width: 9em;
+			height: 2em;
+			background-color: #e0e0e0;
+			border-radius: 1em;
+			border: 0;
+			cursor: pointer;
+
+			&:hover {
+				background-color: #bdbdbd;
+			}
+		`}
+
+	${(props) =>
+		!props.isPageOpen &&
+		css`
+			margin-top: 1em;
+			width: 8em;
+			height: 2em;
+			background-color: #e0e0e0;
+			border-radius: 1em;
+			border: 0;
+			cursor: pointer;
+
+			&:hover {
+				background-color: #bdbdbd;
+			}
+		`}
 `;

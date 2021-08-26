@@ -47,16 +47,21 @@ export const bookmarkAnimal = createSlice({
 					(item) => item.desertionNo === action.payload.desertionNo
 				) >= 0
 			) {
-				console.log('겹치지 않음');
+				alert('이미 찜 한 동물입니다');
 				return;
 			}
 
 			const newState = bookmark.concat(action.payload);
 			state.bookmark = newState;
-			console.log(state.bookmark);
+			alert('찜 했습니다');
 		},
 		RemoveBookmark: (state, action) => {
-			state.bookmark.filter((item) => item.desertionNo !== action.payload);
+			const newState = state.bookmark.filter(
+				(item) => item.desertionNo !== action.payload
+			);
+			state.bookmark = newState;
+			alert('제거 되었습니다');
+			console.log(newState);
 		},
 		PageOpen: (state, action) => {
 			state.isPageOpen = action.payload;
