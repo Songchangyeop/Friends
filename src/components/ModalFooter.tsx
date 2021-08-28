@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
-import { bookmarkAction } from '../modules/bookmarkAnimal/bookmark';
 import { ReducerType } from '../modules/rootReducer';
 import { selectAction } from '../modules/selectAnimal/select';
 

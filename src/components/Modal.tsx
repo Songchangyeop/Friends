@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components';
 import { selectAction } from '../modules/selectAnimal/select';
 import ModalFooter from './ModalFooter';
 import Header from './ModalHeader';
-
+import Check from './Check';
 interface PropType {
 	selected: {
 		age: number;
@@ -89,6 +89,7 @@ function Modal({ selected, gender }: PropType) {
 					</Span>
 				</Right>
 			</Wrap>
+			<Check />
 			<ModalFooter></ModalFooter>
 		</Div>
 	);
@@ -112,6 +113,7 @@ const Scale = keyframes`
 `;
 
 const Div = styled.div`
+	position: relative;
 	display: flex;
 	align-items: center;
 	flex-direction: column;

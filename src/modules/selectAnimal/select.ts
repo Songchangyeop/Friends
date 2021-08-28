@@ -28,6 +28,8 @@ interface AnimalType {
 	isSelect: boolean;
 	bookmark: BookmarkAnimalType[];
 	isPageOpen: boolean;
+	checkMessage: string;
+	isCheckOpen: boolean;
 }
 
 interface BookmarkAnimalType {
@@ -83,6 +85,8 @@ export const initialState: AnimalType = {
 	bookmark: [],
 	isSelect: false,
 	isPageOpen: false,
+	checkMessage: '',
+	isCheckOpen: false,
 };
 
 export const selectAnimal = createSlice({
@@ -105,25 +109,28 @@ export const selectAnimal = createSlice({
 					(item) => item.desertionNo === action.payload.desertionNo
 				) >= 0
 			) {
-				alert('이미 찜 한 동물입니다');
+				state.checkMessage = '이미 찜 한 동물입니다';
+				state.isCheckOpen = true;
 				return;
 			}
 
 			const newState = bookmark.concat(action.payload);
 			state.bookmark = newState;
-			alert('찜 했습니다');
+			state.checkMessage = '찜 했습니다';
+			state.isCheckOpen = true;
 		},
 		RemoveBookmark: (state, action) => {
 			const newState = state.bookmark.filter(
 				(item) => item.desertionNo !== action.payload
 			);
 			state.bookmark = newState;
-			alert('제거 되었습니다');
 			state.isSelect = false;
 		},
 		PageOpen: (state, action) => {
 			state.isPageOpen = action.payload;
-			console.log(state.isPageOpen);
+		},
+		CloseCheck: (state, action) => {
+			state.isCheckOpen = action.payload;
 		},
 	},
 });
