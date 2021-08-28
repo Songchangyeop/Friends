@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import List from '../components/List';
 import ModalContainer from '../containers/ModalContainer';
+import NavContainer from '../containers/NavContainer';
 
 import { ReducerType } from '../modules/rootReducer';
 import { selectAction } from '../modules/selectAnimal/select';
@@ -52,22 +51,18 @@ function BookmarkPage() {
 	}, []);
 
 	return (
-		<Section>
+		<Main>
 			{isSelect && (
 				<Container>
 					<ModalContainer />
 				</Container>
 			)}
-			<Header>
-				<Link to="/">
-					<Img src="img/Logo.png" alt="Logo" />
-				</Link>
-			</Header>
+			<NavContainer />
 			<Ul>
 				{bookmark &&
 					bookmark.map((item) => <List key={item.desertionNo} item={item} />)}
 			</Ul>
-		</Section>
+		</Main>
 	);
 }
 
@@ -79,21 +74,9 @@ const Container = styled.div`
 	height: 100%;
 `;
 
-const Section = styled.section`
+const Main = styled.main`
 	width: 100%;
 	height: 10vh;
-	background-color: #12b886;
-`;
-
-const Img = styled.img`
-	width: 10em;
-	cursor: pointer;
-`;
-
-const Header = styled.header`
-	width: 100%;
-	padding: 1em;
-	background-color: #12b886;
 `;
 
 const Ul = styled.ul`
@@ -101,4 +84,5 @@ const Ul = styled.ul`
 	height: 90vh;
 	display: flex;
 	list-style: none;
+	margin: 0;
 `;

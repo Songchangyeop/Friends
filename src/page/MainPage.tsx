@@ -24,7 +24,7 @@ function MainPage() {
 	}, []);
 
 	return (
-		<Section>
+		<Main>
 			<FinderContainer />
 			<ListContainer />
 			{isSelect && (
@@ -32,13 +32,13 @@ function MainPage() {
 					<ModalContainer />
 				</Container>
 			)}
-		</Section>
+		</Main>
 	);
 }
 
 export default MainPage;
 
-const Section = styled.section`
+const Main = styled.main`
 	width: 100%;
 	height: 100vh;
 	display: flex;
