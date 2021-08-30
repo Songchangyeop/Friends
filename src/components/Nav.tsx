@@ -66,7 +66,7 @@ const List = styled.li`
 	transition: all 150ms ease;
 
 	&:hover {
-		color: #ffff00;
+		color: #757575;
 	}
 `;
 

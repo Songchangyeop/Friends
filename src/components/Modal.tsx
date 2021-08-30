@@ -151,7 +151,6 @@ const Span = styled.span`
 
 const Left = styled.div`
 	width: 40%;
-	padding-top: 2em;
 	height: auto;
 	display: flex;
 	justify-content: flex-start;
@@ -160,7 +159,6 @@ const Left = styled.div`
 
 const Right = styled.div`
 	width: 40%;
-	padding-top: 2em;
 	height: auto;
 	display: flex;
 	justify-content: flex-start;
@@ -173,4 +171,5 @@ const Wrap = styled.div`
 	justify-content: center;
 	display: flex;
 	overflow-y: auto;
+	margin-top: 1em;
 `;

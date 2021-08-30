@@ -60,7 +60,12 @@ function BookmarkPage() {
 			<Ul>
 				{bookmark &&
 					bookmark.map((item) => <List key={item.desertionNo} item={item} />)}
-				{bookmark.length < 1 && <div>리스트가 비어 있습니다</div>}
+				{bookmark.length < 1 && (
+					<Div>
+						<Image src="img/blank.png" alt="blank" />
+						리스트가 비어있습니다
+					</Div>
+				)}
 			</Ul>
 		</Main>
 	);
@@ -85,4 +90,20 @@ const Ul = styled.ul`
 	display: flex;
 	list-style: none;
 	margin: 0;
+`;
+
+const Div = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: 2em;
+	color: #a6a6a6;
+	font-family: 'Cafe24Oneprettynight';
+	font-weight: bold;
+`;
+
+const Image = styled.img`
+	width: auto;
 `;
