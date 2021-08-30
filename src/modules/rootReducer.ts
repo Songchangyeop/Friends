@@ -1,3 +1,4 @@
+import { pageReducer } from './CurrentPage/PageCheck';
 import { selectReducer } from './selectAnimal/select';
 import { animalReducer } from './getData/animal';
 import { combineReducers } from 'redux';
@@ -8,6 +9,7 @@ import { animalSaga } from './getData/saga';
 const rootReducer = combineReducers({
 	animalReducer,
 	selectReducer,
+	pageReducer,
 });
 
 export function* rootSaga() {

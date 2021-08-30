@@ -4,9 +4,8 @@ import styled from 'styled-components';
 import List from '../components/List';
 import ModalContainer from '../containers/ModalContainer';
 import NavContainer from '../containers/NavContainer';
-
+import { pageAction } from '../modules/CurrentPage/PageCheck';
 import { ReducerType } from '../modules/rootReducer';
-import { selectAction } from '../modules/selectAnimal/select';
 
 interface AnimalType {
 	age: number;
@@ -39,7 +38,7 @@ interface Select {
 }
 
 function BookmarkPage() {
-	const { PageOpen } = selectAction;
+	const { ChagnePage } = pageAction;
 	const dispatch = useDispatch();
 
 	const { isSelect, bookmark } = useSelector<ReducerType, Select>(
@@ -47,7 +46,7 @@ function BookmarkPage() {
 	);
 
 	useEffect(() => {
-		dispatch(PageOpen(true));
+		dispatch(ChagnePage('bookmark'));
 	}, []);
 
 	return (
@@ -61,6 +60,7 @@ function BookmarkPage() {
 			<Ul>
 				{bookmark &&
 					bookmark.map((item) => <List key={item.desertionNo} item={item} />)}
+				{bookmark.length < 1 && <div>리스트가 비어 있습니다</div>}
 			</Ul>
 		</Main>
 	);

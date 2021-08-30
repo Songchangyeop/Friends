@@ -4,14 +4,14 @@ import Nav from '../components/Nav';
 import { ReducerType } from '../modules/rootReducer';
 
 interface PageOpen {
-	isPageOpen: boolean;
+	currentPage: string;
 }
 
 function NavContainer() {
-	const { isPageOpen } = useSelector<ReducerType, PageOpen>(
-		(state) => state.selectReducer
+	const { currentPage } = useSelector<ReducerType, PageOpen>(
+		(state) => state.pageReducer
 	);
-	return <Nav isPageOpen={isPageOpen} />;
+	return <Nav currentPage={currentPage} />;
 }
 
 export default NavContainer;

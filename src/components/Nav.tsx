@@ -3,32 +3,44 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 interface Props {
-	isPageOpen: boolean;
+	currentPage: string;
 }
 
-function Nav({ isPageOpen }: Props) {
+function Nav({ currentPage }: Props) {
 	return (
-		<Ul>
+		<Navi>
 			<Link to="/">
 				<Img src="img/Logo.png" alt="Logo" />
 			</Link>
-			<FriendsList>
-				{!isPageOpen && (
+
+			<NavList>
+				{currentPage !== 'find' && (
+					<Link
+						to="/find"
+						style={{
+							textDecoration: `none`,
+							color: 'white',
+						}}
+					>
+						<List>동물 찾기</List>
+					</Link>
+				)}
+				{currentPage !== 'bookmark' && (
 					<Link
 						to="/bookmark"
 						style={{ textDecoration: `none`, color: 'white' }}
 					>
-						찜
+						<List>찜</List>
 					</Link>
 				)}
-			</FriendsList>
-		</Ul>
+			</NavList>
+		</Navi>
 	);
 }
 
 export default Nav;
 
-const Ul = styled.ul`
+const Navi = styled.nav`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -36,20 +48,25 @@ const Ul = styled.ul`
 	padding: 0 1em 0 1em;
 	width: 100%;
 	height: 10vh;
-	list-style: none;
 	background-color: #12b886;
 `;
 
-const FriendsList = styled.li`
+const NavList = styled.ul`
 	display: flex;
 	align-items: center;
 	font-weight: bold;
 	font-size: 1.3em;
-	transition: all 200ms ease;
+
 	cursor: pointer;
+	list-style: none;
+`;
+
+const List = styled.li`
+	padding: 0.5em;
+	transition: all 150ms ease;
 
 	&:hover {
-		transform: scale(1.06);
+		color: #ffff00;
 	}
 `;
 

@@ -27,7 +27,6 @@ interface AnimalType {
 	};
 	isSelect: boolean;
 	bookmark: BookmarkAnimalType[];
-	isPageOpen: boolean;
 	checkMessage: string;
 	isCheckOpen: boolean;
 }
@@ -84,7 +83,6 @@ export const initialState: AnimalType = {
 	},
 	bookmark: [],
 	isSelect: false,
-	isPageOpen: false,
 	checkMessage: '',
 	isCheckOpen: false,
 };
@@ -125,9 +123,6 @@ export const selectAnimal = createSlice({
 			);
 			state.bookmark = newState;
 			state.isSelect = false;
-		},
-		PageOpen: (state, action) => {
-			state.isPageOpen = action.payload;
 		},
 		CloseCheck: (state, action) => {
 			state.isCheckOpen = action.payload;

@@ -29,16 +29,19 @@ interface SelectedAnimal {
 		specialMark: string;
 		weight: string;
 	};
-	isPageOpen: boolean;
 }
 
-interface isbookMarkOpen {
-	isPageOpen: boolean;
+interface Page {
+	currentPage: string;
 }
 
 function ModalFooter() {
-	const { selected, isPageOpen } = useSelector<ReducerType, SelectedAnimal>(
+	const { selected } = useSelector<ReducerType, SelectedAnimal>(
 		(state) => state.selectReducer
+	);
+
+	const { currentPage } = useSelector<ReducerType, Page>(
+		(state) => state.pageReducer
 	);
 
 	const { AddBookmark, RemoveBookmark } = selectAction;
@@ -54,13 +57,13 @@ function ModalFooter() {
 
 	return (
 		<>
-			{isPageOpen && (
-				<BookMark isPageOpen={isPageOpen} onClick={handleRemoveBookmark}>
+			{currentPage === 'bookmark' && (
+				<BookMark currentPage={currentPage} onClick={handleRemoveBookmark}>
 					친구 목록에서 제거
 				</BookMark>
 			)}
-			{!isPageOpen && (
-				<BookMark isPageOpen={isPageOpen} onClick={handleAddBookmark}>
+			{currentPage === 'find' && (
+				<BookMark currentPage={currentPage} onClick={handleAddBookmark}>
 					친구 목록에 담기
 				</BookMark>
 			)}
@@ -70,9 +73,9 @@ function ModalFooter() {
 
 export default ModalFooter;
 
-const BookMark = styled.button<isbookMarkOpen>`
+const BookMark = styled.button<Page>`
 	${(props) =>
-		props.isPageOpen &&
+		props.currentPage === 'find' &&
 		css`
 			margin-top: 1em;
 			width: 9em;
@@ -88,7 +91,7 @@ const BookMark = styled.button<isbookMarkOpen>`
 		`}
 
 	${(props) =>
-		!props.isPageOpen &&
+		props.currentPage === 'bookmark' &&
 		css`
 			margin-top: 1em;
 			width: 8em;
