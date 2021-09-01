@@ -114,10 +114,9 @@ const Ul = styled.ul<isLoading>`
 		css`
 			flex: 2;
 			display: flex;
-			justify-content: center;
-			align-items: center;
 			flex-wrap: wrap;
 			overflow-y: auto;
+			justify-content: center;
 			margin: 0;
 			padding: 0;
 		`}

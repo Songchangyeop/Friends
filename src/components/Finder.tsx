@@ -104,6 +104,11 @@ const Button = styled.button`
 	border: 0;
 	border-radius: 1em;
 	cursor: pointer;
+	transition: all 150ms ease;
+
+	&:hover {
+		box-shadow: 0 0 19px rgb(0 0 0 / 25%);
+	}
 `;
 
 const CheckWrap = styled.div`

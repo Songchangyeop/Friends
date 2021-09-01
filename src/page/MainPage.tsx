@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import Footer from '../components/Footer';
 import NavContainer from '../containers/NavContainer';
 import { pageAction } from '../modules/CurrentPage/PageCheck';
 
@@ -16,19 +17,22 @@ function Test() {
 		<Main>
 			<NavContainer />
 			<MainSection>
-				<LeftWrap>
-					<Text>
-						<Bold>
-							Friends는 전국의 유기동물에게 따듯한 손길을 전해주는 서비스입니다.
-						</Bold>
-						<Light>
-							유기동물 입양 정보와 실종 동물의 정보를 조회할 수 있습니다
-						</Light>
-					</Text>
-				</LeftWrap>
-				<RightWrap>
-					<MainImg src="img/main.png" alt="메인"></MainImg>
-				</RightWrap>
+				<MainWrap>
+					<LeftWrap>
+						<Text>
+							<Bold>
+								Friends는 전국의 유기동물에게 따듯한 손길을 전해주는
+								서비스입니다.
+							</Bold>
+							<Light>
+								유기동물 입양 정보와 실종 동물의 정보를 조회할 수 있습니다
+							</Light>
+						</Text>
+					</LeftWrap>
+					<RightWrap>
+						<MainImg src="img/main.png" alt="메인"></MainImg>
+					</RightWrap>
+				</MainWrap>
 			</MainSection>
 			<CitySection>
 				<LeftWrap>
@@ -58,6 +62,7 @@ function Test() {
 					<ListImg src="img/list.png" alt="리스트"></ListImg>
 				</RightWrap>
 			</ListSection>
+			<Footer />
 		</Main>
 	);
 }
@@ -66,14 +71,23 @@ export default Test;
 
 const Main = styled.main`
 	width: 100%;
-	color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
+
+const MainWrap = styled.div`
+	display: flex;
+	width: 70%;
 `;
 
 const MainSection = styled.section`
-	display: flex;
 	width: 100%;
-	height: 90vh;
+	height: 80vh;
 	background-color: #12b886;
+	color: white;
+	display: flex;
+	justify-content: center;
 `;
 
 const LeftWrap = styled.div`
@@ -115,20 +129,20 @@ const Light = styled.span`
 `;
 
 const ListSection = styled.section`
-	width: 100%;
+	width: 70%;
 	height: 65vh;
 	display: flex;
-	color: black;
 `;
 
 const CitySection = styled.section`
-	width: 100%;
+	width: 70%;
 	height: 65vh;
 	display: flex;
 	color: black;
 `;
 
 const CityImg = styled.img`
+	margin-top: 1em;
 	width: 18.5rem;
 	box-shadow: 0 0 19px rgb(0 0 0 / 50%);
 `;

@@ -75,7 +75,7 @@ export default ModalFooter;
 
 const BookMark = styled.button<Page>`
 	${(props) =>
-		props.currentPage === 'find' &&
+		props.currentPage === 'bookmark' &&
 		css`
 			margin-top: 1em;
 			width: 9em;
@@ -83,7 +83,7 @@ const BookMark = styled.button<Page>`
 			background-color: #e0e0e0;
 			border-radius: 1em;
 			border: 0;
-			cursor: pointer;
+		cursor: pointer;
 
 			&:hover {
 				background-color: #bdbdbd;
@@ -91,7 +91,7 @@ const BookMark = styled.button<Page>`
 		`}
 
 	${(props) =>
-		props.currentPage === 'bookmark' &&
+		props.currentPage === 'find' &&
 		css`
 			margin-top: 1em;
 			width: 8em;
