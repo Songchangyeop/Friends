@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Footer() {
-	return <Foot>© 2021 Friends - by changyeop Song</Foot>;
+	return <Foot>© 2021 Friends - by Changyeop Song</Foot>;
 }
 
 export default Footer;
