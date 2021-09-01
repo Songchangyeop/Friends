@@ -78,7 +78,7 @@ const Main = styled.main`
 
 const MainWrap = styled.div`
 	display: flex;
-	width: 70%;
+	width: 75%;
 `;
 
 const MainSection = styled.section`
@@ -129,13 +129,13 @@ const Light = styled.span`
 `;
 
 const ListSection = styled.section`
-	width: 70%;
+	width: 75%;
 	height: 65vh;
 	display: flex;
 `;
 
 const CitySection = styled.section`
-	width: 70%;
+	width: 75%;
 	height: 65vh;
 	display: flex;
 	color: black;
