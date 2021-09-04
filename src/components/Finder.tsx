@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import NavContainer from '../containers/NavContainer';
+import theme from '../assets/styles/theme';
 
 interface FinderProps {
 	dispatch: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -24,7 +25,7 @@ function Finder({ dispatch, changeCity, changeKind, kindCode }: FinderProps) {
 	};
 
 	return (
-		<Section>
+		<Section theme={theme}>
 			<NavContainer />
 			<Article>
 				<p>도시 별 동물 찾기</p>
@@ -63,7 +64,7 @@ const Section = styled.section`
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	background-color: #12b886;
+	background-color: ${(props) => props.theme.backgroundColor};
 	color: white;
 `;
 

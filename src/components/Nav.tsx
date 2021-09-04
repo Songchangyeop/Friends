@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import theme from '../assets/styles/theme';
 
 interface Props {
 	currentPage: string;
@@ -8,7 +9,7 @@ interface Props {
 
 function Nav({ currentPage }: Props) {
 	return (
-		<Navi>
+		<Navi theme={theme}>
 			<Link to="/">
 				<Img src="img/Logo.png" alt="Logo" />
 			</Link>
@@ -48,7 +49,7 @@ const Navi = styled.nav`
 	padding: 0 1em 0 1em;
 	width: 100%;
 	height: 10vh;
-	background-color: #12b886;
+	background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 const NavList = styled.ul`
