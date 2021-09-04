@@ -8,6 +8,7 @@ import { useCallback } from 'react';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Loading from '../components/Loading';
+import theme from '../assets/styles/theme';
 
 interface DescriptionParams {
 	age: number;
@@ -85,9 +86,11 @@ function ListContainer() {
 
 	return (
 		<>
-			{isLoading === false && param.city !== 0 && <Loading />}
+			{isLoading === false && param.city !== 0 && animal.length > 1 && (
+				<Loading />
+			)}
 			{isLoading && (
-				<Ul isLoading={isLoading}>
+				<Ul isLoading={isLoading} theme={theme}>
 					{animalList &&
 						animalList.map((item, index) =>
 							animalList.length - 1 === index ? (
@@ -120,6 +123,10 @@ const Ul = styled.ul<isLoading>`
 			margin: 0;
 			padding: 0;
 		`}
+
+	@media ${(props) => props.theme.mobile} {
+		flex: 5;
+	}
 `;
 
 const LI = styled.li`

@@ -173,6 +173,7 @@ const ListSection = styled.section`
 	@media ${(props) => props.theme.mobile} {
 		flex-direction: column-reverse;
 		justify-content: center;
+		height: auto;
 	}
 `;
 
@@ -184,6 +185,7 @@ const CitySection = styled.section`
 
 	@media ${(props) => props.theme.mobile} {
 		flex-direction: column;
+		height: auto;
 	}
 `;
 

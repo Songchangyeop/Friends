@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import theme from '../assets/styles/theme';
 import FinderContainer from '../containers/FinderContainer';
 import ListContainer from '../containers/ListContainer';
 import ModalContainer from '../containers/ModalContainer';
@@ -24,7 +25,7 @@ function MainPage() {
 	}, []);
 
 	return (
-		<Main>
+		<Main theme={theme}>
 			<FinderContainer />
 			<ListContainer />
 			{isSelect && (
@@ -43,6 +44,10 @@ const Main = styled.main`
 	height: 100vh;
 	display: flex;
 	overflow: hidden;
+
+	@media ${(props) => props.theme.mobile} {
+		flex-direction: column;
+	}
 `;
 
 const Container = styled.div`

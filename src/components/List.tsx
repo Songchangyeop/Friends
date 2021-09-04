@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
+import theme from '../assets/styles/theme';
 import { selectAction } from '../modules/selectAnimal/select';
 
 interface ListProps {
@@ -56,12 +57,12 @@ function List({ item }: ListProps) {
 	};
 
 	return (
-		<Div onClick={handleClickAnimal}>
-			<Img src={item.popfile} alt="img" />
-			<Wrap>
-				<span>상태: {item.processState}</span>
-				<span>성별: {gender}</span>
-				<span>보호소: {item.careNm}</span>
+		<Div onClick={handleClickAnimal} theme={theme}>
+			<Img theme={theme} src={item.popfile} alt="img" />
+			<Wrap theme={theme}>
+				<Text theme={theme}>상태: {item.processState}</Text>
+				<Text theme={theme}>성별: {gender}</Text>
+				<Text theme={theme}>보호소: {item.careNm}</Text>
 			</Wrap>
 		</Div>
 	);
@@ -102,6 +103,11 @@ const Div = styled.div`
 		transform: scale(1.04);
 		box-shadow: 10px 10px 12px 0px rgba(217, 217, 217, 1);
 	}
+
+	@media ${(props) => props.theme.mobile} {
+		width: 100px;
+		height: 150px;
+	}
 `;
 
 const Img = styled.img`
@@ -109,10 +115,27 @@ const Img = styled.img`
 	height: 150px;
 	border-top-left-radius: 0.5em;
 	border-top-right-radius: 0.5em;
+
+	@media ${(props) => props.theme.mobile} {
+		width: 100%;
+		height: 100px;
+	}
 `;
 
 const Wrap = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 0.4rem;
+
+	@media ${(props) => props.theme.mobile} {
+		padding: 0.2rem;
+	}
+`;
+
+const Text = styled.span`
+	font-size: 11px;
+
+	@media ${(props) => props.theme.mobile} {
+		font-size: 6.5px;
+	}
 `;
