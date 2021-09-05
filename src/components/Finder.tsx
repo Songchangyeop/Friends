@@ -94,7 +94,7 @@ const Section = styled.section<ListOpen>`
 		props.listOpen &&
 		css`
 			@media ${(props) => props.theme.mobile} {
-				height: 10vh;
+				height: 10%;
 			}
 		`}
 `;

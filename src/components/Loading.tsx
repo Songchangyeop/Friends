@@ -4,7 +4,7 @@ import theme from '../assets/styles/theme';
 
 function Loading() {
 	return (
-		<Div>
+		<Div theme={theme}>
 			<Img src="img/Loading.png" theme={theme} />
 		</Div>
 	);
