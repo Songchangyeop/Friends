@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
+import theme from '../assets/styles/theme';
 import { ReducerType } from '../modules/rootReducer';
 import { selectAction } from '../modules/selectAnimal/select';
 
@@ -59,12 +60,12 @@ function ModalFooter() {
 		<>
 			{currentPage === 'bookmark' && (
 				<BookMark currentPage={currentPage} onClick={handleRemoveBookmark}>
-					친구 목록에서 제거
+					<Text>친구 목록에서 제거</Text>
 				</BookMark>
 			)}
 			{currentPage === 'find' && (
 				<BookMark currentPage={currentPage} onClick={handleAddBookmark}>
-					친구 목록에 담기
+					<Text>친구 목록에 담기</Text>
 				</BookMark>
 			)}
 		</>
@@ -83,7 +84,7 @@ const BookMark = styled.button<Page>`
 			background-color: #e0e0e0;
 			border-radius: 1em;
 			border: 0;
-		cursor: pointer;
+			cursor: pointer;
 
 			&:hover {
 				background-color: #bdbdbd;
@@ -105,4 +106,9 @@ const BookMark = styled.button<Page>`
 				background-color: #bdbdbd;
 			}
 		`}
+`;
+
+const Text = styled.span`
+	font-family: 'Cafe24Oneprettynight';
+	font-size: 1em;
 `;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import theme from '../assets/styles/theme';
 import { selectAction } from '../modules/selectAnimal/select';
 
 function Header() {
@@ -13,9 +14,9 @@ function Header() {
 
 	return (
 		<HeaderTag>
-			<H1>친구가 되어주세요</H1>
-			<Close onClick={CloseModal}>
-				<Span>Close</Span>
+			<H1 theme={theme}>친구가 되어주세요</H1>
+			<Close onClick={CloseModal} theme={theme}>
+				<Span theme={theme}>Close</Span>
 			</Close>
 		</HeaderTag>
 	);
@@ -36,6 +37,10 @@ const HeaderTag = styled.header`
 const H1 = styled.h1`
 	font-size: 1.5em;
 	font-family: 'Cafe24Oneprettynight';
+
+	@media ${(props) => props.theme.mobile} {
+		font-size: 1.2em;
+	}
 `;
 
 const Close = styled.button`
@@ -51,9 +56,18 @@ const Close = styled.button`
 	&:hover {
 		background-color: #bdbdbd;
 	}
+
+	@media ${(props) => props.theme.mobile} {
+		width: 3.2em;
+		height: 1.6em;
+	}
 `;
 
 const Span = styled.span`
 	font-size: 1.2em;
 	font-family: 'Cafe24Oneprettynight';
+
+	@media ${(props) => props.theme.mobile} {
+		font-size: 1em;
+	}
 `;

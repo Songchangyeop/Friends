@@ -124,6 +124,7 @@ const Img = styled.img`
 
 const Wrap = styled.div`
 	display: flex;
+	justify-content: center;
 	flex-direction: column;
 	padding: 0.4rem;
 

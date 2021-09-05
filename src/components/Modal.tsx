@@ -5,6 +5,7 @@ import { selectAction } from '../modules/selectAnimal/select';
 import ModalFooter from './ModalFooter';
 import Header from './ModalHeader';
 import Check from './Check';
+import theme from '../assets/styles/theme';
 interface PropType {
 	selected: {
 		age: number;
@@ -50,10 +51,10 @@ function Modal({ selected, gender }: PropType) {
 	}, []);
 
 	return (
-		<Div ref={modalRef}>
+		<Div ref={modalRef} theme={theme}>
 			<Header />
-			<Img src={selected.popfile} alt="" />
-			<Wrap>
+			<Img src={selected.popfile} alt="popfile" theme={theme} />
+			<Wrap theme={theme}>
 				<Left>
 					<Span>
 						<b>나이</b>: {selected.age}
@@ -136,16 +137,25 @@ const Div = styled.div`
 	&::-webkit-scrollbar-track {
 		background-color: #e0e0e0;
 	}
+
+	@media ${(props) => props.theme.mobile} {
+		width: 85%;
+		height: 60%;
+	}
 `;
 
 const Img = styled.img`
 	width: 60%;
 	height: 50%;
 	border-radius: 0.5em;
+
+	@media ${(props) => props.theme.mobile} {
+		width: 80%;
+		height: 40%;
+	}
 `;
 
 const Span = styled.span`
-	font-size: 0.9em;
 	margin-top: 0.7em;
 `;
 
@@ -172,4 +182,9 @@ const Wrap = styled.div`
 	display: flex;
 	overflow-y: auto;
 	margin-top: 1em;
+	font-size: 0.9em;
+
+	@media ${(props) => props.theme.mobile} {
+		font-size: 0.7em;
+	}
 `;

@@ -94,7 +94,8 @@ const Section = styled.section<ListOpen>`
 		props.listOpen &&
 		css`
 			@media ${(props) => props.theme.mobile} {
-				height: 3.5em;
+				height: 4em;
+				flex: 1.1;
 			}
 		`}
 `;
@@ -111,7 +112,7 @@ const Article = styled.article<ListOpen>`
 		props.listOpen &&
 		css`
 			@media ${(props) => props.theme.mobile} {
-				height: 3.5em;
+				height: 4em;
 			}
 		`}
 `;
@@ -144,6 +145,7 @@ const Form = styled.form<ListOpen>`
 				width: 90%;
 				flex-direction: row;
 				justify-content: space-between;
+				align-items: center;
 			}
 		`}
 `;
@@ -198,7 +200,7 @@ const Button = styled.button<ListOpen>`
 		props.listOpen &&
 		css`
 			@media ${(props) => props.theme.mobile} {
-				width: 3.5em;
+				width: 3.8em;
 				height: 2em;
 				margin: 0;
 			}
