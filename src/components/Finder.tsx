@@ -38,7 +38,7 @@ function Finder({
 	return (
 		<Section theme={theme} listOpen={listOpen}>
 			<NavContainer />
-			<Article>
+			<Article listOpen={listOpen} theme={theme}>
 				<Text theme={theme} listOpen={listOpen}>
 					<p>도시 별 동물 찾기</p>
 					<p>도시를 선택해서 유기동물들의 친구가 되어 주세요!</p>
@@ -94,18 +94,26 @@ const Section = styled.section<ListOpen>`
 		props.listOpen &&
 		css`
 			@media ${(props) => props.theme.mobile} {
-				height: 10%;
+				height: 3.5em;
 			}
 		`}
 `;
 
-const Article = styled.article`
+const Article = styled.article<ListOpen>`
 	width: 100%;
 	height: 90vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+
+	${(props) =>
+		props.listOpen &&
+		css`
+			@media ${(props) => props.theme.mobile} {
+				height: 3.5em;
+			}
+		`}
 `;
 
 const Text = styled.div<ListOpen>`
@@ -180,6 +188,7 @@ const Button = styled.button<ListOpen>`
 	border-radius: 1em;
 	cursor: pointer;
 	transition: all 150ms ease;
+	background-color: white;
 
 	&:hover {
 		box-shadow: 0 0 19px rgb(0 0 0 / 25%);
@@ -189,7 +198,7 @@ const Button = styled.button<ListOpen>`
 		props.listOpen &&
 		css`
 			@media ${(props) => props.theme.mobile} {
-				width: 3em;
+				width: 3.5em;
 				height: 2em;
 				margin: 0;
 			}
@@ -231,6 +240,8 @@ const CheckCat = styled.p<Selected>`
 `;
 
 const Warning = styled.span<ListOpen>`
+	margin-top: 1em;
+	margin-bottom: 0.5em;
 	color: #d50000;
 
 	${(props) =>
