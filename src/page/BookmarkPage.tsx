@@ -6,6 +6,7 @@ import ModalContainer from '../containers/ModalContainer';
 import NavContainer from '../containers/NavContainer';
 import { pageAction } from '../modules/CurrentPage/PageCheck';
 import { ReducerType } from '../modules/rootReducer';
+import theme from '../assets/styles/theme';
 
 interface AnimalType {
 	age: number;
@@ -62,8 +63,8 @@ function BookmarkPage() {
 					bookmark.map((item) => <List key={item.desertionNo} item={item} />)}
 				{bookmark.length < 1 && (
 					<Div>
-						<Image src="img/blank.png" alt="blank" />
-						<Text>리스트가 비어있습니다</Text>
+						<Image src="img/blank.png" alt="blank" theme={theme} />
+						<Text theme={theme}>리스트가 비어있습니다</Text>
 					</Div>
 				)}
 			</Ul>
@@ -86,10 +87,11 @@ const Main = styled.main`
 
 const Ul = styled.ul`
 	width: 100%;
-	height: 90vh;
 	display: flex;
+	flex-wrap: wrap;
 	list-style: none;
 	margin: 0;
+	padding: 0;
 `;
 
 const Div = styled.div`
@@ -102,6 +104,10 @@ const Div = styled.div`
 
 const Image = styled.img`
 	width: auto;
+
+	@media ${(props) => props.theme.mobile} {
+		width: 15em;
+	}
 `;
 
 const Text = styled.text`
@@ -110,4 +116,8 @@ const Text = styled.text`
 	font-weight: bold;
 	font-size: 2em;
 	cursor: default;
+
+	@media ${(props) => props.theme.mobile} {
+		font-size: 1.5em;
+	}
 `;
