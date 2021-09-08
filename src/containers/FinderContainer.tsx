@@ -33,13 +33,18 @@ interface Animal {
 
 interface AnimalType {
 	animal: Animal[];
+	param: {
+		city: number;
+		kind: number | undefined;
+		page: number;
+	};
 }
 
 function FinderContainer() {
 	const [city, setCity] = useState(6110000);
 	const [kind, setKind] = useState<number>();
 	const [listOpen, setListOpen] = useState(false);
-	const { animal } = useSelector<ReducerType, AnimalType>(
+	const { animal, param } = useSelector<ReducerType, AnimalType>(
 		(state) => state.animalReducer
 	);
 	const { getData } = animalAction;
@@ -53,13 +58,13 @@ function FinderContainer() {
 				kind: kind,
 				page: 1,
 			};
-			if (kind === undefined) {
+			if (kind === undefined || kind === param.kind) {
 				return;
 			}
 
 			dispatch(getData(payloadParam));
 		},
-		[city, kind, dispatch, getData]
+		[city, kind, param.kind, dispatch, getData]
 	);
 
 	useEffect(() => {
