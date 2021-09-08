@@ -43,7 +43,6 @@ const Span = styled.div`
 	position: absolute;
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	width: auto;
 	padding: 0.5em;
 	height: 2em;
@@ -51,4 +50,5 @@ const Span = styled.div`
 	background-color: chocolate;
 	bottom: 2em;
 	animation: ${Opacity} 300ms ease;
+	font-family: 'Cafe24Oneprettynight';
 `;

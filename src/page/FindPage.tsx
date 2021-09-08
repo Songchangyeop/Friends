@@ -17,11 +17,11 @@ function MainPage() {
 	const { isSelect } = useSelector<ReducerType, Select>(
 		(state) => state.selectReducer
 	);
-	const { ChagnePage } = pageAction;
+	const { ChangePage } = pageAction;
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(ChagnePage('find'));
+		dispatch(ChangePage('find'));
 	}, []);
 
 	return (

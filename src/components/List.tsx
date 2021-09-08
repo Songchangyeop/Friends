@@ -135,6 +135,7 @@ const Wrap = styled.div`
 
 const Text = styled.span`
 	font-size: 11px;
+	font-family: 'Cafe24Oneprettynight';
 
 	@media ${(props) => props.theme.mobile} {
 		font-size: 6.5px;

@@ -44,9 +44,12 @@ const H1 = styled.h1`
 `;
 
 const Close = styled.button`
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 4em;
 	height: 2em;
-	position: absolute;
 	right: 1em;
 	border: 0;
 	background-color: #e0e0e0;

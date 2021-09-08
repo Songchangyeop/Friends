@@ -183,6 +183,9 @@ const Select = styled.select<ListOpen>`
 `;
 
 const Button = styled.button<ListOpen>`
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 10rem;
 	height: 3rem;
 	margin-top: 1em;

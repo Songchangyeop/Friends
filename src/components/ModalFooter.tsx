@@ -60,12 +60,12 @@ function ModalFooter() {
 		<>
 			{currentPage === 'bookmark' && (
 				<BookMark currentPage={currentPage} onClick={handleRemoveBookmark}>
-					<Text>친구 목록에서 제거</Text>
+					<Text theme={theme}>친구 목록에서 제거</Text>
 				</BookMark>
 			)}
 			{currentPage === 'find' && (
 				<BookMark currentPage={currentPage} onClick={handleAddBookmark}>
-					<Text>친구 목록에 담기</Text>
+					<Text theme={theme}>친구 목록에 담기</Text>
 				</BookMark>
 			)}
 		</>
@@ -78,6 +78,9 @@ const BookMark = styled.button<Page>`
 	${(props) =>
 		props.currentPage === 'bookmark' &&
 		css`
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			margin-top: 1em;
 			width: 9em;
 			height: 2em;
@@ -94,6 +97,9 @@ const BookMark = styled.button<Page>`
 	${(props) =>
 		props.currentPage === 'find' &&
 		css`
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			margin-top: 1em;
 			width: 8em;
 			height: 2em;
@@ -111,4 +117,8 @@ const BookMark = styled.button<Page>`
 const Text = styled.span`
 	font-family: 'Cafe24Oneprettynight';
 	font-size: 1em;
+
+	@media ${(props) => props.theme.mobile} {
+		font-size: 0.8em;
+	}
 `;

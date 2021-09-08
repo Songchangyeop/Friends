@@ -75,6 +75,7 @@ export const getAnimal = createSlice({
 			state.error = error;
 		},
 		getData: (state, action: PayloadAction<ParamType>) => {
+			console.log(action.payload.page);
 			const { city, kind } = state.param;
 			if (city !== action.payload.city || kind !== action.payload.kind) {
 				state.isLoading = false;

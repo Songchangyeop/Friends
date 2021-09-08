@@ -71,6 +71,9 @@ function Modal({ selected, gender }: PropType) {
 					<Span>
 						<b>종</b>: {selected.kindCd}
 					</Span>
+					<Span>
+						<b>특징</b>: {selected.specialMark}
+					</Span>
 				</Left>
 				<Right>
 					<Span>
@@ -156,6 +159,7 @@ const Img = styled.img`
 `;
 
 const Span = styled.span`
+	font-family: 'Cafe24Oneprettynight';
 	margin-top: 0.7em;
 `;
 

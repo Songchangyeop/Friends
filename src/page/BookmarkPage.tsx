@@ -39,7 +39,7 @@ interface Select {
 }
 
 function BookmarkPage() {
-	const { ChagnePage } = pageAction;
+	const { ChangePage } = pageAction;
 	const dispatch = useDispatch();
 
 	const { isSelect, bookmark } = useSelector<ReducerType, Select>(
@@ -47,7 +47,7 @@ function BookmarkPage() {
 	);
 
 	useEffect(() => {
-		dispatch(ChagnePage('bookmark'));
+		dispatch(ChangePage('bookmark'));
 	}, []);
 
 	return (
@@ -96,6 +96,7 @@ const Ul = styled.ul`
 
 const Div = styled.div`
 	width: 100%;
+	height: 90vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

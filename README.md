@@ -15,4 +15,4 @@
 
 <br />
 
-> 사용 스택 : React, Redux, Redux-Saga, TypeScript Styled-Component
+> 사용 스택 : React, Redux, Redux-Saga, TypeScript, Styled-Component

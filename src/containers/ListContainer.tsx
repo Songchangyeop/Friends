@@ -76,6 +76,10 @@ function ListContainer() {
 	}, [animal, isLoading]);
 
 	useEffect(() => {
+		setPage(2);
+	}, [param.city, param.kind]);
+
+	useEffect(() => {
 		if (inView && isLoading) {
 			if (animal.length >= 50) {
 				setPage((prevState) => prevState + 1);

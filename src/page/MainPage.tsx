@@ -7,11 +7,11 @@ import NavContainer from '../containers/NavContainer';
 import { pageAction } from '../modules/CurrentPage/PageCheck';
 
 function Test() {
-	const { ChagnePage } = pageAction;
+	const { ChangePage } = pageAction;
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(ChagnePage('main'));
+		dispatch(ChangePage('main'));
 	}, []);
 
 	return (

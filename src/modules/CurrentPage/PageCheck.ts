@@ -12,7 +12,7 @@ export const pageCheck = createSlice({
 	name: 'page',
 	initialState,
 	reducers: {
-		ChagnePage: (state, action) => {
+		ChangePage: (state, action) => {
 			state.currentPage = action.payload;
 		},
 	},
