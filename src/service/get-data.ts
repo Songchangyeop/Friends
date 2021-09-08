@@ -6,8 +6,7 @@ interface ParamType {
 	page: number;
 }
 
-const key =
-	'Rs6VFrkuCiM5A3qb%2Fh%2F%2BIe0ieawIWS7FA6yQygtC7%2FaMzfKCAg9mK73TVPHQ76hD9ZSr2rwzR%2FNJ367Y7Lz%2Big%3D%3D';
+const key = process.env.REACT_APP_API_KEY;
 
 export async function getAnimal(param: ParamType) {
 	const { city, kind, page } = param;
