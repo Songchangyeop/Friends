@@ -32,7 +32,7 @@ Friends는 전국의 유기동물에게 따듯한 손길을 전해주고자 합�
 
 <br />
 
-[프로젝트 소개 노션 링크](https://friends-us.netlify.app/)
+[프로젝트 소개 노션 링크](https://holly-monarch-69a.notion.site/Friends-7d37c804379a4c99bcc2f77369f547f4)
 
 <br />
 <br />
