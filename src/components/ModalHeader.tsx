@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../assets/styles/theme';
 import { selectAction } from '../modules/selectAnimal/select';
@@ -14,6 +15,9 @@ function Header() {
 
 	return (
 		<HeaderTag>
+			<Link to="/Detail">
+				<Detail theme={theme}>자세히 보기 📝</Detail>
+			</Link>
 			<H1 theme={theme}>친구가 되어주세요</H1>
 			<Close onClick={CloseModal} theme={theme}>
 				<Span theme={theme}>Close</Span>
@@ -64,6 +68,15 @@ const Close = styled.button`
 		width: 3.2em;
 		height: 1.6em;
 	}
+`;
+
+const Detail = styled.span`
+	position: absolute;
+	font-size: 1em;
+	left: 1em;
+	border: 0;
+	cursor: pointer;
+	color: ${(props) => props.theme.backgroundColor};
 `;
 
 const Span = styled.span`
