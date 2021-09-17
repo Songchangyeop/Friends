@@ -145,7 +145,7 @@ const Main = styled.main`
 `;
 
 const Section = styled.section`
-	width: 100%;
+	width: 90%;
 	height: 100%;
 	padding: 2em;
 	display: flex;
@@ -160,9 +160,9 @@ const Img = styled.img`
 `;
 
 const Table = styled.table`
-	width: 100%;
+	width: 95%;
 	margin-top: 1em;
-	border-top: 1px solid #efefef;
+	border-top: 2px solid black;
 	/* border-spacing: 0; */
 `;
 

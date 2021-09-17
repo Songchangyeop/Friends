@@ -45,10 +45,12 @@ const Span = styled.div`
 	align-items: center;
 	width: auto;
 	padding: 0.5em;
-	height: 2em;
+	height: 2.5em;
 	border-radius: 1em;
-	background-color: chocolate;
-	bottom: 2em;
+	background-color: #424242;
+	color: white;
+	top: 4em;
 	animation: ${Opacity} 300ms ease;
 	font-family: 'Cafe24Oneprettynight';
+	font-size: 1.5em;
 `;

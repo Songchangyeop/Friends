@@ -96,27 +96,19 @@ export const selectAnimal = createSlice({
 			state.isSelect = true;
 			state.selected = action.payload;
 		},
+
 		closeModal: (state) => {
 			state.isSelect = false;
 		},
+
 		AddBookmark: (state, action: PayloadAction<BookmarkAnimalType>) => {
 			const { bookmark } = state;
-
-			if (
-				bookmark.findIndex(
-					(item) => item.desertionNo === action.payload.desertionNo
-				) >= 0
-			) {
-				state.checkMessage = '이미 찜 한 동물입니다';
-				state.isCheckOpen = true;
-				return;
-			}
-
 			const newState = bookmark.concat(action.payload);
 			state.bookmark = newState;
 			state.checkMessage = '찜 했습니다';
 			state.isCheckOpen = true;
 		},
+
 		RemoveBookmark: (state, action) => {
 			const newState = state.bookmark.filter(
 				(item) => item.desertionNo !== action.payload
@@ -124,6 +116,7 @@ export const selectAnimal = createSlice({
 			state.bookmark = newState;
 			state.isSelect = false;
 		},
+
 		CloseCheck: (state, action) => {
 			state.isCheckOpen = action.payload;
 		},

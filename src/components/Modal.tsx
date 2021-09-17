@@ -117,7 +117,6 @@ const Scale = keyframes`
 `;
 
 const Div = styled.div`
-	position: relative;
 	display: flex;
 	align-items: center;
 	flex-direction: column;

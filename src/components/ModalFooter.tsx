@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import theme from '../assets/styles/theme';
@@ -6,43 +6,59 @@ import { ReducerType } from '../modules/rootReducer';
 import { selectAction } from '../modules/selectAnimal/select';
 
 interface SelectedAnimal {
-	selected: {
-		age: number;
-		careAddr: string;
-		careNm: string;
-		careTel: string;
-		chargeNm: string;
-		colorCd: string;
-		desertionNo: number;
-		filename: string;
-		happenDt: number;
-		happenPlace: string;
-		kindCd: string;
-		neuterYn: string;
-		noticeEdt: number;
-		noticeNo: string;
-		noticeSdt: number;
-		officetel: string;
-		orgNm: string;
-		popfile: string;
-		processState: string;
-		sexCd: string;
-		specialMark: string;
-		weight: string;
-	};
+	selected: BookmarkAnimalType;
+}
+
+interface BookmarkAnimalType {
+	age: number;
+	careAddr: string;
+	careNm: string;
+	careTel: string;
+	chargeNm: string;
+	colorCd: string;
+	desertionNo: number;
+	filename: string;
+	happenDt: number;
+	happenPlace: string;
+	kindCd: string;
+	neuterYn: string;
+	noticeEdt: number;
+	noticeNo: string;
+	noticeSdt: number;
+	officetel: string;
+	orgNm: string;
+	popfile: string;
+	processState: string;
+	sexCd: string;
+	specialMark: string;
+	weight: string;
+}
+
+interface isBookmark {
+	isBookmark: boolean;
+	currentPage: string;
 }
 
 interface Page {
 	currentPage: string;
 }
 
+interface Bookmark {
+	bookmark: BookmarkAnimalType[];
+}
+
 function ModalFooter() {
+	const [isBookmark, setIsBookmark] = useState(false);
 	const { selected } = useSelector<ReducerType, SelectedAnimal>(
 		(state) => state.selectReducer
 	);
 
 	const { currentPage } = useSelector<ReducerType, Page>(
 		(state) => state.pageReducer
+	);
+
+	const { bookmark } = useSelector<ReducerType, Bookmark>(
+		(state) => state.selectReducer
 	);
 
 	const { AddBookmark, RemoveBookmark } = selectAction;
@@ -56,20 +72,43 @@ function ModalFooter() {
 		dispatch(RemoveBookmark(selected.desertionNo));
 	};
 
+	useEffect(() => {
+		if (
+			bookmark.findIndex((item) => item.desertionNo === selected.desertionNo) >=
+			0
+		) {
+			setIsBookmark(true);
+		} else {
+			setIsBookmark(false);
+		}
+	});
+
 	return (
 		<>
-			{currentPage === 'bookmark' && (
-				<BookMark currentPage={currentPage} onClick={handleRemoveBookmark}>
+			{isBookmark === true && (
+				<BookMark
+					isBookmark={isBookmark}
+					currentPage={currentPage}
+					onClick={handleRemoveBookmark}
+				>
 					<Text theme={theme}>친구 목록에서 제거</Text>
 				</BookMark>
 			)}
-			{currentPage === 'find' && (
-				<BookMark currentPage={currentPage} onClick={handleAddBookmark}>
+			{isBookmark === false && currentPage !== 'detail' && (
+				<BookMark
+					isBookmark={isBookmark}
+					currentPage={currentPage}
+					onClick={handleAddBookmark}
+				>
 					<Text theme={theme}>친구 목록에 담기</Text>
 				</BookMark>
 			)}
-			{currentPage === 'detail' && (
-				<BookMark currentPage={currentPage} onClick={handleAddBookmark}>
+			{isBookmark === false && currentPage === 'detail' && (
+				<BookMark
+					isBookmark={isBookmark}
+					currentPage={currentPage}
+					onClick={handleAddBookmark}
+				>
 					<Text theme={theme}>친구 목록에 담기</Text>
 				</BookMark>
 			)}
@@ -79,9 +118,9 @@ function ModalFooter() {
 
 export default ModalFooter;
 
-const BookMark = styled.button<Page>`
+const BookMark = styled.button<isBookmark>`
 	${(props) =>
-		props.currentPage === 'bookmark' &&
+		props.isBookmark === true &&
 		css`
 			display: flex;
 			justify-content: center;
@@ -100,7 +139,7 @@ const BookMark = styled.button<Page>`
 		`}
 
 	${(props) =>
-		props.currentPage === 'find' &&
+		props.isBookmark === false &&
 		css`
 			display: flex;
 			justify-content: center;
@@ -125,7 +164,8 @@ const BookMark = styled.button<Page>`
 			justify-content: center;
 			align-items: center;
 			width: 10em;
-			height: 4em;
+			font-size: 1.5em;
+			padding: 0.3em;
 			background-color: #e0e0e0;
 			border-radius: 1em;
 			border: 0;
