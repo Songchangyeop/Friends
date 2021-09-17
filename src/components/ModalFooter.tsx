@@ -68,6 +68,11 @@ function ModalFooter() {
 					<Text theme={theme}>친구 목록에 담기</Text>
 				</BookMark>
 			)}
+			{currentPage === 'detail' && (
+				<BookMark currentPage={currentPage} onClick={handleAddBookmark}>
+					<Text theme={theme}>친구 목록에 담기</Text>
+				</BookMark>
+			)}
 		</>
 	);
 }
@@ -103,6 +108,24 @@ const BookMark = styled.button<Page>`
 			margin-top: 1em;
 			width: 8em;
 			height: 2em;
+			background-color: #e0e0e0;
+			border-radius: 1em;
+			border: 0;
+			cursor: pointer;
+
+			&:hover {
+				background-color: #bdbdbd;
+			}
+		`}
+
+		${(props) =>
+		props.currentPage === 'detail' &&
+		css`
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 10em;
+			height: 4em;
 			background-color: #e0e0e0;
 			border-radius: 1em;
 			border: 0;
