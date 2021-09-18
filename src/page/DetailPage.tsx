@@ -174,18 +174,21 @@ const Main = styled.main`
 `;
 
 const Section = styled.section`
+	background-color: #fafafa;
 	width: 90%;
 	height: 100%;
 	padding: 2em;
 	display: flex;
+	margin-top: 1em;
+	margin-bottom: 1em;
 `;
 
 const Img = styled.img`
-	width: 40%;
-	height: 60%;
+	width: 30%;
+	height: 40%;
 	border-radius: 0.5em;
-	margin-bottom: 2em;
 	margin-top: 2em;
+	box-shadow: 0 0 19px rgb(0 0 0 / 50%);
 `;
 
 const Table = styled.table`
