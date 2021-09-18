@@ -49,7 +49,7 @@ const Span = styled.div`
 	border-radius: 1em;
 	background-color: #424242;
 	color: white;
-	top: 4em;
+	top: 5em;
 	animation: ${Opacity} 300ms ease;
 	font-family: 'Cafe24Oneprettynight';
 	font-size: 1.5em;

@@ -3,10 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import theme from '../assets/styles/theme';
 import Check from '../components/Check';
+import Location from '../components/Location';
 import ModalFooter from '../components/ModalFooter';
 import NavContainer from '../containers/NavContainer';
 import { pageAction } from '../modules/CurrentPage/PageCheck';
 import { ReducerType } from '../modules/rootReducer';
+
+declare global {
+	interface Window {
+		kakao: any;
+	}
+}
 
 interface SelectedAnimal {
 	selected: {
@@ -36,6 +43,11 @@ interface SelectedAnimal {
 }
 
 function DetailPage() {
+	const [gender, setGender] = useState('');
+	const [address, setAddress] = useState({
+		x: 0,
+		y: 0,
+	});
 	const { ChangePage } = pageAction;
 	const dispatch = useDispatch();
 
@@ -43,7 +55,6 @@ function DetailPage() {
 		(state) => state.selectReducer
 	);
 
-	const [gender, setGender] = useState('');
 	useEffect(() => {
 		switch (selected.sexCd) {
 			case 'F':
@@ -60,6 +71,23 @@ function DetailPage() {
 
 	useEffect(() => {
 		dispatch(ChangePage('detail'));
+		let geocoder = new window.kakao.maps.services.Geocoder();
+
+		let callback = (result: any, status: any) => {
+			if (status === window.kakao.maps.services.Status.OK) {
+				let X = parseFloat(result[0].x);
+				let Y = parseFloat(result[0].y);
+				const newAddress = {
+					...address,
+					x: X,
+					y: Y,
+				};
+
+				setAddress(newAddress);
+			}
+		};
+
+		geocoder.addressSearch(selected.careAddr, callback);
 	}, []);
 
 	return (
@@ -130,6 +158,7 @@ function DetailPage() {
 					</Table>
 				</RightDetail>
 			</Section>
+			{address.x > 0 && address.y > 0 && <Location address={address} />}
 		</Main>
 	);
 }
@@ -155,7 +184,7 @@ const Img = styled.img`
 	width: 40%;
 	height: 60%;
 	border-radius: 0.5em;
-	margin-bottom: 3em;
+	margin-bottom: 2em;
 	margin-top: 2em;
 `;
 

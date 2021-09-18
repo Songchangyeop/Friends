@@ -15,8 +15,8 @@ function Header() {
 
 	return (
 		<HeaderTag>
-			<Link to="/Detail">
-				<Detail theme={theme}>자세히 보기 📝</Detail>
+			<Link to="/Detail" style={{ textDecoration: `none` }}>
+				<Detail theme={theme}>자세히 보기 👈</Detail>
 			</Link>
 			<H1 theme={theme}>친구가 되어주세요</H1>
 			<Close onClick={CloseModal} theme={theme}>
@@ -32,10 +32,9 @@ const HeaderTag = styled.header`
 	width: 100%;
 	position: relative;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
-	padding-bottom: 0.3em;
-	padding-top: 0.3em;
+	padding: 0.3em;
 `;
 
 const H1 = styled.h1`
@@ -48,7 +47,6 @@ const H1 = styled.h1`
 `;
 
 const Close = styled.button`
-	position: absolute;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -71,12 +69,11 @@ const Close = styled.button`
 `;
 
 const Detail = styled.span`
-	position: absolute;
-	font-size: 1em;
-	left: 1em;
+	font-size: 1.3em;
 	border: 0;
 	cursor: pointer;
 	color: ${(props) => props.theme.backgroundColor};
+	font-weight: bold;
 `;
 
 const Span = styled.span`
