@@ -16,7 +16,7 @@ function Header() {
 	return (
 		<HeaderTag>
 			<Link to="/Detail" style={{ textDecoration: `none` }}>
-				<Detail theme={theme}>자세히 보기 👈</Detail>
+				<Detail theme={theme}>자세히 보기</Detail>
 			</Link>
 			<H1 theme={theme}>친구가 되어주세요</H1>
 			<Close onClick={CloseModal} theme={theme}>
@@ -74,6 +74,10 @@ const Detail = styled.span`
 	cursor: pointer;
 	color: ${(props) => props.theme.backgroundColor};
 	font-weight: bold;
+
+	@media ${(props) => props.theme.mobile} {
+		font-size: 0.9em;
+	}
 `;
 
 const Span = styled.span`
