@@ -33,10 +33,7 @@ function Location({ address }: props) {
 	return (
 		<Section>
 			<Title theme={theme}>보호소 주소</Title>
-			<div
-				id="map"
-				style={{ width: '500px', height: '400px', margin: '1em' }}
-			></div>
+			<Map theme={theme} id="map"></Map>
 		</Section>
 	);
 }
@@ -53,4 +50,15 @@ const Title = styled.span`
 	font-size: 1.5em;
 	font-weight: bold;
 	/* color: ${(props) => props.theme.backgroundColor}; */
+`;
+
+const Map = styled.div`
+	width: 500px;
+	height: 400px;
+	margin: 1em;
+
+	@media ${(props) => props.theme.mobile} {
+		width: 300px;
+		height: 300px;
+	}
 `;

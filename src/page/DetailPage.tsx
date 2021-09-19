@@ -93,11 +93,11 @@ function DetailPage() {
 	return (
 		<Main>
 			<NavContainer />
-			<Img src={selected.popfile} alt="AnimalImage" />
+			<Img src={selected.popfile} alt="AnimalImage" theme={theme} />
 			<Check />
 			<ModalFooter></ModalFooter>
-			<Section>
-				<LeftDetail>
+			<Section theme={theme}>
+				<LeftDetail theme={theme}>
 					<DetailHeader theme={theme}>동물 정보</DetailHeader>
 					<Table>
 						<tr>
@@ -128,7 +128,7 @@ function DetailPage() {
 						</tr>
 					</Table>
 				</LeftDetail>
-				<RightDetail>
+				<RightDetail theme={theme}>
 					<DetailHeader theme={theme}>보호소 정보</DetailHeader>
 					<Table>
 						<tr>
@@ -167,7 +167,7 @@ export default DetailPage;
 
 const Main = styled.main`
 	width: 100%;
-	height: 90vh;
+	height: 90%;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -181,6 +181,10 @@ const Section = styled.section`
 	display: flex;
 	margin-top: 1em;
 	margin-bottom: 1em;
+
+	@media ${(props) => props.theme.mobile} {
+		flex-direction: column;
+	}
 `;
 
 const Img = styled.img`
@@ -189,6 +193,11 @@ const Img = styled.img`
 	border-radius: 0.5em;
 	margin-top: 2em;
 	box-shadow: 0 0 19px rgb(0 0 0 / 50%);
+
+	@media ${(props) => props.theme.mobile} {
+		width: 80%;
+		height: 40%;
+	}
 `;
 
 const Table = styled.table`
@@ -211,10 +220,18 @@ const Td = styled.td`
 
 const LeftDetail = styled.div`
 	width: 50%;
+
+	@media ${(props) => props.theme.mobile} {
+		width: 100%;
+	}
 `;
 
 const RightDetail = styled.div`
 	width: 50%;
+
+	@media ${(props) => props.theme.mobile} {
+		width: 100%;
+	}
 `;
 
 const DetailHeader = styled.span`
