@@ -69,7 +69,7 @@ const List = styled.li`
 	transition: all 150ms ease;
 
 	&:hover {
-		color: #757575;
+		color: black;
 	}
 `;
 
