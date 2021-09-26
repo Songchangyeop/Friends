@@ -58,13 +58,13 @@ function FinderContainer() {
 				kind: kind,
 				page: 1,
 			};
-			if (kind === undefined || kind === param.kind) {
+			if (kind === undefined || (kind === param.kind && city === param.city)) {
 				return;
 			}
 
 			dispatch(getData(payloadParam));
 		},
-		[city, kind, param.kind, dispatch, getData]
+		[city, kind, param.kind, param.city, dispatch, getData]
 	);
 
 	useEffect(() => {
