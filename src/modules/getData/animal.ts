@@ -77,7 +77,10 @@ export const getAnimal = createSlice({
 		getData: (state, action: PayloadAction<ParamType>) => {
 			const { city, kind } = state.param;
 			if (city !== action.payload.city || kind !== action.payload.kind) {
+				console.log('실행');
 				state.isLoading = false;
+			} else {
+				console.log('안실행');
 			}
 			state.param = action.payload;
 		},
