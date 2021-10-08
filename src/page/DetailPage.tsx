@@ -189,14 +189,14 @@ const Section = styled.section`
 
 const Img = styled.img`
 	width: 30%;
-	height: 40%;
+	height: 400px;
 	border-radius: 0.5em;
 	margin-top: 2em;
 	box-shadow: 0 0 19px rgb(0 0 0 / 50%);
 
 	@media ${(props) => props.theme.mobile} {
 		width: 80%;
-		height: 40%;
+		height: 250px;
 	}
 `;
 
