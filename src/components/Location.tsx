@@ -32,7 +32,7 @@ function Location({ address }: props) {
 
 	return (
 		<Section>
-			<Title theme={theme}>보호소 주소</Title>
+			<Title theme={theme}>보호소 위치</Title>
 			<Map theme={theme} id="map"></Map>
 		</Section>
 	);
