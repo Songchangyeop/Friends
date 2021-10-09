@@ -34,6 +34,17 @@ function Nav({ currentPage }: Props) {
 						<List>찜</List>
 					</Link>
 				)}
+				{currentPage !== 'auth' && (
+					<Link
+						to="/auth"
+						style={{
+							textDecoration: `none`,
+							color: 'white',
+						}}
+					>
+						<List>로그인</List>
+					</Link>
+				)}
 			</NavList>
 		</Navi>
 	);

@@ -16,7 +16,6 @@ interface props {
 
 function Location({ address }: props) {
 	useEffect(() => {
-		console.log(address);
 		let container = document.getElementById('map');
 		let options = {
 			center: new window.kakao.maps.LatLng(address.y, address.x),

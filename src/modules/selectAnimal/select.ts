@@ -92,7 +92,6 @@ export const selectAnimal = createSlice({
 	initialState,
 	reducers: {
 		openModal: (state, action: PayloadAction<BookmarkAnimalType>) => {
-			// state.selected = action.payload;
 			state.isSelect = true;
 			state.selected = action.payload;
 		},
