@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import AuthPage from './page/AuthPage';
 import BookmarkPage from './page/BookmarkPage';
 import DetailPage from './page/DetailPage';
 import FindPage from './page/FindPage';
@@ -14,6 +15,7 @@ function App() {
 					<Route path="/find" component={FindPage}></Route>
 					<Route path="/bookmark" component={BookmarkPage}></Route>
 					<Route path="/detail" component={DetailPage}></Route>
+					<Route path="/auth" component={AuthPage}></Route>
 				</Switch>
 			</BrowserRouter>
 		</div>
