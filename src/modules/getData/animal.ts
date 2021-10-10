@@ -69,7 +69,6 @@ export const getAnimal = createSlice({
 			state.isLoading = true;
 		},
 		getDataFailure: (state, { payload: error }) => {
-			console.log('fail');
 			state.isLoading = false;
 			state.animal.length = 0;
 			state.error = error;
