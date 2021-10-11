@@ -1,23 +1,48 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
 import NavContainer from '../containers/NavContainer';
 import { pageAction } from '../modules/CurrentPage/PageCheck';
+import AuthService from '../service/auth_service';
 
-function AuthPage() {
+interface Props extends RouteComponentProps {}
+
+function AuthPage({ history }: Props) {
 	const { ChangePage } = pageAction;
 	const dispatch = useDispatch();
+
+	const authService = new AuthService();
 
 	useEffect(() => {
 		dispatch(ChangePage('auth'));
 	}, []);
+
+	const goToMain = (userId: any) => {
+		history.push({
+			pathname: '/',
+			state: { id: userId },
+		});
+	};
+
+	const onLogin = () => {
+		authService //
+			.login();
+		//
+	};
+
+	useEffect(() => {
+		authService.onAuthChange((user: { id: any }) => {
+			user && goToMain(user.id);
+		});
+	});
 
 	return (
 		<Main>
 			<NavContainer />
 			<Section>
 				<Wrap>
-					<Login>
+					<Login onClick={onLogin}>
 						<Img src="img/google.png" alt="google"></Img>
 						<span>Google을(를) 사용하여 로그인</span>
 					</Login>

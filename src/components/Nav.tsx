@@ -5,9 +5,11 @@ import theme from '../assets/styles/theme';
 
 interface Props {
 	currentPage: string;
+	isLogin: boolean;
+	onLogout: () => void;
 }
 
-function Nav({ currentPage }: Props) {
+function Nav({ currentPage, isLogin, onLogout }: Props) {
 	return (
 		<Navi theme={theme}>
 			<Link to="/">
@@ -34,7 +36,7 @@ function Nav({ currentPage }: Props) {
 						<List>찜</List>
 					</Link>
 				)}
-				{currentPage !== 'auth' && (
+				{currentPage !== 'auth' && isLogin === false && (
 					<Link
 						to="/auth"
 						style={{
@@ -45,6 +47,7 @@ function Nav({ currentPage }: Props) {
 						<List>로그인</List>
 					</Link>
 				)}
+				{isLogin === true && <List onClick={onLogout}>로그아웃</List>}
 			</NavList>
 		</Navi>
 	);
@@ -78,6 +81,7 @@ const NavList = styled.ul`
 const List = styled.li`
 	padding: 0.5em;
 	transition: all 150ms ease;
+	color: white;
 
 	&:hover {
 		color: black;
