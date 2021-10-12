@@ -38,10 +38,7 @@ class AuthService {
 		this.firebaseAuth.signOut();
 	}
 
-	onAuthChange(onUserChanged: {
-		(user: { id: any }): void;
-		(arg0: any): void;
-	}) {
+	onAuthChange(onUserChanged: { (user: { id: string }): void }) {
 		this.firebaseAuth.onAuthStateChanged((user: any) => {
 			onUserChanged(user);
 		});

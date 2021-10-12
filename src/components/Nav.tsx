@@ -47,7 +47,17 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 						<List>로그인</List>
 					</Link>
 				)}
-				{isLogin === true && <List onClick={onLogout}>로그아웃</List>}
+				{isLogin === true && (
+					<Link
+						to="/"
+						style={{
+							textDecoration: `none`,
+							color: 'white',
+						}}
+					>
+						<List onClick={onLogout}>로그아웃</List>
+					</Link>
+				)}
 			</NavList>
 		</Navi>
 	);

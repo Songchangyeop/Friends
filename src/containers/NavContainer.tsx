@@ -20,7 +20,7 @@ function NavContainer() {
 	};
 
 	useEffect(() => {
-		authService.onAuthChange((user: { id: any }) => {
+		authService.onAuthChange((user: { id: string }) => {
 			user ? setIsLogin(true) : setIsLogin(false);
 		});
 	});
