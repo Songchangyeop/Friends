@@ -41,7 +41,7 @@ interface Select {
 }
 
 function BookmarkPage() {
-	const [isLogin, setIsLogin] = useState(false);
+	const [isLogin, setIsLogin] = useState(true);
 	const { ChangePage } = pageAction;
 	const dispatch = useDispatch();
 	const authService = new AuthService();
