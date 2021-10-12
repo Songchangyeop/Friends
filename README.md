@@ -22,8 +22,7 @@ Friends는 전국의 유기동물에게 따듯한 손길을 전해주고자 합�
 
 <br />
 
-- 2021-07-28 ~ 2021-09-09 (1개월 13일)
-- 이후 백엔드와의 협업 등 계속해서 추가 할 예정 💡
+- 2021-07-28 ~ 2021-10-13
 
 <br />
 <br />
@@ -50,16 +49,13 @@ Friends는 전국의 유기동물에게 따듯한 손길을 전해주고자 합�
 
 <br />
 
-- ### 프론트
-  - React
-  - Redux + Saga
-  - TypeScript
-  - Styled-Components
+- ### React
+- ### Redux + Saga
+- ### TypeScript
+- ### Styled-Components
+- ### Firebase
 
 <br />
-
-- ### 백엔드
-  - 추가 예정
 
 <br />
 <br />
