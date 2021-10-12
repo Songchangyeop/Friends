@@ -19,7 +19,7 @@ function MainPage() {
 	const { isSelect } = useSelector<ReducerType, Select>(
 		(state) => state.selectReducer
 	);
-	const [isLogin, setIsLogin] = useState(false);
+	const [isLogin, setIsLogin] = useState(true);
 	const { ChangePage } = pageAction;
 	const dispatch = useDispatch();
 	const authService = new AuthService();
