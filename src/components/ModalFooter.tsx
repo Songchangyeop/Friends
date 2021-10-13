@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import theme from '../assets/styles/theme';
 import { ReducerType } from '../modules/rootReducer';
 import { selectAction } from '../modules/selectAnimal/select';
+import AuthService from '../service/auth_service';
 
 interface SelectedAnimal {
 	selected: BookmarkAnimalType;
@@ -49,6 +50,8 @@ interface Bookmark {
 
 function ModalFooter() {
 	const [isBookmark, setIsBookmark] = useState(false);
+	const authService = new AuthService();
+	const [UserId, setUserId] = useState('');
 	const { selected } = useSelector<ReducerType, SelectedAnimal>(
 		(state) => state.selectReducer
 	);
@@ -69,7 +72,7 @@ function ModalFooter() {
 	};
 
 	const handleRemoveBookmark = () => {
-		dispatch(RemoveBookmark(selected.desertionNo));
+		dispatch(RemoveBookmark(UserId, selected.desertionNo));
 	};
 
 	useEffect(() => {
@@ -81,6 +84,14 @@ function ModalFooter() {
 		} else {
 			setIsBookmark(false);
 		}
+	}, []);
+
+	useEffect(() => {
+		authService.onAuthChange((user) => {
+			if (user) {
+				setUserId(user.id);
+			}
+		});
 	});
 
 	return (
