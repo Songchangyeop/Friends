@@ -34,6 +34,7 @@ interface ListProps {
 }
 
 function List({ item }: ListProps) {
+	console.log(item);
 	const [gender, setGender] = useState('');
 	useEffect(() => {
 		switch (item.sexCd) {

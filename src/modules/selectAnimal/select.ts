@@ -26,9 +26,10 @@ interface AnimalType {
 		weight: string;
 	};
 	isSelect: boolean;
-	bookmark: BookmarkAnimalType[];
 	checkMessage: string;
 	isCheckOpen: boolean;
+	bookmark: BookmarkAnimalType[];
+	error: null;
 }
 
 interface BookmarkAnimalType {
@@ -55,7 +56,65 @@ interface BookmarkAnimalType {
 	specialMark: string;
 	weight: string;
 }
+interface RemoveType {
+	userId: string;
+	bookmarkId: number;
+}
 
+interface AddType {
+	userId: string;
+	bookmark: {
+		age: number;
+		careAddr: string;
+		careNm: string;
+		careTel: string;
+		chargeNm: string;
+		colorCd: string;
+		desertionNo: number;
+		filename: string;
+		happenDt: number;
+		happenPlace: string;
+		kindCd: string;
+		neuterYn: string;
+		noticeEdt: number;
+		noticeNo: string;
+		noticeSdt: number;
+		officetel: string;
+		orgNm: string;
+		popfile: string;
+		processState: string;
+		sexCd: string;
+		specialMark: string;
+		weight: string;
+	};
+}
+
+interface GetType {
+	bookmark: {
+		age: number;
+		careAddr: string;
+		careNm: string;
+		careTel: string;
+		chargeNm: string;
+		colorCd: string;
+		desertionNo: number;
+		filename: string;
+		happenDt: number;
+		happenPlace: string;
+		kindCd: string;
+		neuterYn: string;
+		noticeEdt: number;
+		noticeNo: string;
+		noticeSdt: number;
+		officetel: string;
+		orgNm: string;
+		popfile: string;
+		processState: string;
+		sexCd: string;
+		specialMark: string;
+		weight: string;
+	};
+}
 export const initialState: AnimalType = {
 	selected: {
 		age: 0,
@@ -82,6 +141,7 @@ export const initialState: AnimalType = {
 		weight: '',
 	},
 	bookmark: [],
+	error: null,
 	isSelect: false,
 	checkMessage: '',
 	isCheckOpen: false,
@@ -100,15 +160,20 @@ export const selectAnimal = createSlice({
 			state.isSelect = false;
 		},
 
-		AddBookmark: (state, action: PayloadAction<BookmarkAnimalType>) => {
-			const { bookmark } = state;
-			const newState = bookmark.concat(action.payload);
-			state.bookmark = newState;
+		CloseCheck: (state, action) => {
+			state.isCheckOpen = action.payload;
+		},
+
+		AddBookmark: (state, action: PayloadAction<AddType>) => {},
+
+		AddBookmarkSuccess: (state) => {
 			state.checkMessage = '찜 했습니다';
 			state.isCheckOpen = true;
 		},
 
-		RemoveBookmark: (state, action) => {
+		RemoveBookmark: (state, action: PayloadAction<RemoveType>) => {},
+
+		RemoveBookmarkSuccess: (state, action: { payload: number }) => {
 			const newState = state.bookmark.filter(
 				(item) => item.desertionNo !== action.payload
 			);
@@ -116,8 +181,17 @@ export const selectAnimal = createSlice({
 			state.isSelect = false;
 		},
 
-		CloseCheck: (state, action) => {
-			state.isCheckOpen = action.payload;
+		GetBookmark: (state, action: { payload: string }) => {},
+
+		GetBookmarkSuccess: (state, action: PayloadAction<GetType>) => {
+			const { bookmark } = state;
+			const newState = bookmark.concat(action.payload.bookmark);
+			state.bookmark = newState;
+		},
+
+		BookmarkFailure: (state, { payload: error }) => {
+			state.error = error;
+			console.log(state.error);
 		},
 	},
 });
