@@ -7,7 +7,30 @@ import { selectAction } from '../modules/selectAnimal/select';
 import AuthService from '../service/auth_service';
 
 interface SelectedAnimal {
-	selected: BookmarkAnimalType;
+	selected: {
+		age: number;
+		careAddr: string;
+		careNm: string;
+		careTel: string;
+		chargeNm: string;
+		colorCd: string;
+		desertionNo: number;
+		filename: string;
+		happenDt: number;
+		happenPlace: string;
+		kindCd: string;
+		neuterYn: string;
+		noticeEdt: number;
+		noticeNo: string;
+		noticeSdt: number;
+		officetel: string;
+		orgNm: string;
+		popfile: string;
+		processState: string;
+		sexCd: string;
+		specialMark: string;
+		weight: string;
+	};
 }
 
 interface BookmarkAnimalType {
@@ -51,7 +74,7 @@ interface Bookmark {
 function ModalFooter() {
 	const [isBookmark, setIsBookmark] = useState(false);
 	const authService = new AuthService();
-	const [UserId, setUserId] = useState('');
+	const [userId, setUserId] = useState('');
 	const { selected } = useSelector<ReducerType, SelectedAnimal>(
 		(state) => state.selectReducer
 	);
@@ -68,11 +91,20 @@ function ModalFooter() {
 	const dispatch = useDispatch();
 
 	const handleAddBookmark = () => {
-		dispatch(AddBookmark(selected));
+		console.log(selected);
+		const payload = {
+			bookmark: selected,
+			userId: userId,
+		};
+		dispatch(AddBookmark(payload));
 	};
 
 	const handleRemoveBookmark = () => {
-		dispatch(RemoveBookmark(UserId, selected.desertionNo));
+		const payload = {
+			userId: userId,
+			bookmarkId: selected.desertionNo,
+		};
+		dispatch(RemoveBookmark(payload));
 	};
 
 	useEffect(() => {
@@ -89,7 +121,7 @@ function ModalFooter() {
 	useEffect(() => {
 		authService.onAuthChange((user) => {
 			if (user) {
-				setUserId(user.id);
+				setUserId(user.uid);
 			}
 		});
 	});

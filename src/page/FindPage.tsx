@@ -29,7 +29,7 @@ function MainPage() {
 	}, []);
 
 	useEffect(() => {
-		authService.onAuthChange((user: { id: string }) => {
+		authService.onAuthChange((user) => {
 			user ? setIsLogin(true) : setIsLogin(false);
 		});
 	});
