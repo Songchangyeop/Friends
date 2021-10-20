@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import List from '../components/List';
@@ -9,9 +9,6 @@ import { ReducerType } from '../modules/rootReducer';
 import theme from '../assets/styles/theme';
 import AuthService from '../service/auth_service';
 import LoginModalContainer from '../containers/LoginModalContainer';
-import { selectAction } from '../modules/selectAnimal/select';
-import { getDatabase, ref, onValue, off } from 'firebase/database';
-import { firebaseApp } from '../service/firebase';
 
 interface AnimalType {
 	age: number;
@@ -42,45 +39,26 @@ interface Select {
 	bookmark: AnimalType[];
 	isSelect: boolean;
 }
-
 function BookmarkPage() {
 	const [isLogin, setIsLogin] = useState(true);
 	const [userId, setUserId] = useState('');
+	// const [bookmarkItem, setBookmarkItem] = useState<AnimalType[]>();
 	const { ChangePage } = pageAction;
-	const { GetBookmark } = selectAction;
+
 	const dispatch = useDispatch();
 	const authService = new AuthService();
 	const { isSelect, bookmark } = useSelector<ReducerType, Select>(
 		(state) => state.selectReducer
 	);
 
-	const getData = useCallback(async (userId: string) => {
-		const db = getDatabase(firebaseApp);
-		const query = ref(db, `${userId}/bookmark`);
-		let response: AnimalType[] = [];
-		let temp: any[] = [];
-		onValue(query, async (snapshot) => {
-			const value = await snapshot.val();
-			value &&
-				Object.entries(value).forEach((item) => {
-					temp = [...item];
-					response = [...response, temp[1].bookmark];
-				});
-			dispatch(GetBookmark(response));
-			console.log(response);
-		});
-	}, []);
-
 	useEffect(() => {
 		dispatch(ChangePage('bookmark'));
-		userId && getData(userId);
-	}, [ChangePage, dispatch, getData, userId]);
+	}, [ChangePage, dispatch]);
 
 	useEffect(() => {
 		authService.onAuthChange((user) => {
 			if (user) {
 				setIsLogin(true);
-				setUserId(user.uid);
 			} else {
 				setIsLogin(false);
 			}

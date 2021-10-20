@@ -1,6 +1,6 @@
 import { firebaseApp } from './../../service/firebase';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getDatabase, ref, set, remove, onValue, off } from 'firebase/database';
+import { getDatabase, ref, set, remove, off } from 'firebase/database';
 
 interface AnimalType {
 	selected: {
@@ -150,23 +150,21 @@ export const selectAnimal = createSlice({
 			set(ref(db, `${userId}/bookmark/${bookmark.desertionNo}`), {
 				bookmark,
 			});
+			state.isSelect = true;
 		},
 
 		RemoveBookmark: (state, action: PayloadAction<RemoveType>) => {
+			console.log('리무브');
 			const db = getDatabase(firebaseApp);
 			const userId = action.payload.userId;
 			const bookmarkId = action.payload.bookmarkId;
-			const newState = state.bookmark.filter(
-				(item) => item.desertionNo !== action.payload.bookmarkId
-			);
 			remove(ref(db, `${userId}/bookmark/${bookmarkId}`));
-			console.log(newState);
-			state.bookmark = newState;
 			state.isSelect = false;
 		},
 
 		GetBookmark: (state, action: { payload: BookmarkAnimalType[] }) => {
 			const response = action.payload;
+			state.bookmark.length = 0;
 			state.bookmark = response;
 		},
 	},
