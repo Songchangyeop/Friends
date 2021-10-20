@@ -9,6 +9,7 @@ import { ReducerType } from '../modules/rootReducer';
 import theme from '../assets/styles/theme';
 import AuthService from '../service/auth_service';
 import LoginModalContainer from '../containers/LoginModalContainer';
+import { selectAction } from '../modules/selectAnimal/select';
 
 interface AnimalType {
 	age: number;
@@ -42,7 +43,9 @@ interface Select {
 
 function BookmarkPage() {
 	const [isLogin, setIsLogin] = useState(true);
+	const [userId, setUserId] = useState('');
 	const { ChangePage } = pageAction;
+	const { GetBookmark } = selectAction;
 	const dispatch = useDispatch();
 	const authService = new AuthService();
 	const { isSelect, bookmark } = useSelector<ReducerType, Select>(
@@ -51,11 +54,17 @@ function BookmarkPage() {
 
 	useEffect(() => {
 		dispatch(ChangePage('bookmark'));
-	}, []);
+		userId && dispatch(GetBookmark(userId));
+	}, [ChangePage, GetBookmark, dispatch, userId]);
 
 	useEffect(() => {
-		authService.onAuthChange((user: { id: string }) => {
-			user ? setIsLogin(true) : setIsLogin(false);
+		authService.onAuthChange((user) => {
+			if (user) {
+				setIsLogin(true);
+				setUserId(user.uid);
+			} else {
+				setIsLogin(false);
+			}
 		});
 	});
 

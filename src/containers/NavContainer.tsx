@@ -20,10 +20,10 @@ function NavContainer() {
 	};
 
 	useEffect(() => {
-		authService.onAuthChange((user: { id: string }) => {
+		authService.onAuthChange((user) => {
 			user ? setIsLogin(true) : setIsLogin(false);
 		});
-	});
+	}, [authService]);
 
 	return (
 		<Nav currentPage={currentPage} isLogin={isLogin} onLogout={onLogout} />

@@ -1,4 +1,6 @@
+import { firebaseApp } from './../../service/firebase';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getDatabase, ref, set, remove, onValue, off } from 'firebase/database';
 
 interface AnimalType {
 	selected: {
@@ -56,13 +58,13 @@ interface BookmarkAnimalType {
 	specialMark: string;
 	weight: string;
 }
+
 interface RemoveType {
 	userId: string;
 	bookmarkId: number;
 }
 
 interface AddType {
-	userId: string;
 	bookmark: {
 		age: number;
 		careAddr: string;
@@ -87,34 +89,9 @@ interface AddType {
 		specialMark: string;
 		weight: string;
 	};
+	userId: string;
 }
 
-interface GetType {
-	bookmark: {
-		age: number;
-		careAddr: string;
-		careNm: string;
-		careTel: string;
-		chargeNm: string;
-		colorCd: string;
-		desertionNo: number;
-		filename: string;
-		happenDt: number;
-		happenPlace: string;
-		kindCd: string;
-		neuterYn: string;
-		noticeEdt: number;
-		noticeNo: string;
-		noticeSdt: number;
-		officetel: string;
-		orgNm: string;
-		popfile: string;
-		processState: string;
-		sexCd: string;
-		specialMark: string;
-		weight: string;
-	};
-}
 export const initialState: AnimalType = {
 	selected: {
 		age: 0,
@@ -164,34 +141,52 @@ export const selectAnimal = createSlice({
 			state.isCheckOpen = action.payload;
 		},
 
-		AddBookmark: (state, action: PayloadAction<AddType>) => {},
-
-		AddBookmarkSuccess: (state) => {
+		AddBookmark: (state, action: PayloadAction<AddType>) => {
+			const db = getDatabase(firebaseApp);
+			const userId = action.payload.userId;
+			const bookmark = action.payload.bookmark;
 			state.checkMessage = '찜 했습니다';
 			state.isCheckOpen = true;
+			set(ref(db, `${userId}/bookmark/${bookmark.desertionNo}`), {
+				bookmark,
+			});
 		},
 
-		RemoveBookmark: (state, action: PayloadAction<RemoveType>) => {},
-
-		RemoveBookmarkSuccess: (state, action: { payload: number }) => {
+		RemoveBookmark: (state, action: PayloadAction<RemoveType>) => {
+			const db = getDatabase(firebaseApp);
+			const userId = action.payload.userId;
+			const bookmarkId = action.payload.bookmarkId;
 			const newState = state.bookmark.filter(
-				(item) => item.desertionNo !== action.payload
+				(item) => item.desertionNo !== action.payload.bookmarkId
 			);
 			state.bookmark = newState;
 			state.isSelect = false;
+			remove(ref(db, `${userId}/bookmark/${bookmarkId}`));
 		},
 
-		GetBookmark: (state, action: { payload: string }) => {},
+		GetBookmark: (state, action: { payload: string }) => {
+			try {
+				const db = getDatabase(firebaseApp);
+				const { bookmark } = state;
+				const query = ref(db, `${action.payload}/bookmark`);
+				let response: BookmarkAnimalType[] = [];
+				let temp: any[] = [];
+				onValue(query, (snapshot) => {
+					const value = snapshot.val();
+					Object.entries(value).map((item) => {
+						temp = [...item];
+						response = [...response, temp[1].bookmark];
+					});
 
-		GetBookmarkSuccess: (state, action: PayloadAction<GetType>) => {
-			const { bookmark } = state;
-			const newState = bookmark.concat(action.payload.bookmark);
-			state.bookmark = newState;
-		},
-
-		BookmarkFailure: (state, { payload: error }) => {
-			state.error = error;
-			console.log(state.error);
+					// const newState = bookmark.concat(response);
+					// console.log(newState);
+					console.log(response);
+					state.bookmark = response;
+					return () => off(query);
+				});
+			} catch (error) {
+				console.log(error);
+			}
 		},
 	},
 });
