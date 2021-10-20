@@ -159,34 +159,15 @@ export const selectAnimal = createSlice({
 			const newState = state.bookmark.filter(
 				(item) => item.desertionNo !== action.payload.bookmarkId
 			);
+			remove(ref(db, `${userId}/bookmark/${bookmarkId}`));
+			console.log(newState);
 			state.bookmark = newState;
 			state.isSelect = false;
-			remove(ref(db, `${userId}/bookmark/${bookmarkId}`));
 		},
 
-		GetBookmark: (state, action: { payload: string }) => {
-			try {
-				const db = getDatabase(firebaseApp);
-				const { bookmark } = state;
-				const query = ref(db, `${action.payload}/bookmark`);
-				let response: BookmarkAnimalType[] = [];
-				let temp: any[] = [];
-				onValue(query, (snapshot) => {
-					const value = snapshot.val();
-					Object.entries(value).map((item) => {
-						temp = [...item];
-						response = [...response, temp[1].bookmark];
-					});
-
-					// const newState = bookmark.concat(response);
-					// console.log(newState);
-					console.log(response);
-					state.bookmark = response;
-					return () => off(query);
-				});
-			} catch (error) {
-				console.log(error);
-			}
+		GetBookmark: (state, action: { payload: BookmarkAnimalType[] }) => {
+			const response = action.payload;
+			state.bookmark = response;
 		},
 	},
 });
