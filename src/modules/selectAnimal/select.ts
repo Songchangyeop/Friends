@@ -1,6 +1,6 @@
 import { firebaseApp } from './../../service/firebase';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getDatabase, ref, set, remove, onValue, off } from 'firebase/database';
+import { getDatabase, ref, set, remove, off } from 'firebase/database';
 
 interface AnimalType {
 	selected: {
@@ -150,43 +150,22 @@ export const selectAnimal = createSlice({
 			set(ref(db, `${userId}/bookmark/${bookmark.desertionNo}`), {
 				bookmark,
 			});
+			state.isSelect = true;
 		},
 
 		RemoveBookmark: (state, action: PayloadAction<RemoveType>) => {
+			console.log('리무브');
 			const db = getDatabase(firebaseApp);
 			const userId = action.payload.userId;
 			const bookmarkId = action.payload.bookmarkId;
-			const newState = state.bookmark.filter(
-				(item) => item.desertionNo !== action.payload.bookmarkId
-			);
-			state.bookmark = newState;
-			state.isSelect = false;
 			remove(ref(db, `${userId}/bookmark/${bookmarkId}`));
+			state.isSelect = false;
 		},
 
-		GetBookmark: (state, action: { payload: string }) => {
-			try {
-				const db = getDatabase(firebaseApp);
-				const { bookmark } = state;
-				const query = ref(db, `${action.payload}/bookmark`);
-				let response: BookmarkAnimalType[] = [];
-				let temp: any[] = [];
-				onValue(query, (snapshot) => {
-					const value = snapshot.val();
-					Object.entries(value).map((item) => {
-						temp = [...item];
-						response = [...response, temp[1].bookmark];
-					});
-
-					// const newState = bookmark.concat(response);
-					// console.log(newState);
-					console.log(response);
-					state.bookmark = response;
-					return () => off(query);
-				});
-			} catch (error) {
-				console.log(error);
-			}
+		GetBookmark: (state, action: { payload: BookmarkAnimalType[] }) => {
+			const response = action.payload;
+			state.bookmark.length = 0;
+			state.bookmark = response;
 		},
 	},
 });

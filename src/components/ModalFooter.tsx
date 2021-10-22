@@ -116,7 +116,7 @@ function ModalFooter() {
 		} else {
 			setIsBookmark(false);
 		}
-	}, []);
+	}, [bookmark, selected.desertionNo]);
 
 	useEffect(() => {
 		authService.onAuthChange((user) => {

@@ -25,6 +25,11 @@ function MainPage() {
 	const authService = new AuthService();
 
 	useEffect(() => {
+		console.log(isSelect);
+	}, [isSelect]);
+	//isSelect가 바뀜
+
+	useEffect(() => {
 		dispatch(ChangePage('find'));
 	}, []);
 
