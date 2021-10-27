@@ -12,8 +12,21 @@ interface Props {
 function Nav({ currentPage, isLogin, onLogout }: Props) {
 	return (
 		<Navi theme={theme}>
-			<Link to="/">
+			<Link
+				to="/"
+				style={{
+					textDecoration: `none`,
+					color: 'white',
+				}}
+			>
 				<Img src="img/Logo.png" alt="Logo" />
+				{/* <span
+					style={{
+						fontSize: `2em`,
+					}}
+				>
+					Friends
+				</span> */}
 			</Link>
 
 			<NavList>
@@ -76,6 +89,7 @@ const Navi = styled.nav`
 	width: 100%;
 	height: 10vh;
 	background-color: ${(props) => props.theme.backgroundColor};
+	z-index: 5;
 `;
 
 const NavList = styled.ul`
@@ -99,6 +113,6 @@ const List = styled.li`
 `;
 
 const Img = styled.img`
-	width: 10em;
+	width: 5em;
 	cursor: pointer;
 `;

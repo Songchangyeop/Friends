@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
 import AuthPage from './page/AuthPage';
 import BookmarkPage from './page/BookmarkPage';
 import DetailPage from './page/DetailPage';
@@ -8,7 +9,7 @@ import MainPage from './page/MainPage';
 
 function App() {
 	return (
-		<div>
+		<Div>
 			<BrowserRouter>
 				<Switch>
 					<Route exact path="/" component={MainPage}></Route>
@@ -18,8 +19,12 @@ function App() {
 					<Route path="/auth" component={AuthPage}></Route>
 				</Switch>
 			</BrowserRouter>
-		</div>
+		</Div>
 	);
 }
 
 export default App;
+
+const Div = styled.div`
+	font-family: 'Cafe24Oneprettynight';
+`;

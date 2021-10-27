@@ -40,15 +40,18 @@ function Location({ address }: props) {
 export default Location;
 
 const Section = styled.section`
-	/* display: flex;
+	width: 90%;
+	background-color: #fafafa;
+	display: flex;
 	flex-direction: column;
-	align-items: center; */
+	align-items: center;
+	padding: 1em;
 `;
 
 const Title = styled.span`
 	font-size: 1.5em;
 	font-weight: bold;
-	/* color: ${(props) => props.theme.backgroundColor}; */
+	color: ${(props) => props.theme.backgroundColor};
 `;
 
 const Map = styled.div`
