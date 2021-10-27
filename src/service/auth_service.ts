@@ -19,7 +19,6 @@ class AuthService {
 				const token = credential.accessToken;
 				// The signed-in user info.
 				const user = result.user;
-				console.log(result);
 			})
 			.catch((error) => {
 				// Handle Errors here.
@@ -30,7 +29,6 @@ class AuthService {
 				// The AuthCredential type that was used.
 				const credential = GoogleAuthProvider.credentialFromError(error);
 				console.log(error);
-				console.log('에러발생');
 			});
 	}
 

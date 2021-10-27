@@ -91,7 +91,6 @@ function ModalFooter() {
 	const dispatch = useDispatch();
 
 	const handleAddBookmark = () => {
-		console.log(selected);
 		const payload = {
 			bookmark: selected,
 			userId: userId,
@@ -124,7 +123,7 @@ function ModalFooter() {
 				setUserId(user.uid);
 			}
 		});
-	});
+	}, []);
 
 	return (
 		<>
@@ -146,6 +145,7 @@ function ModalFooter() {
 					<Text theme={theme}>친구 목록에 담기</Text>
 				</BookMark>
 			)}
+
 			{isBookmark === false && currentPage === 'detail' && (
 				<BookMark
 					isBookmark={isBookmark}
