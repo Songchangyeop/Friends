@@ -93,9 +93,11 @@ function DetailPage() {
 	return (
 		<Main>
 			<NavContainer />
-			<Img src={selected.popfile} alt="AnimalImage" theme={theme} />
-			<Check />
-			<ModalFooter></ModalFooter>
+			<Div>
+				<Img src={selected.popfile} alt="AnimalImage" theme={theme} />
+				<Check />
+				<ModalFooter></ModalFooter>
+			</Div>
 			<Section theme={theme}>
 				<LeftDetail theme={theme}>
 					<DetailHeader theme={theme}>동물 정보</DetailHeader>
@@ -131,30 +133,32 @@ function DetailPage() {
 				<RightDetail theme={theme}>
 					<DetailHeader theme={theme}>보호소 정보</DetailHeader>
 					<Table>
-						<tr>
-							<Th>보호소</Th>
-							<Td>{selected.careNm}</Td>
-						</tr>
-						<tr>
-							<Th>보호소 주소</Th>
-							<Td>{selected.careAddr}</Td>
-						</tr>
-						<tr>
-							<Th>보호소 번호</Th>
-							<Td>{selected.careTel}</Td>
-						</tr>
-						<tr>
-							<Th>담당 보호사</Th>
-							<Td>{selected.chargeNm}</Td>
-						</tr>
-						<tr>
-							<Th>구조위치</Th>
-							<Td>{selected.happenPlace}</Td>
-						</tr>
-						<tr>
-							<Th>접수일시</Th>
-							<Td>{selected.happenDt}</Td>
-						</tr>
+						<tbody>
+							<tr>
+								<Th>보호소</Th>
+								<Td>{selected.careNm}</Td>
+							</tr>
+							<tr>
+								<Th>보호소 주소</Th>
+								<Td>{selected.careAddr}</Td>
+							</tr>
+							<tr>
+								<Th>보호소 번호</Th>
+								<Td>{selected.careTel}</Td>
+							</tr>
+							<tr>
+								<Th>담당 보호사</Th>
+								<Td>{selected.chargeNm}</Td>
+							</tr>
+							<tr>
+								<Th>구조위치</Th>
+								<Td>{selected.happenPlace}</Td>
+							</tr>
+							<tr>
+								<Th>접수일시</Th>
+								<Td>{selected.happenDt}</Td>
+							</tr>
+						</tbody>
 					</Table>
 				</RightDetail>
 			</Section>
@@ -164,6 +168,15 @@ function DetailPage() {
 }
 
 export default DetailPage;
+
+const Div = styled.div`
+	width: 90%;
+	background-color: #fafafa;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1em;
+`;
 
 const Main = styled.main`
 	width: 100%;
