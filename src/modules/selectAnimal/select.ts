@@ -154,7 +154,6 @@ export const selectAnimal = createSlice({
 		},
 
 		RemoveBookmark: (state, action: PayloadAction<RemoveType>) => {
-			console.log('리무브');
 			const db = getDatabase(firebaseApp);
 			const userId = action.payload.userId;
 			const bookmarkId = action.payload.bookmarkId;
