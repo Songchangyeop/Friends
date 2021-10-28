@@ -22,7 +22,7 @@ Friends는 전국의 유기동물에게 따듯한 손길을 전해주고자 합�
 
 <br />
 
-- 2021-07-28 ~ 2021-10-13
+- 2021-07-28 ~ 2021-10-20
 
 <br />
 <br />
@@ -49,13 +49,23 @@ Friends는 전국의 유기동물에게 따듯한 손길을 전해주고자 합�
 
 <br />
 
-- ### React
-- ### Redux + Saga
-- ### TypeScript
-- ### Styled-Components
-- ### Firebase
+- ### 프론트
+  - React
+  - Redux + Saga
+  - TypeScript
+  - Styled-Components
+  - Firebase
 
 <br />
+
+<br />
+<br />
+
+## 📁 Used Data
+
+<br />
+
+- ### [농림축산식품부 농림축산검역본부\_동물보호관리시스템 유기동물 조회 서비스](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15001096)
 
 <br />
 <br />
@@ -64,7 +74,7 @@ Friends는 전국의 유기동물에게 따듯한 손길을 전해주고자 합�
 
 <br />
 
-- ### 추가 예정
+- ### Firebase Database에 저장된 찜 목록 데이터들을 Redux Saga로 받아오려 했으나 Firebase의 데이터는 onValue 함수로 받아오는 구조라서 Saga로 데이터를 Return 해줄 수 없었기 때문에 컴포넌트에서 onValue 함수를 실행하고 Response 데이터를 리덕스로 dispatch 하는 구조로 변경했습니다.
 
 <br />
 <br />
