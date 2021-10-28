@@ -4,9 +4,33 @@ import styled, { css } from 'styled-components';
 import theme from '../assets/styles/theme';
 import { ReducerType } from '../modules/rootReducer';
 import { selectAction } from '../modules/selectAnimal/select';
+import AuthService from '../service/auth_service';
 
 interface SelectedAnimal {
-	selected: BookmarkAnimalType;
+	selected: {
+		age: number;
+		careAddr: string;
+		careNm: string;
+		careTel: string;
+		chargeNm: string;
+		colorCd: string;
+		desertionNo: number;
+		filename: string;
+		happenDt: number;
+		happenPlace: string;
+		kindCd: string;
+		neuterYn: string;
+		noticeEdt: number;
+		noticeNo: string;
+		noticeSdt: number;
+		officetel: string;
+		orgNm: string;
+		popfile: string;
+		processState: string;
+		sexCd: string;
+		specialMark: string;
+		weight: string;
+	};
 }
 
 interface BookmarkAnimalType {
@@ -49,6 +73,8 @@ interface Bookmark {
 
 function ModalFooter() {
 	const [isBookmark, setIsBookmark] = useState(false);
+	const authService = new AuthService();
+	const [userId, setUserId] = useState('');
 	const { selected } = useSelector<ReducerType, SelectedAnimal>(
 		(state) => state.selectReducer
 	);
@@ -65,11 +91,19 @@ function ModalFooter() {
 	const dispatch = useDispatch();
 
 	const handleAddBookmark = () => {
-		dispatch(AddBookmark(selected));
+		const payload = {
+			bookmark: selected,
+			userId: userId,
+		};
+		dispatch(AddBookmark(payload));
 	};
 
 	const handleRemoveBookmark = () => {
-		dispatch(RemoveBookmark(selected.desertionNo));
+		const payload = {
+			userId: userId,
+			bookmarkId: selected.desertionNo,
+		};
+		dispatch(RemoveBookmark(payload));
 	};
 
 	useEffect(() => {
@@ -81,7 +115,15 @@ function ModalFooter() {
 		} else {
 			setIsBookmark(false);
 		}
-	});
+	}, [bookmark, selected.desertionNo]);
+
+	useEffect(() => {
+		authService.onAuthChange((user) => {
+			if (user) {
+				setUserId(user.uid);
+			}
+		});
+	}, []);
 
 	return (
 		<>
@@ -103,6 +145,7 @@ function ModalFooter() {
 					<Text theme={theme}>친구 목록에 담기</Text>
 				</BookMark>
 			)}
+
 			{isBookmark === false && currentPage === 'detail' && (
 				<BookMark
 					isBookmark={isBookmark}

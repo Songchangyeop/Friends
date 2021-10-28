@@ -3,7 +3,7 @@ import { selectReducer } from './selectAnimal/select';
 import { animalReducer } from './getData/animal';
 import { combineReducers } from 'redux';
 import { all } from 'redux-saga/effects';
-import { animalSaga } from './getData/saga';
+import { animalSaga } from './getData/AnimalSaga';
 
 // animalReducer 를 rootReducer 로 합쳐 내보냄
 const rootReducer = combineReducers({

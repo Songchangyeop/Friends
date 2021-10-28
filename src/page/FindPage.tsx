@@ -15,7 +15,12 @@ interface Select {
 	isSelect: boolean;
 }
 
+interface openModal {
+	openModal: boolean;
+}
+
 function MainPage() {
+	const [openModal, setOpenModal] = useState<boolean>();
 	const { isSelect } = useSelector<ReducerType, Select>(
 		(state) => state.selectReducer
 	);
@@ -25,11 +30,16 @@ function MainPage() {
 	const authService = new AuthService();
 
 	useEffect(() => {
+		setOpenModal(isSelect);
+	}, [isSelect]);
+	//isSelect가 바뀜
+
+	useEffect(() => {
 		dispatch(ChangePage('find'));
 	}, []);
 
 	useEffect(() => {
-		authService.onAuthChange((user: { id: string }) => {
+		authService.onAuthChange((user) => {
 			user ? setIsLogin(true) : setIsLogin(false);
 		});
 	});
@@ -39,7 +49,7 @@ function MainPage() {
 			{isLogin === false && <LoginModalContainer />}
 			<FinderContainer />
 			<ListContainer />
-			{isSelect && (
+			{openModal && (
 				<Container>
 					<ModalContainer />
 				</Container>

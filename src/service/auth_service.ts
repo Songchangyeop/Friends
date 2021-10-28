@@ -19,7 +19,6 @@ class AuthService {
 				const token = credential.accessToken;
 				// The signed-in user info.
 				const user = result.user;
-				console.log(result);
 			})
 			.catch((error) => {
 				// Handle Errors here.
@@ -30,7 +29,6 @@ class AuthService {
 				// The AuthCredential type that was used.
 				const credential = GoogleAuthProvider.credentialFromError(error);
 				console.log(error);
-				console.log('에러발생');
 			});
 	}
 
@@ -38,7 +36,7 @@ class AuthService {
 		this.firebaseAuth.signOut();
 	}
 
-	onAuthChange(onUserChanged: { (user: { id: string }): void }) {
+	onAuthChange(onUserChanged: { (user: { uid: string }): void }) {
 		this.firebaseAuth.onAuthStateChanged((user: any) => {
 			onUserChanged(user);
 		});

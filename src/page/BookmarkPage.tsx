@@ -39,10 +39,12 @@ interface Select {
 	bookmark: AnimalType[];
 	isSelect: boolean;
 }
-
 function BookmarkPage() {
 	const [isLogin, setIsLogin] = useState(true);
+
+	// const [bookmarkItem, setBookmarkItem] = useState<AnimalType[]>();
 	const { ChangePage } = pageAction;
+
 	const dispatch = useDispatch();
 	const authService = new AuthService();
 	const { isSelect, bookmark } = useSelector<ReducerType, Select>(
@@ -51,11 +53,15 @@ function BookmarkPage() {
 
 	useEffect(() => {
 		dispatch(ChangePage('bookmark'));
-	}, []);
+	}, [ChangePage, dispatch]);
 
 	useEffect(() => {
-		authService.onAuthChange((user: { id: string }) => {
-			user ? setIsLogin(true) : setIsLogin(false);
+		authService.onAuthChange((user) => {
+			if (user) {
+				setIsLogin(true);
+			} else {
+				setIsLogin(false);
+			}
 		});
 	});
 

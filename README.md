@@ -61,6 +61,15 @@ Friends는 전국의 유기동물에게 따듯한 손길을 전해주고자 합�
 <br />
 <br />
 
+## 📁 Used Data
+
+<br />
+
+## [농림축산식품부 농림축산검역본부\_동물보호관리시스템 유기동물 조회 서비스](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15001096)
+
+<br />
+<br />
+
 ## 🔨 트러블 슈팅
 
 <br />

@@ -1,18 +1,75 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import theme from '../assets/styles/theme';
 import Footer from '../components/Footer';
 import NavContainer from '../containers/NavContainer';
 import { pageAction } from '../modules/CurrentPage/PageCheck';
+import { getDatabase, ref, onValue, off } from 'firebase/database';
+import { firebaseApp } from '../service/firebase';
+import { selectAction } from '../modules/selectAnimal/select';
+import AuthService from '../service/auth_service';
 
-function Test() {
+interface AnimalType {
+	age: number;
+	careAddr: string;
+	careNm: string;
+	careTel: string;
+	chargeNm: string;
+	colorCd: string;
+	desertionNo: number;
+	filename: string;
+	happenDt: number;
+	happenPlace: string;
+	kindCd: string;
+	neuterYn: string;
+	noticeEdt: number;
+	noticeNo: string;
+	noticeSdt: number;
+	officetel: string;
+	orgNm: string;
+	popfile: string;
+	processState: string;
+	sexCd: string;
+	specialMark: string;
+	weight: string;
+}
+
+function MainPage() {
+	const [userId, setUserId] = useState('');
 	const { ChangePage } = pageAction;
 	const dispatch = useDispatch();
+	const { GetBookmark } = selectAction;
+	const authService = new AuthService();
+
+	const getData = useCallback((userId: string) => {
+		const db = getDatabase(firebaseApp);
+		const query = ref(db, `${userId}/bookmark`);
+		let response: AnimalType[] = [];
+		let temp: any[] = [];
+		onValue(query, async (snapshot) => {
+			response = [];
+			temp = [];
+			const value = await snapshot.val();
+			value &&
+				Object.entries(value).forEach((item) => {
+					temp = [...item];
+					response = [...response, temp[1].bookmark];
+				});
+			dispatch(GetBookmark(response));
+		});
+	}, []);
 
 	useEffect(() => {
 		dispatch(ChangePage('main'));
-	}, []);
+		userId && getData(userId);
+	}, [ChangePage, dispatch, getData, userId]);
+
+	useEffect(() => {
+		authService.onAuthChange((user) => {
+			user && setUserId(user.uid);
+		});
+	});
 
 	return (
 		<Main>
@@ -72,7 +129,7 @@ function Test() {
 	);
 }
 
-export default Test;
+export default MainPage;
 
 const Main = styled.main`
 	width: 100%;

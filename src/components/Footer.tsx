@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import theme from '../assets/styles/theme';
 
 function Footer() {
-	return <Foot>© 2021 Friends - by Changyeop Song</Foot>;
+	return <Foot theme={theme}>© 2021 Friends - by Changyeop Song</Foot>;
 }
 
 export default Footer;
@@ -13,4 +14,8 @@ const Foot = styled.footer`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	@media ${(props) => props.theme.mobile} {
+		background-color: ${(props) => props.theme.backgroundColor};
+	}
 `;

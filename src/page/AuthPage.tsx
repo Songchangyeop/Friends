@@ -32,8 +32,8 @@ function AuthPage({ history }: Props) {
 	};
 
 	useEffect(() => {
-		authService.onAuthChange((user: { id: any }) => {
-			user && goToMain(user.id);
+		authService.onAuthChange((user: { uid: any }) => {
+			user && goToMain(user.uid);
 		});
 	});
 
