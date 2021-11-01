@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import NavContainer from '../containers/NavContainer';
 import { pageAction } from '../modules/CurrentPage/PageCheck';
 import AuthService from '../service/auth_service';
+import theme from '../assets/styles/theme';
 
 interface Props extends RouteComponentProps {}
 
@@ -42,8 +43,8 @@ function AuthPage({ history }: Props) {
 			<NavContainer />
 			<Section>
 				<Wrap>
-					<Login onClick={onLogin}>
-						<Img src="img/google.png" alt="google"></Img>
+					<Login onClick={onLogin} theme={theme}>
+						<Img src="img/google.png" alt="google" theme={theme}></Img>
 						<span>Google을(를) 사용하여 로그인</span>
 					</Login>
 					<Text>
@@ -106,6 +107,10 @@ const Login = styled.div`
 		background-color: #12b886;
 		color: white;
 	}
+
+	@media ${(props) => props.theme.mobile} {
+		margin-bottom: 1em;
+	}
 `;
 
 const Text = styled.div`
@@ -118,6 +123,12 @@ const Text = styled.div`
 const Img = styled.img`
 	width: 12em;
 	height: 12em;
+
+	@media ${(props) => props.theme.mobile} {
+		width: 7em;
+		height: 7em;
+		margin-bottom: 0.3em;
+	}
 `;
 
 const Span = styled.span`
