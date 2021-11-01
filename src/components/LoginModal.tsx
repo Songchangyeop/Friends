@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import theme from '../assets/styles/theme';
 
 function LoginModal() {
 	return (
-		<Modal>
-			<Span>로그인을 하시면 서비스 이용이 가능합니다</Span>
-			<BtnWrap>
+		<Modal theme={theme}>
+			<Span theme={theme}>로그인을 하시면 서비스 이용이 가능합니다</Span>
+			<BtnWrap theme={theme}>
 				<Link
 					to="/auth"
 					style={{
@@ -46,10 +47,20 @@ const Modal = styled.div`
 	flex-direction: column;
 	border-radius: 1em;
 	box-shadow: 0 0 19px rgb(0 0 0 / 50%);
+
+	@media ${(props) => props.theme.mobile} {
+		width: 70%;
+		height: 30%;
+		padding: 0.5em;
+	}
 `;
 
 const Span = styled.span`
 	font-size: 1.4em;
+
+	@media ${(props) => props.theme.mobile} {
+		font-size: 0.9em;
+	}
 `;
 
 const BtnWrap = styled.div`
@@ -60,10 +71,13 @@ const BtnWrap = styled.div`
 	justify-content: space-around;
 	width: 50%;
 	height: auto;
+
+	@media ${(props) => props.theme.mobile} {
+		width: 90%;
+	}
 `;
 
 const Button = styled.button`
-	font-size: 1em;
 	width: auto;
 	height: 2em;
 	border: 0;

@@ -19,14 +19,7 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 					color: 'white',
 				}}
 			>
-				<Img src="img/Logo.png" alt="Logo" />
-				{/* <span
-					style={{
-						fontSize: `2em`,
-					}}
-				>
-					Friends
-				</span> */}
+				<Img src="img/Logo.png" alt="Logo" theme={theme} />
 			</Link>
 
 			<NavList>
@@ -38,7 +31,7 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 							color: 'white',
 						}}
 					>
-						<List>동물 찾기</List>
+						<List theme={theme}>동물 찾기</List>
 					</Link>
 				)}
 				{currentPage !== 'bookmark' && (
@@ -46,7 +39,7 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 						to="/bookmark"
 						style={{ textDecoration: `none`, color: 'white' }}
 					>
-						<List>찜</List>
+						<List theme={theme}>찜</List>
 					</Link>
 				)}
 				{currentPage !== 'auth' && isLogin === false && (
@@ -57,7 +50,7 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 							color: 'white',
 						}}
 					>
-						<List>로그인</List>
+						<List theme={theme}>로그인</List>
 					</Link>
 				)}
 				{isLogin === true && (
@@ -68,7 +61,9 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 							color: 'white',
 						}}
 					>
-						<List onClick={onLogout}>로그아웃</List>
+						<List onClick={onLogout} theme={theme}>
+							로그아웃
+						</List>
 					</Link>
 				)}
 			</NavList>
@@ -96,7 +91,6 @@ const NavList = styled.ul`
 	display: flex;
 	align-items: center;
 	font-weight: bold;
-	font-size: 1.3em;
 
 	cursor: pointer;
 	list-style: none;
@@ -106,13 +100,22 @@ const List = styled.li`
 	padding: 0.5em;
 	transition: all 150ms ease;
 	color: white;
+	font-size: 1.3em;
 
 	&:hover {
 		color: black;
+	}
+
+	@media ${(props) => props.theme.mobile} {
+		font-size: 1em;
 	}
 `;
 
 const Img = styled.img`
 	width: 5em;
 	cursor: pointer;
+
+	@media ${(props) => props.theme.mobile} {
+		width: 4em;
+	}
 `;
