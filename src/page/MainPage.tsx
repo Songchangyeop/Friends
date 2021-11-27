@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import theme from '../assets/styles/theme';
-import Footer from '../components/Footer';
+import Footer from '../components/Footer/Footer';
 import NavContainer from '../containers/NavContainer';
 import { pageAction } from '../modules/CurrentPage/PageCheck';
 import { getDatabase, ref, onValue, off } from 'firebase/database';

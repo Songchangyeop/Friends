@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Nav from '../components/Nav';
+import Nav from '../components/Nav/Nav';
 import { ReducerType } from '../modules/rootReducer';
 import AuthService from '../service/auth_service';
 

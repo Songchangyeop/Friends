@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Finder from '../components/Finder';
+import Finder from '../components/Finder/Finder';
 import { animalAction } from '../modules/getData/animal';
 import { ReducerType } from '../modules/rootReducer';
 

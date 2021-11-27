@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import theme from '../assets/styles/theme';
+import theme from '../../assets/styles/theme';
+import * as style from './LocationStyle';
+
 declare global {
 	interface Window {
 		kakao: any;
@@ -30,37 +31,11 @@ function Location({ address }: props) {
 	}, [address]);
 
 	return (
-		<Section>
-			<Title theme={theme}>보호소 위치</Title>
-			<Map theme={theme} id="map"></Map>
-		</Section>
+		<style.Section>
+			<style.Title theme={theme}>보호소 위치</style.Title>
+			<style.Map theme={theme} id="map"></style.Map>
+		</style.Section>
 	);
 }
 
 export default Location;
-
-const Section = styled.section`
-	width: 90%;
-	background-color: #fafafa;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 1em;
-`;
-
-const Title = styled.span`
-	font-size: 1.5em;
-	font-weight: bold;
-	color: ${(props) => props.theme.backgroundColor};
-`;
-
-const Map = styled.div`
-	width: 500px;
-	height: 400px;
-	margin: 1em;
-
-	@media ${(props) => props.theme.mobile} {
-		width: 300px;
-		height: 300px;
-	}
-`;

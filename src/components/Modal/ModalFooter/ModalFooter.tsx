@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled, { css } from 'styled-components';
-import theme from '../assets/styles/theme';
-import { ReducerType } from '../modules/rootReducer';
-import { selectAction } from '../modules/selectAnimal/select';
-import AuthService from '../service/auth_service';
+import * as style from './ModalFooterStyle';
+import theme from '../../../assets/styles/theme';
+import { ReducerType } from '../../../modules/rootReducer';
+import { selectAction } from '../../../modules/selectAnimal/select';
+import AuthService from '../../../service/auth_service';
 
 interface SelectedAnimal {
 	selected: {
@@ -128,103 +128,35 @@ function ModalFooter() {
 	return (
 		<>
 			{isBookmark === true && (
-				<BookMark
+				<style.BookMark
 					isBookmark={isBookmark}
 					currentPage={currentPage}
 					onClick={handleRemoveBookmark}
 				>
-					<Text theme={theme}>친구 목록에서 제거</Text>
-				</BookMark>
+					<style.Text theme={theme}>친구 목록에서 제거</style.Text>
+				</style.BookMark>
 			)}
 			{isBookmark === false && currentPage !== 'detail' && (
-				<BookMark
+				<style.BookMark
 					isBookmark={isBookmark}
 					currentPage={currentPage}
 					onClick={handleAddBookmark}
 				>
-					<Text theme={theme}>친구 목록에 담기</Text>
-				</BookMark>
+					<style.Text theme={theme}>친구 목록에 담기</style.Text>
+				</style.BookMark>
 			)}
 
 			{isBookmark === false && currentPage === 'detail' && (
-				<BookMark
+				<style.BookMark
 					isBookmark={isBookmark}
 					currentPage={currentPage}
 					onClick={handleAddBookmark}
 				>
-					<Text theme={theme}>친구 목록에 담기</Text>
-				</BookMark>
+					<style.Text theme={theme}>친구 목록에 담기</style.Text>
+				</style.BookMark>
 			)}
 		</>
 	);
 }
 
 export default ModalFooter;
-
-const BookMark = styled.button<isBookmark>`
-	${(props) =>
-		props.isBookmark === true &&
-		css`
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			margin-top: 1em;
-			width: 9em;
-			height: 2em;
-			background-color: #e0e0e0;
-			border-radius: 1em;
-			border: 0;
-			cursor: pointer;
-
-			&:hover {
-				background-color: #bdbdbd;
-			}
-		`}
-
-	${(props) =>
-		props.isBookmark === false &&
-		css`
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			margin-top: 1em;
-			width: 8em;
-			height: 2em;
-			background-color: #e0e0e0;
-			border-radius: 1em;
-			border: 0;
-			cursor: pointer;
-
-			&:hover {
-				background-color: #bdbdbd;
-			}
-		`}
-
-		${(props) =>
-		props.currentPage === 'detail' &&
-		css`
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 10em;
-			font-size: 1.5em;
-			padding: 0.3em;
-			background-color: #e0e0e0;
-			border-radius: 1em;
-			border: 0;
-			cursor: pointer;
-
-			&:hover {
-				background-color: #bdbdbd;
-			}
-		`}
-`;
-
-const Text = styled.span`
-	font-family: 'Cafe24Oneprettynight';
-	font-size: 1em;
-
-	@media ${(props) => props.theme.mobile} {
-		font-size: 0.8em;
-	}
-`;

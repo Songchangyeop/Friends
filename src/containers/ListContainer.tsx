@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReducerType } from '../modules/rootReducer';
-import List from '../components/List';
+import List from '../components/List/List';
 import styled, { css } from 'styled-components';
 import { animalAction } from '../modules/getData/animal';
 import { useCallback } from 'react';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import Loading from '../components/Loading';
+import Loading from '../components/Loading/Loading';
 import theme from '../assets/styles/theme';
 
 interface DescriptionParams {

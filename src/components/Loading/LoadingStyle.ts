@@ -1,18 +1,6 @@
-import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import theme from '../assets/styles/theme';
 
-function Loading() {
-	return (
-		<Div theme={theme}>
-			<Img src="img/Loading.png" theme={theme} />
-		</Div>
-	);
-}
-
-export default Loading;
-
-const Spin = keyframes`
+export const Spin = keyframes`
   0% {
     transform: rotate(0deg);
   }
@@ -22,7 +10,7 @@ const Spin = keyframes`
   }
 `;
 
-const Img = styled.img`
+export const Img = styled.img`
 	width: 500px;
 	height: 500px;
 	animation: ${Spin} 5s linear infinite;
@@ -33,7 +21,7 @@ const Img = styled.img`
 	}
 `;
 
-const Div = styled.div`
+export const Div = styled.div`
 	flex: 2;
 	display: flex;
 	justify-content: center;

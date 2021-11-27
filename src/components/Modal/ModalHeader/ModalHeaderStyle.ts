@@ -1,34 +1,6 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import theme from '../assets/styles/theme';
-import { selectAction } from '../modules/selectAnimal/select';
 
-function Header() {
-	const dispatch = useDispatch();
-	const { closeModal } = selectAction;
-
-	const CloseModal = () => {
-		dispatch(closeModal());
-	};
-
-	return (
-		<HeaderTag>
-			<Link to="/Detail" style={{ textDecoration: `none` }}>
-				<Detail theme={theme}>자세히 보기</Detail>
-			</Link>
-			<H1 theme={theme}>친구가 되어주세요</H1>
-			<Close onClick={CloseModal} theme={theme}>
-				<Span theme={theme}>Close</Span>
-			</Close>
-		</HeaderTag>
-	);
-}
-
-export default Header;
-
-const HeaderTag = styled.header`
+export const HeaderTag = styled.header`
 	width: 100%;
 	position: relative;
 	display: flex;
@@ -37,7 +9,7 @@ const HeaderTag = styled.header`
 	padding: 0.3em;
 `;
 
-const H1 = styled.h1`
+export const H1 = styled.h1`
 	font-size: 1.5em;
 	font-family: 'Cafe24Oneprettynight';
 
@@ -46,7 +18,7 @@ const H1 = styled.h1`
 	}
 `;
 
-const Close = styled.button`
+export const Close = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -68,7 +40,7 @@ const Close = styled.button`
 	}
 `;
 
-const Detail = styled.span`
+export const Detail = styled.span`
 	font-size: 1.3em;
 	border: 0;
 	cursor: pointer;
@@ -80,7 +52,7 @@ const Detail = styled.span`
 	}
 `;
 
-const Span = styled.span`
+export const Span = styled.span`
 	font-size: 1.2em;
 	font-family: 'Cafe24Oneprettynight';
 

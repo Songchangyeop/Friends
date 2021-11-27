@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import Modal from '../components/Modal';
+import Modal from '../components/Modal/Modal';
 import { ReducerType } from '../modules/rootReducer';
 
 interface SelectedAnimal {
