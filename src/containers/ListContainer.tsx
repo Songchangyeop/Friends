@@ -7,9 +7,10 @@ import { animalAction } from '../modules/getData/animal';
 import { useCallback } from 'react';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import Loading from '../components/Loading/Loading';
+import Loading from '../components/Skeleton/Skeleton';
 import theme from '../assets/styles/theme';
 import { AnimalType } from '../types/type';
+import SkeletonContainer from './SkeletonContainer';
 
 interface Description {
 	animal: AnimalType[];
@@ -67,8 +68,9 @@ function ListContainer() {
 	return (
 		<>
 			{isLoading === false && param.city !== 0 && animal.length > 1 && (
-				<Loading />
+				<SkeletonContainer />
 			)}
+
 			{isLoading && (
 				<Ul isLoading={isLoading} theme={theme}>
 					{animalList &&
