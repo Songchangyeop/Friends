@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LoginModal from '../components/LoginModal';
+import LoginModal from '../components/LoginModal/LoginModal';
 
 function LoginModalContainer() {
 	return (

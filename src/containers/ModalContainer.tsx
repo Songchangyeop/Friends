@@ -1,35 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import Modal from '../components/Modal';
+import Modal from '../components/Modal/Modal';
 import { ReducerType } from '../modules/rootReducer';
-
-interface SelectedAnimal {
-	selected: {
-		age: number;
-		careAddr: string;
-		careNm: string;
-		careTel: string;
-		chargeNm: string;
-		colorCd: string;
-		desertionNo: number;
-		filename: string;
-		happenDt: number;
-		happenPlace: string;
-		kindCd: string;
-		neuterYn: string;
-		noticeEdt: number;
-		noticeNo: string;
-		noticeSdt: number;
-		officetel: string;
-		orgNm: string;
-		popfile: string;
-		processState: string;
-		sexCd: string;
-		specialMark: string;
-		weight: string;
-	};
-}
+import { SelectedAnimal } from '../types/type';
 
 function ModalContainer() {
 	const { selected } = useSelector<ReducerType, SelectedAnimal>(

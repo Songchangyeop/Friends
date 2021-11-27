@@ -1,16 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
 import styled, { css } from 'styled-components';
-import NavContainer from '../containers/NavContainer';
-import theme from '../assets/styles/theme';
-
-interface FinderProps {
-	dispatch: (e: React.FormEvent<HTMLFormElement>) => void;
-	changeCity: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-	changeKind: (kind: string) => void;
-	kindCode: number | undefined;
-	listOpen: boolean;
-}
 
 interface ListOpen {
 	listOpen: boolean;
@@ -20,70 +8,7 @@ interface Selected {
 	selectedKind: string;
 }
 
-function Finder({
-	dispatch,
-	changeCity,
-	changeKind,
-	kindCode,
-	listOpen,
-}: FinderProps) {
-	const [selectedKind, setSelectedKind] = useState('');
-
-	const handleClickCheckbox = (e: React.MouseEvent<HTMLParagraphElement>) => {
-		const { innerText } = e.currentTarget;
-		setSelectedKind(innerText);
-		changeKind(innerText);
-	};
-
-	return (
-		<Section theme={theme} listOpen={listOpen}>
-			<NavContainer />
-			<Article listOpen={listOpen} theme={theme}>
-				<Text theme={theme} listOpen={listOpen}>
-					<p>도시 별 동물 찾기</p>
-					<p>도시를 선택해서 유기동물들의 친구가 되어 주세요!</p>
-				</Text>
-				<Bar theme={theme} listOpen={listOpen}></Bar>
-				<Form onSubmit={dispatch} theme={theme} listOpen={listOpen}>
-					<Select
-						name="City"
-						id="City-select"
-						onChange={changeCity}
-						listOpen={listOpen}
-						theme={theme}
-					>
-						<option value="Seoul">서울</option>
-						<option value="Incheon">인천</option>
-						<option value="Busan">부산</option>
-						<option value="Daegu">대구</option>
-						<option value="Ulsan">울산</option>
-						<option value="Gwangju">광주</option>
-						<option value="Daejeon">대전</option>
-					</Select>
-					<CheckWrap theme={theme}>
-						<CheckDog onClick={handleClickCheckbox} selectedKind={selectedKind}>
-							🐶
-						</CheckDog>
-						<CheckCat onClick={handleClickCheckbox} selectedKind={selectedKind}>
-							🐱
-						</CheckCat>
-					</CheckWrap>
-					{kindCode === undefined && (
-						<Warning listOpen={listOpen} theme={theme}>
-							찾고자하는 동물을 선택해주세요!
-						</Warning>
-					)}
-					<Button type="submit" listOpen={listOpen} theme={theme}>
-						찾기
-					</Button>
-				</Form>
-			</Article>
-		</Section>
-	);
-}
-
-export default Finder;
-const Section = styled.section<ListOpen>`
+export const Section = styled.section<ListOpen>`
 	flex: 1;
 	display: flex;
 	flex-direction: column;
@@ -100,7 +25,7 @@ const Section = styled.section<ListOpen>`
 		`}
 `;
 
-const Article = styled.article<ListOpen>`
+export const Article = styled.article<ListOpen>`
 	width: 100%;
 	height: 90vh;
 	display: flex;
@@ -117,7 +42,7 @@ const Article = styled.article<ListOpen>`
 		`}
 `;
 
-const Text = styled.div<ListOpen>`
+export const Text = styled.div<ListOpen>`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -132,7 +57,7 @@ const Text = styled.div<ListOpen>`
 		`}
 `;
 
-const Form = styled.form<ListOpen>`
+export const Form = styled.form<ListOpen>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -150,7 +75,7 @@ const Form = styled.form<ListOpen>`
 		`}
 `;
 
-const Bar = styled.div<ListOpen>`
+export const Bar = styled.div<ListOpen>`
 	width: 2px;
 	height: 5em;
 	background-color: white;
@@ -164,7 +89,7 @@ const Bar = styled.div<ListOpen>`
 		`}
 `;
 
-const Select = styled.select<ListOpen>`
+export const Select = styled.select<ListOpen>`
 	margin-top: 1.5em;
 	margin-bottom: 1.5em;
 	padding-left: 3.5em;
@@ -182,7 +107,7 @@ const Select = styled.select<ListOpen>`
 		`}
 `;
 
-const Button = styled.button<ListOpen>`
+export const Button = styled.button<ListOpen>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -210,13 +135,13 @@ const Button = styled.button<ListOpen>`
 		`}
 `;
 
-const CheckWrap = styled.div`
+export const CheckWrap = styled.div`
 	width: 7rem;
 	display: flex;
 	justify-content: space-between;
 `;
 
-const CheckDog = styled.p<Selected>`
+export const CheckDog = styled.p<Selected>`
 	font-size: 2.5em;
 	margin: 0;
 	cursor: pointer;
@@ -230,7 +155,7 @@ const CheckDog = styled.p<Selected>`
 		props.selectedKind === '🐶' ? 'scale(1.2)' : 'scale(1.0)'};
 `;
 
-const CheckCat = styled.p<Selected>`
+export const CheckCat = styled.p<Selected>`
 	font-size: 2.5em;
 	margin: 0;
 	cursor: pointer;
@@ -244,7 +169,7 @@ const CheckCat = styled.p<Selected>`
 		props.selectedKind === '🐱' ? 'scale(1.2)' : 'scale(1.0)'};
 `;
 
-const Warning = styled.span<ListOpen>`
+export const Warning = styled.span<ListOpen>`
 	margin-top: 1em;
 	margin-bottom: 0.5em;
 	color: #d50000;

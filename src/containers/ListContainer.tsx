@@ -1,42 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReducerType } from '../modules/rootReducer';
-import List from '../components/List';
+import List from '../components/List/List';
 import styled, { css } from 'styled-components';
 import { animalAction } from '../modules/getData/animal';
 import { useCallback } from 'react';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import Loading from '../components/Loading';
+import Loading from '../components/Loading/Loading';
 import theme from '../assets/styles/theme';
-
-interface DescriptionParams {
-	age: number;
-	careAddr: string;
-	careNm: string;
-	careTel: string;
-	chargeNm: string;
-	colorCd: string;
-	desertionNo: number;
-	filename: string;
-	happenDt: number;
-	happenPlace: string;
-	kindCd: string;
-	neuterYn: string;
-	noticeEdt: number;
-	noticeNo: string;
-	noticeSdt: number;
-	officetel: string;
-	orgNm: string;
-	popfile: string;
-	processState: string;
-	sexCd: string;
-	specialMark: string;
-	weight: string;
-}
+import { AnimalType } from '../types/type';
 
 interface Description {
-	animal: DescriptionParams[];
+	animal: AnimalType[];
 	param: {
 		city: number;
 		kind: number | undefined;
@@ -50,7 +26,7 @@ interface isLoading {
 }
 
 function ListContainer() {
-	const [animalList, setAnimalList] = useState<DescriptionParams[]>([]);
+	const [animalList, setAnimalList] = useState<AnimalType[]>([]);
 	const { animal, param, isLoading } = useSelector<ReducerType, Description>(
 		(state) => state.animalReducer
 	);

@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import * as style from './NavStyle';
 import { Link } from 'react-router-dom';
-import theme from '../assets/styles/theme';
+import theme from '../../assets/styles/theme';
 
 interface Props {
 	currentPage: string;
@@ -11,7 +11,7 @@ interface Props {
 
 function Nav({ currentPage, isLogin, onLogout }: Props) {
 	return (
-		<Navi theme={theme}>
+		<style.Navi theme={theme}>
 			<Link
 				to="/"
 				style={{
@@ -19,17 +19,10 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 					color: 'white',
 				}}
 			>
-				<Img src="img/Logo.png" alt="Logo" />
-				{/* <span
-					style={{
-						fontSize: `2em`,
-					}}
-				>
-					Friends
-				</span> */}
+				<style.Img src="/img/Logo.png" alt="Logo" />
 			</Link>
 
-			<NavList>
+			<style.NavList>
 				{currentPage !== 'find' && (
 					<Link
 						to="/find"
@@ -38,7 +31,7 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 							color: 'white',
 						}}
 					>
-						<List>동물 찾기</List>
+						<style.List>동물 찾기</style.List>
 					</Link>
 				)}
 				{currentPage !== 'bookmark' && (
@@ -46,7 +39,7 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 						to="/bookmark"
 						style={{ textDecoration: `none`, color: 'white' }}
 					>
-						<List>찜</List>
+						<style.List>찜</style.List>
 					</Link>
 				)}
 				{currentPage !== 'auth' && isLogin === false && (
@@ -57,7 +50,7 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 							color: 'white',
 						}}
 					>
-						<List>로그인</List>
+						<style.List>로그인</style.List>
 					</Link>
 				)}
 				{isLogin === true && (
@@ -68,51 +61,12 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 							color: 'white',
 						}}
 					>
-						<List onClick={onLogout}>로그아웃</List>
+						<style.List onClick={onLogout}>로그아웃</style.List>
 					</Link>
 				)}
-			</NavList>
-		</Navi>
+			</style.NavList>
+		</style.Navi>
 	);
 }
 
 export default Nav;
-
-const Navi = styled.nav`
-	position: sticky;
-	top: 0;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 0;
-	padding: 0 1em 0 1em;
-	width: 100%;
-	height: 10vh;
-	background-color: ${(props) => props.theme.backgroundColor};
-	z-index: 5;
-`;
-
-const NavList = styled.ul`
-	display: flex;
-	align-items: center;
-	font-weight: bold;
-	font-size: 1.3em;
-
-	cursor: pointer;
-	list-style: none;
-`;
-
-const List = styled.li`
-	padding: 0.5em;
-	transition: all 150ms ease;
-	color: white;
-
-	&:hover {
-		color: black;
-	}
-`;
-
-const Img = styled.img`
-	width: 5em;
-	cursor: pointer;
-`;
