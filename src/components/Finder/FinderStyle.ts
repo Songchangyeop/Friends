@@ -119,6 +119,7 @@ export const Button = styled.button<ListOpen>`
 	cursor: pointer;
 	transition: all 150ms ease;
 	background-color: white;
+	color: black;
 
 	&:hover {
 		box-shadow: 0 0 19px rgb(0 0 0 / 25%);
