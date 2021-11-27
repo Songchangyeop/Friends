@@ -5,33 +5,7 @@ import { useDispatch } from 'react-redux';
 import * as style from './ListStyle';
 import theme from '../../assets/styles/theme';
 import { selectAction } from '../../modules/selectAnimal/select';
-
-interface ListProps {
-	item: {
-		age: number;
-		careAddr: string;
-		careNm: string;
-		careTel: string;
-		chargeNm: string;
-		colorCd: string;
-		desertionNo: number;
-		filename: string;
-		happenDt: number;
-		happenPlace: string;
-		kindCd: string;
-		neuterYn: string;
-		noticeEdt: number;
-		noticeNo: string;
-		noticeSdt: number;
-		officetel: string;
-		orgNm: string;
-		popfile: string;
-		processState: string;
-		sexCd: string;
-		specialMark: string;
-		weight: string;
-	};
-}
+import { ListProps } from '../../types/type';
 
 function List({ item }: ListProps) {
 	const [gender, setGender] = useState('');

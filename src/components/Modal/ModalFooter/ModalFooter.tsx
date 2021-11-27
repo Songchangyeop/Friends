@@ -5,70 +5,14 @@ import theme from '../../../assets/styles/theme';
 import { ReducerType } from '../../../modules/rootReducer';
 import { selectAction } from '../../../modules/selectAnimal/select';
 import AuthService from '../../../service/auth_service';
-
-interface SelectedAnimal {
-	selected: {
-		age: number;
-		careAddr: string;
-		careNm: string;
-		careTel: string;
-		chargeNm: string;
-		colorCd: string;
-		desertionNo: number;
-		filename: string;
-		happenDt: number;
-		happenPlace: string;
-		kindCd: string;
-		neuterYn: string;
-		noticeEdt: number;
-		noticeNo: string;
-		noticeSdt: number;
-		officetel: string;
-		orgNm: string;
-		popfile: string;
-		processState: string;
-		sexCd: string;
-		specialMark: string;
-		weight: string;
-	};
-}
-
-interface BookmarkAnimalType {
-	age: number;
-	careAddr: string;
-	careNm: string;
-	careTel: string;
-	chargeNm: string;
-	colorCd: string;
-	desertionNo: number;
-	filename: string;
-	happenDt: number;
-	happenPlace: string;
-	kindCd: string;
-	neuterYn: string;
-	noticeEdt: number;
-	noticeNo: string;
-	noticeSdt: number;
-	officetel: string;
-	orgNm: string;
-	popfile: string;
-	processState: string;
-	sexCd: string;
-	specialMark: string;
-	weight: string;
-}
-
-interface isBookmark {
-	isBookmark: boolean;
-	currentPage: string;
-}
+import { SelectedAnimal, AnimalType } from '../../../types/type';
 
 interface Page {
 	currentPage: string;
 }
 
 interface Bookmark {
-	bookmark: BookmarkAnimalType[];
+	bookmark: AnimalType[];
 }
 
 function ModalFooter() {

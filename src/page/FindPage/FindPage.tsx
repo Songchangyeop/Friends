@@ -15,10 +15,6 @@ interface Select {
 	isSelect: boolean;
 }
 
-interface openModal {
-	openModal: boolean;
-}
-
 function MainPage() {
 	const [openModal, setOpenModal] = useState<boolean>();
 	const { isSelect } = useSelector<ReducerType, Select>(
@@ -32,7 +28,6 @@ function MainPage() {
 	useEffect(() => {
 		setOpenModal(isSelect);
 	}, [isSelect]);
-	//isSelect가 바뀜
 
 	useEffect(() => {
 		dispatch(ChangePage('find'));

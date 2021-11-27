@@ -6,32 +6,9 @@ import ModalHeader from './ModalHeader/ModalHeader';
 import Check from '../Check/Check';
 import theme from '../../assets/styles/theme';
 import * as style from './ModalStyle';
+import { SelectedAnimal } from '../../types/type';
 
-interface PropType {
-	selected: {
-		age: number;
-		careAddr: string;
-		careNm: string;
-		careTel: string;
-		chargeNm: string;
-		colorCd: string;
-		desertionNo: number;
-		filename: string;
-		happenDt: number;
-		happenPlace: string;
-		kindCd: string;
-		neuterYn: string;
-		noticeEdt: number;
-		noticeNo: string;
-		noticeSdt: number;
-		officetel: string;
-		orgNm: string;
-		popfile: string;
-		processState: string;
-		sexCd: string;
-		specialMark: string;
-		weight: string;
-	};
+interface PropType extends SelectedAnimal {
 	gender: string;
 }
 

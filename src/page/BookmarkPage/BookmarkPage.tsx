@@ -9,40 +9,15 @@ import { ReducerType } from '../../modules/rootReducer';
 import theme from '../../assets/styles/theme';
 import AuthService from '../../service/auth_service';
 import LoginModalContainer from '../../containers/LoginModalContainer';
-
-interface AnimalType {
-	age: number;
-	careAddr: string;
-	careNm: string;
-	careTel: string;
-	chargeNm: string;
-	colorCd: string;
-	desertionNo: number;
-	filename: string;
-	happenDt: number;
-	happenPlace: string;
-	kindCd: string;
-	neuterYn: string;
-	noticeEdt: number;
-	noticeNo: string;
-	noticeSdt: number;
-	officetel: string;
-	orgNm: string;
-	popfile: string;
-	processState: string;
-	sexCd: string;
-	specialMark: string;
-	weight: string;
-}
+import { AnimalType } from '../../types/type';
 
 interface Select {
-	bookmark: AnimalType[];
 	isSelect: boolean;
+	bookmark: AnimalType[];
 }
+
 function BookmarkPage() {
 	const [isLogin, setIsLogin] = useState(true);
-
-	// const [bookmarkItem, setBookmarkItem] = useState<AnimalType[]>();
 	const { ChangePage } = pageAction;
 
 	const dispatch = useDispatch();

@@ -1,98 +1,14 @@
 import { firebaseApp } from './../../service/firebase';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getDatabase, ref, set, remove, off } from 'firebase/database';
+import {
+	SelectStateType,
+	AnimalType,
+	AddType,
+	RemoveType,
+} from '../../types/type';
 
-interface AnimalType {
-	selected: {
-		age: number;
-		careAddr: string;
-		careNm: string;
-		careTel: string;
-		chargeNm: string;
-		colorCd: string;
-		desertionNo: number;
-		filename: string;
-		happenDt: number;
-		happenPlace: string;
-		kindCd: string;
-		neuterYn: string;
-		noticeEdt: number;
-		noticeNo: string;
-		noticeSdt: number;
-		officetel: string;
-		orgNm: string;
-		popfile: string;
-		processState: string;
-		sexCd: string;
-		specialMark: string;
-		weight: string;
-	};
-	isSelect: boolean;
-	checkMessage: string;
-	isCheckOpen: boolean;
-	bookmark: BookmarkAnimalType[];
-	error: null;
-}
-
-interface BookmarkAnimalType {
-	age: number;
-	careAddr: string;
-	careNm: string;
-	careTel: string;
-	chargeNm: string;
-	colorCd: string;
-	desertionNo: number;
-	filename: string;
-	happenDt: number;
-	happenPlace: string;
-	kindCd: string;
-	neuterYn: string;
-	noticeEdt: number;
-	noticeNo: string;
-	noticeSdt: number;
-	officetel: string;
-	orgNm: string;
-	popfile: string;
-	processState: string;
-	sexCd: string;
-	specialMark: string;
-	weight: string;
-}
-
-interface RemoveType {
-	userId: string;
-	bookmarkId: number;
-}
-
-interface AddType {
-	bookmark: {
-		age: number;
-		careAddr: string;
-		careNm: string;
-		careTel: string;
-		chargeNm: string;
-		colorCd: string;
-		desertionNo: number;
-		filename: string;
-		happenDt: number;
-		happenPlace: string;
-		kindCd: string;
-		neuterYn: string;
-		noticeEdt: number;
-		noticeNo: string;
-		noticeSdt: number;
-		officetel: string;
-		orgNm: string;
-		popfile: string;
-		processState: string;
-		sexCd: string;
-		specialMark: string;
-		weight: string;
-	};
-	userId: string;
-}
-
-export const initialState: AnimalType = {
+export const initialState: SelectStateType = {
 	selected: {
 		age: 0,
 		careAddr: '',
@@ -128,7 +44,7 @@ export const selectAnimal = createSlice({
 	name: 'select',
 	initialState,
 	reducers: {
-		openModal: (state, action: PayloadAction<BookmarkAnimalType>) => {
+		openModal: (state, action: PayloadAction<AnimalType>) => {
 			state.isSelect = true;
 			state.selected = action.payload;
 		},
@@ -161,7 +77,7 @@ export const selectAnimal = createSlice({
 			state.isSelect = false;
 		},
 
-		GetBookmark: (state, action: { payload: BookmarkAnimalType[] }) => {
+		GetBookmark: (state, action: { payload: AnimalType[] }) => {
 			const response = action.payload;
 			state.bookmark.length = 0;
 			state.bookmark = response;

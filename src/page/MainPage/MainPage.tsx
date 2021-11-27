@@ -8,32 +8,8 @@ import { pageAction } from '../../modules/CurrentPage/PageCheck';
 import { getDatabase, ref, onValue, off } from 'firebase/database';
 import { firebaseApp } from '../../service/firebase';
 import { selectAction } from '../../modules/selectAnimal/select';
+import { AnimalType } from '../../types/type';
 import AuthService from '../../service/auth_service';
-
-interface AnimalType {
-	age: number;
-	careAddr: string;
-	careNm: string;
-	careTel: string;
-	chargeNm: string;
-	colorCd: string;
-	desertionNo: number;
-	filename: string;
-	happenDt: number;
-	happenPlace: string;
-	kindCd: string;
-	neuterYn: string;
-	noticeEdt: number;
-	noticeNo: string;
-	noticeSdt: number;
-	officetel: string;
-	orgNm: string;
-	popfile: string;
-	processState: string;
-	sexCd: string;
-	specialMark: string;
-	weight: string;
-}
 
 function MainPage() {
 	const [userId, setUserId] = useState('');

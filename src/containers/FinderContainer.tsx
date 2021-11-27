@@ -5,34 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Finder from '../components/Finder/Finder';
 import { animalAction } from '../modules/getData/animal';
 import { ReducerType } from '../modules/rootReducer';
+import { AnimalType } from '../types/type';
 
-interface Animal {
-	age: number;
-	careAddr: string;
-	careNm: string;
-	careTel: string;
-	chargeNm: string;
-	colorCd: string;
-	desertionNo: number;
-	filename: string;
-	happenDt: number;
-	happenPlace: string;
-	kindCd: string;
-	neuterYn: string;
-	noticeEdt: number;
-	noticeNo: string;
-	noticeSdt: number;
-	officetel: string;
-	orgNm: string;
-	popfile: string;
-	processState: string;
-	sexCd: string;
-	specialMark: string;
-	weight: string;
-}
-
-interface AnimalType {
-	animal: Animal[];
+interface ResponseType {
+	animal: AnimalType[];
 	param: {
 		city: number;
 		kind: number | undefined;
@@ -44,7 +20,7 @@ function FinderContainer() {
 	const [city, setCity] = useState(6110000);
 	const [kind, setKind] = useState<number>();
 	const [listOpen, setListOpen] = useState(false);
-	const { animal, param } = useSelector<ReducerType, AnimalType>(
+	const { animal, param } = useSelector<ReducerType, ResponseType>(
 		(state) => state.animalReducer
 	);
 	const { getData } = animalAction;
