@@ -19,7 +19,7 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 					color: 'white',
 				}}
 			>
-				<style.Img src="img/Logo.png" alt="Logo" />
+				<style.Img src="/img/Logo.png" alt="Logo" />
 			</Link>
 
 			<style.NavList>

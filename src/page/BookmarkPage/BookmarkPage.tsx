@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import List from '../components/List/List';
-import ModalContainer from '../containers/ModalContainer';
-import NavContainer from '../containers/NavContainer';
-import { pageAction } from '../modules/CurrentPage/PageCheck';
-import { ReducerType } from '../modules/rootReducer';
-import theme from '../assets/styles/theme';
-import AuthService from '../service/auth_service';
-import LoginModalContainer from '../containers/LoginModalContainer';
+import * as style from './BookmarkPageStyle';
+import List from '../../components/List/List';
+import ModalContainer from '../../containers/ModalContainer';
+import NavContainer from '../../containers/NavContainer';
+import { pageAction } from '../../modules/CurrentPage/PageCheck';
+import { ReducerType } from '../../modules/rootReducer';
+import theme from '../../assets/styles/theme';
+import AuthService from '../../service/auth_service';
+import LoginModalContainer from '../../containers/LoginModalContainer';
 
 interface AnimalType {
 	age: number;
@@ -66,75 +66,26 @@ function BookmarkPage() {
 	});
 
 	return (
-		<Main>
+		<style.Main>
 			{isLogin === false && <LoginModalContainer />}
 			{isSelect && (
-				<Container>
+				<style.Container>
 					<ModalContainer />
-				</Container>
+				</style.Container>
 			)}
 			<NavContainer />
-			<Ul>
+			<style.Ul>
 				{bookmark &&
 					bookmark.map((item) => <List key={item.desertionNo} item={item} />)}
 				{bookmark.length < 1 && (
-					<Div>
-						<Image src="img/blank.png" alt="blank" theme={theme} />
-						<Text theme={theme}>리스트가 비어있습니다</Text>
-					</Div>
+					<style.Div>
+						<style.Image src="img/blank.png" alt="blank" theme={theme} />
+						<style.Text theme={theme}>리스트가 비어있습니다</style.Text>
+					</style.Div>
 				)}
-			</Ul>
-		</Main>
+			</style.Ul>
+		</style.Main>
 	);
 }
 
 export default BookmarkPage;
-
-const Container = styled.div`
-	position: absolute;
-	width: 100%;
-	height: 100%;
-`;
-
-const Main = styled.main`
-	width: 100%;
-	height: 10vh;
-`;
-
-const Ul = styled.ul`
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-`;
-
-const Div = styled.div`
-	width: 100%;
-	height: 90vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-`;
-
-const Image = styled.img`
-	width: auto;
-
-	@media ${(props) => props.theme.mobile} {
-		width: 15em;
-	}
-`;
-
-const Text = styled.text`
-	color: #a6a6a6;
-	font-family: 'Cafe24Oneprettynight';
-	font-weight: bold;
-	font-size: 2em;
-	cursor: default;
-
-	@media ${(props) => props.theme.mobile} {
-		font-size: 1.5em;
-	}
-`;

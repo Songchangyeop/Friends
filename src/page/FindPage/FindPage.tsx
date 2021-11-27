@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import theme from '../assets/styles/theme';
-import FinderContainer from '../containers/FinderContainer';
-import ListContainer from '../containers/ListContainer';
-import LoginModalContainer from '../containers/LoginModalContainer';
-import ModalContainer from '../containers/ModalContainer';
-import { pageAction } from '../modules/CurrentPage/PageCheck';
-import { ReducerType } from '../modules/rootReducer';
-import AuthService from '../service/auth_service';
+import * as style from './FindPageStyle';
+import theme from '../../assets/styles/theme';
+import FinderContainer from '../../containers/FinderContainer';
+import ListContainer from '../../containers/ListContainer';
+import LoginModalContainer from '../../containers/LoginModalContainer';
+import ModalContainer from '../../containers/ModalContainer';
+import { pageAction } from '../../modules/CurrentPage/PageCheck';
+import { ReducerType } from '../../modules/rootReducer';
+import AuthService from '../../service/auth_service';
 
 interface Select {
 	isSelect: boolean;
@@ -45,34 +45,17 @@ function MainPage() {
 	});
 
 	return (
-		<Main theme={theme}>
+		<style.Main theme={theme}>
 			{isLogin === false && <LoginModalContainer />}
 			<FinderContainer />
 			<ListContainer />
 			{openModal && (
-				<Container>
+				<style.Container>
 					<ModalContainer />
-				</Container>
+				</style.Container>
 			)}
-		</Main>
+		</style.Main>
 	);
 }
 
 export default MainPage;
-
-const Main = styled.main`
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	overflow: hidden;
-
-	@media ${(props) => props.theme.mobile} {
-		flex-direction: column;
-	}
-`;
-
-const Container = styled.div`
-	position: absolute;
-	width: 100%;
-	height: 100%;
-`;
