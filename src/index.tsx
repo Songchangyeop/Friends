@@ -13,7 +13,6 @@ const store = configureStore({
 	middleware: [sagaMiddleware],
 });
 
-// saga를 실행
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
