@@ -66,7 +66,7 @@ function MainPage() {
 					<style.RightWrap theme={theme}>
 						<style.MainImg
 							theme={theme}
-							src="img/main.png"
+							src="img/main.webp"
 							alt="메인"
 						></style.MainImg>
 					</style.RightWrap>
@@ -76,7 +76,7 @@ function MainPage() {
 				<style.LeftWrap theme={theme}>
 					<style.CityImg
 						theme={theme}
-						src="img/city.png"
+						src="img/city.webp"
 						alt="도시"
 					></style.CityImg>
 				</style.LeftWrap>
@@ -107,7 +107,7 @@ function MainPage() {
 				<style.RightWrap theme={theme}>
 					<style.ListImg
 						theme={theme}
-						src="img/list.png"
+						src="img/list.webp"
 						alt="리스트"
 					></style.ListImg>
 				</style.RightWrap>

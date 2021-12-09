@@ -54,7 +54,7 @@ function BookmarkPage() {
 					bookmark.map((item) => <List key={item.desertionNo} item={item} />)}
 				{bookmark.length < 1 && (
 					<style.Div>
-						<style.Image src="img/blank.png" alt="blank" theme={theme} />
+						<style.Image src="img/blank.webp" alt="blank" theme={theme} />
 						<style.Text theme={theme}>리스트가 비어있습니다</style.Text>
 					</style.Div>
 				)}

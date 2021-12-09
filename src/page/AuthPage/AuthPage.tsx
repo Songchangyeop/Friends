@@ -43,7 +43,7 @@ function AuthPage({ history }: Props) {
 			<style.Section>
 				<style.Wrap>
 					<style.Login onClick={onLogin}>
-						<style.Img src="img/google.png" alt="google"></style.Img>
+						<style.Img src="img/google.webp" alt="google"></style.Img>
 						<span>Google을(를) 사용하여 로그인</span>
 					</style.Login>
 					<style.Text>

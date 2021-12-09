@@ -1,18 +1,5 @@
 import styled from 'styled-components';
 
-export const Ul = styled.ul`
-	flex: 2;
-	display: flex;
-	flex-wrap: wrap;
-	overflow-y: auto;
-	justify-content: center;
-	margin: 0;
-
-	@media ${(props) => props.theme.mobile} {
-		flex: 5;
-	}
-`;
-
 export const Shimmer = styled.div`
 	width: 50%;
 	height: 100%;
