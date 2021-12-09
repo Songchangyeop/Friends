@@ -14,7 +14,7 @@ Friends는 전국의 유기동물에게 따듯한 손길을 전해주고자 합�
 <br />
 <br />
 
-<p align="center"><img src="public/img/screen.png"  width="500" height="300"></p>
+<p align="center"><img src="public/img/screen.webp"  width="500" height="300"></p>
 
 <br />
 
