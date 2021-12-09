@@ -6,6 +6,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import rootReducer, { rootSaga } from './modules/rootReducer';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
@@ -15,10 +16,14 @@ const store = configureStore({
 
 sagaMiddleware.run(rootSaga);
 
+const persistor = persistStore(store);
+
 ReactDOM.render(
 	<Provider store={store}>
-		<GlobalStyle />
-		<App />
+		<PersistGate loading={null} persistor={persistor}>
+			<GlobalStyle />
+			<App />
+		</PersistGate>
 	</Provider>,
 	document.getElementById('root')
 );

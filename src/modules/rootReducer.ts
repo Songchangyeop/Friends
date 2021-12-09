@@ -4,6 +4,13 @@ import { animalReducer } from './getData/animal';
 import { combineReducers } from 'redux';
 import { all } from 'redux-saga/effects';
 import { animalSaga } from './getData/AnimalSaga';
+import persistReducer from 'redux-persist/es/persistReducer';
+
+const persistConfig = {
+	key: 'root',
+	storage,
+	whitelist: ['selectReducer', 'animalReducer'],
+};
 
 const rootReducer = combineReducers({
 	animalReducer,
@@ -16,4 +23,4 @@ export function* rootSaga() {
 }
 
 export type ReducerType = ReturnType<typeof rootReducer>;
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);
