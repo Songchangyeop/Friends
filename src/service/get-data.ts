@@ -10,6 +10,9 @@ const key = process.env.REACT_APP_API_KEY;
 
 export async function getAnimal(param: ParamType) {
 	const { city, kind, page } = param;
+	console.log(param);
+	console.log(key);
+
 	try {
 		const {
 			data: {
