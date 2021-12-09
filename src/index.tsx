@@ -7,6 +7,7 @@ import rootReducer, { rootSaga } from './modules/rootReducer';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { PersistGate } from 'redux-persist/integration/react';
+import persistStore from 'redux-persist/es/persistStore';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
