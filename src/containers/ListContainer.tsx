@@ -71,20 +71,19 @@ function ListContainer() {
 				<SkeletonContainer />
 			)}
 
-			{isLoading && (
+			{isLoading && animalList.length > 1 && (
 				<Ul isLoading={isLoading} theme={theme}>
-					{animalList &&
-						animalList.map((item, index) =>
-							animalList.length - 1 === index ? (
-								<LI ref={ref} key={index}>
-									<List key={item.desertionNo} item={item} />
-								</LI>
-							) : (
-								<LI key={index}>
-									<List key={item.desertionNo} item={item} />
-								</LI>
-							)
-						)}
+					{animalList.map((item, index) =>
+						animalList.length - 1 === index ? (
+							<LI ref={ref} key={index}>
+								<List key={item.desertionNo} item={item} />
+							</LI>
+						) : (
+							<LI key={index}>
+								<List key={item.desertionNo} item={item} />
+							</LI>
+						)
+					)}
 				</Ul>
 			)}
 		</>

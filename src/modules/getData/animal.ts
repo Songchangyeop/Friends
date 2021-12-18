@@ -1,11 +1,12 @@
 import { AnimalType, Description, ParamType } from './../../types/type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { throttle } from '@redux-saga/core/effects';
 
 //initialState
 export const initialState: Description = {
 	animal: [],
 	isLoading: false,
-	error: null,
+	isError: false,
 	param: {
 		city: 0,
 		kind: 0,
@@ -22,19 +23,23 @@ export const getAnimal = createSlice({
 			const newState = state.animal.concat(action.payload);
 			state.animal = newState;
 			state.isLoading = true;
+			state.isError = false;
 		},
 		getDataFailure: (state, { payload: error }) => {
 			state.isLoading = false;
 			state.animal.length = 0;
-			state.error = error;
+			state.isError = true;
+			console.log(error);
 		},
 		getData: (state, action: PayloadAction<ParamType>) => {
 			const { city, kind } = state.param;
 			if (city !== action.payload.city || kind !== action.payload.kind) {
 				state.isLoading = false;
-			} else {
 			}
 			state.param = action.payload;
+		},
+		initError: (state) => {
+			state.isError = false;
 		},
 	},
 });

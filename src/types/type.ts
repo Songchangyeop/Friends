@@ -85,7 +85,7 @@ export interface SelectStateType {
 export interface Description {
 	animal: AnimalType[];
 	isLoading: boolean;
-	error: null;
+	isError: boolean;
 	param: {
 		city: number;
 		kind: number | undefined;

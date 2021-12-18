@@ -10,10 +10,12 @@ import { firebaseApp } from '../../service/firebase';
 import { selectAction } from '../../modules/selectAnimal/select';
 import { AnimalType } from '../../types/type';
 import AuthService from '../../service/auth_service';
+import { animalAction } from '../../modules/getData/animal';
 
 function MainPage() {
 	const [userId, setUserId] = useState('');
 	const { ChangePage } = pageAction;
+	const { initError } = animalAction;
 	const dispatch = useDispatch();
 	const { GetBookmark } = selectAction;
 	const authService = new AuthService();
@@ -38,8 +40,9 @@ function MainPage() {
 
 	useEffect(() => {
 		dispatch(ChangePage('main'));
+		dispatch(initError());
 		userId && getData(userId);
-	}, [ChangePage, dispatch, getData, userId]);
+	}, [ChangePage, dispatch, getData, userId, initError]);
 
 	useEffect(() => {
 		authService.onAuthChange((user) => {
