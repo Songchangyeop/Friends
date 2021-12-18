@@ -12,20 +12,16 @@ export async function getAnimal(param: ParamType) {
 	const { city, kind, page } = param;
 	const {
 		data: {
-			data: {
-				response: {
-					body: {
-						items: { item },
-					},
+			response: {
+				body: {
+					items: { item },
 				},
 			},
 		},
 	} = await axios({
-		url: 'https://cors-proxy.org/api/',
+		url: `https://cors-wait.herokuapp.com/http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?upr_cd=${city}&numOfRows=50&pageNo=${page}&upkind=${kind}&ServiceKey=${key}`,
 		method: 'get',
-		headers: {
-			'cors-proxy-url': `http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?upr_cd=${city}&numOfRows=50&pageNo=${page}&upkind=${kind}&ServiceKey=${key}`,
-		},
 	});
+
 	return item;
 }

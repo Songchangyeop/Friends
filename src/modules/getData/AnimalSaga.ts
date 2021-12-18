@@ -9,6 +9,7 @@ export function* getDataSaga(action: { payload: ParamType }) {
 	const param = action.payload;
 	try {
 		const response: AnimalType = yield call(API.getAnimal, param); // call은 api를 call해서 data를 받아옴
+		console.log(response);
 		yield put(getDataSuccess(response));
 		// put은 dispatch 를 뜻한다.
 	} catch (error) {
