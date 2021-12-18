@@ -11,7 +11,6 @@ interface Props extends RouteComponentProps {}
 function AuthPage({ history }: Props) {
 	const { ChangePage } = pageAction;
 	const dispatch = useDispatch();
-
 	const authService = new AuthService();
 
 	useEffect(() => {

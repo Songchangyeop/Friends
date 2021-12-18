@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import AuthPage from './page/AuthPage/AuthPage';
 import BookmarkPage from './page/BookmarkPage/BookmarkPage';
 import DetailPage from './page/DetailPage/DetailPage';
+import ErrorPage from './page/ErrorPage/ErrorPage';
 import FindPage from './page/FindPage/FindPage';
 import MainPage from './page/MainPage/MainPage';
 
@@ -17,6 +18,7 @@ function App() {
 					<Route path="/bookmark" component={BookmarkPage}></Route>
 					<Route path="/detail" component={DetailPage}></Route>
 					<Route path="/auth" component={AuthPage}></Route>
+					<Route path="/error" component={ErrorPage}></Route>
 				</Switch>
 			</BrowserRouter>
 		</Div>
