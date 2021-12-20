@@ -18,6 +18,8 @@ function Modal({ selected, gender }: PropType) {
 	const dispatch = useDispatch();
 
 	const handleClickOutside = (e: any) => {
+		if (e.target.tagName === 'SPAN' || e.target.tagName === 'BUTTON') return;
+
 		if (!modalRef.current?.contains(e.target)) dispatch(closeModal());
 	};
 

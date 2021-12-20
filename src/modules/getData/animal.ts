@@ -27,7 +27,6 @@ export const getAnimal = createSlice({
 			state.isLoading = false;
 			state.animal.length = 0;
 			state.isError = true;
-			console.log(error);
 		},
 		getData: (state, action: PayloadAction<ParamType>) => {
 			const { city, kind } = state.param;

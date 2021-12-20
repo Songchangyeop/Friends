@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 
-// 디자인
 export const Up = keyframes`
   0% {
     transform: translateY(30%);

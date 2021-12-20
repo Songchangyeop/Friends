@@ -23,7 +23,7 @@ function NavContainer() {
 		authService.onAuthChange((user) => {
 			user ? setIsLogin(true) : setIsLogin(false);
 		});
-	}, [authService]);
+	}, []);
 
 	return (
 		<Nav currentPage={currentPage} isLogin={isLogin} onLogout={onLogout} />
