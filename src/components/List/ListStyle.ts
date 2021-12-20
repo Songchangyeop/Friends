@@ -35,8 +35,8 @@ export const Div = styled.div`
 	}
 
 	@media ${(props) => props.theme.mobile} {
-		width: 100px;
-		height: 150px;
+		width: 80px;
+		height: 120px;
 	}
 `;
 
@@ -48,7 +48,7 @@ export const Img = styled.img`
 
 	@media ${(props) => props.theme.mobile} {
 		width: 100%;
-		height: 100px;
+		height: 70px;
 	}
 `;
 
