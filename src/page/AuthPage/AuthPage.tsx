@@ -25,9 +25,7 @@ function AuthPage({ history }: Props) {
 	};
 
 	const onLogin = () => {
-		authService //
-			.login();
-		//
+		authService.login();
 	};
 
 	useEffect(() => {

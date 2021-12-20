@@ -1,7 +1,6 @@
 import { AnimalType, Description, ParamType } from './../../types/type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-//initialState
 export const initialState: Description = {
 	animal: [],
 	isLoading: false,
