@@ -24,15 +24,11 @@ function MainPage() {
 		const db = getDatabase(firebaseApp);
 		const query = ref(db, `${userId}/bookmark`);
 		let response: AnimalType[] = [];
-		let temp: any[] = [];
 		onValue(query, async (snapshot) => {
-			response = [];
-			temp = [];
 			const value = await snapshot.val();
 			value &&
-				Object.entries(value).forEach((item) => {
-					temp = [...item];
-					response = [...response, temp[1].bookmark];
+				Object.entries(value).forEach((item: [string, any]) => {
+					response = [...response, item[1].bookmark];
 				});
 			dispatch(GetBookmark(response));
 		});

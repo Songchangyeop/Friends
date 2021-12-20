@@ -1,6 +1,5 @@
 import { AnimalType, Description, ParamType } from './../../types/type';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { throttle } from '@redux-saga/core/effects';
 
 //initialState
 export const initialState: Description = {
