@@ -26,6 +26,7 @@ const Ul = styled.ul`
 	overflow-y: auto;
 	justify-content: center;
 	margin: 0;
+	padding: 0;
 
 	@media ${(props) => props.theme.mobile} {
 		flex: 5;

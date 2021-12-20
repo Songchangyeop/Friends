@@ -39,8 +39,8 @@ export const Div = styled.div`
 	}
 
 	@media ${(props) => props.theme.mobile} {
-		width: 100px;
-		height: 150px;
+		width: 80px;
+		height: 120px;
 	}
 `;
 
@@ -75,4 +75,9 @@ export const Text = styled.div`
 	margin-bottom: 5px;
 	overflow: hidden;
 	background-color: #eeeeee;
+
+	@media ${(props) => props.theme.mobile} {
+		width: 50px;
+		height: 7px;
+	}
 `;

@@ -70,7 +70,7 @@ function ListContainer() {
 			{isLoading === false && param.city !== 0 && <SkeletonContainer />}
 
 			{isLoading && (
-				<Ul isLoading={isLoading} theme={theme}>
+				<Ul theme={theme}>
 					{animalList.map((item, index) =>
 						animalList.length - 1 === index ? (
 							<LI ref={ref} key={index}>
@@ -90,18 +90,14 @@ function ListContainer() {
 
 export default ListContainer;
 
-const Ul = styled.ul<isLoading>`
-	${(props) =>
-		props.isLoading === true &&
-		css`
-			flex: 2;
-			display: flex;
-			flex-wrap: wrap;
-			overflow-y: auto;
-			justify-content: center;
-			margin: 0;
-			padding: 0;
-		`}
+const Ul = styled.ul`
+	flex: 2;
+	display: flex;
+	flex-wrap: wrap;
+	overflow-y: auto;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
 
 	@media ${(props) => props.theme.mobile} {
 		flex: 5;
