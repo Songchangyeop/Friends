@@ -26,6 +26,7 @@ function MainPage() {
 		let response: AnimalType[] = [];
 		onValue(query, async (snapshot) => {
 			const value = await snapshot.val();
+			response = [];
 			value &&
 				Object.entries(value).forEach((item: [string, any]) => {
 					response = [...response, item[1].bookmark];

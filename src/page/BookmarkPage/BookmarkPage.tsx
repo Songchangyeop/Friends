@@ -38,7 +38,7 @@ function BookmarkPage() {
 				setIsLogin(false);
 			}
 		});
-	});
+	}, []);
 
 	return (
 		<style.Main>
