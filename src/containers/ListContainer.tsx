@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReducerType } from '../modules/rootReducer';
 import List from '../components/List/List';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { animalAction } from '../modules/getData/animal';
 import { useCallback } from 'react';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import Loading from '../components/Skeleton/Skeleton';
 import theme from '../assets/styles/theme';
 import { AnimalType } from '../types/type';
 import SkeletonContainer from './SkeletonContainer';
@@ -19,10 +18,6 @@ interface Description {
 		kind: number | undefined;
 		page: number;
 	};
-	isLoading: boolean;
-}
-
-interface isLoading {
 	isLoading: boolean;
 }
 
