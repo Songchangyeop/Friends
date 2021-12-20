@@ -19,10 +19,10 @@ function Nav({ currentPage, isLogin, onLogout }: Props) {
 					color: 'white',
 				}}
 			>
-				<style.Img src="/img/Logo.webp" alt="Logo" />
+				<style.Img src="/img/Logo.webp" alt="Logo" theme={theme} />
 			</Link>
 
-			<style.NavList>
+			<style.NavList theme={theme}>
 				{currentPage !== 'find' && (
 					<Link
 						to="/find"

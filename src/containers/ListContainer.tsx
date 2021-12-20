@@ -67,11 +67,9 @@ function ListContainer() {
 
 	return (
 		<>
-			{isLoading === false && param.city !== 0 && animal.length > 1 && (
-				<SkeletonContainer />
-			)}
+			{isLoading === false && param.city !== 0 && <SkeletonContainer />}
 
-			{isLoading && animalList.length > 1 && (
+			{isLoading && (
 				<Ul isLoading={isLoading} theme={theme}>
 					{animalList.map((item, index) =>
 						animalList.length - 1 === index ? (

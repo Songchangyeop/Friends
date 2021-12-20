@@ -19,9 +19,12 @@ export const NavList = styled.ul`
 	align-items: center;
 	font-weight: bold;
 	font-size: 1.3em;
-
 	cursor: pointer;
 	list-style: none;
+
+	@media ${(props) => props.theme.mobile} {
+		font-size: 1rem;
+	}
 `;
 
 export const List = styled.li`
@@ -37,4 +40,8 @@ export const List = styled.li`
 export const Img = styled.img`
 	width: 5em;
 	cursor: pointer;
+
+	@media ${(props) => props.theme.mobile} {
+		width: 3.5rem;
+	}
 `;
